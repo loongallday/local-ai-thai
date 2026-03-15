@@ -1,6 +1,7 @@
 import { Composition } from "remotion";
 import { NeuralVideo } from "./NeuralVideo";
 import { NeuralVideoMobile } from "./NeuralVideoMobile";
+import { JarvisLoop } from "./JarvisLoop";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -20,6 +21,14 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={780}
         height={1400}
+      />
+      <Composition
+        id="JarvisLoop"
+        component={JarvisLoop}
+        durationInFrames={300}
+        fps={30}
+        width={1920}
+        height={1080}
       />
     </>
   );

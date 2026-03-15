@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import JarvisCanvas from "./JarvisCanvas";
 
 // ─── Floating chat bubbles ───
 const ChatBubble = ({
@@ -142,10 +143,8 @@ const NotifCard = ({
 export default function PersonalHero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Ambient background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(0,229,255,0.08),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_80%,rgba(0,255,136,0.06),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(139,92,246,0.04),transparent_60%)]" />
+      {/* JARVIS animated background */}
+      <JarvisCanvas />
 
       {/* Floating chat bubbles */}
       <ChatBubble

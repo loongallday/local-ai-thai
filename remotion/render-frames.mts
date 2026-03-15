@@ -30,8 +30,14 @@ async function main() {
     webpackOverride: (config) => config,
   });
 
-  await renderComp(bundled, "NeuralVideo", path.resolve(__dirname, "../public/frames"));
-  await renderComp(bundled, "NeuralVideoMobile", path.resolve(__dirname, "../public/frames-mobile"));
+  const target = process.argv[2]; // optional: pass "jarvis" to only render jarvis
+  if (!target || target === "main") {
+    await renderComp(bundled, "NeuralVideo", path.resolve(__dirname, "../public/frames"));
+    await renderComp(bundled, "NeuralVideoMobile", path.resolve(__dirname, "../public/frames-mobile"));
+  }
+  if (!target || target === "jarvis") {
+    await renderComp(bundled, "JarvisLoop", path.resolve(__dirname, "../public/frames-jarvis"));
+  }
 }
 
 main().catch((err) => { console.error(err); process.exit(1); });
