@@ -16,7 +16,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl sm:text-6xl lg:text-8xl font-bold leading-tight mb-6">
+          <h1 className="text-3xl sm:text-6xl lg:text-8xl font-bold leading-tight mb-6 mt-16 sm:mt-0">
             <span className="text-[#f0f4f8]">ใช้ AI ได้เต็มที่</span>
             <br />
             <span className="gradient-text-cyan">โดยไม่ต้องแชร์ข้อมูลให้ใคร</span>
