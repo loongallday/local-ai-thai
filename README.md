@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LocalAI Thailand
 
-## Getting Started
+**ติดตั้ง AI ส่วนตัว สำหรับธุรกิจในประเทศไทย**
 
-First, run the development server:
+เหมือนมี ChatGPT ส่วนตัว ทำงานบนเครื่องในออฟฟิศของคุณ ข้อมูลไม่หลุดไปไหน ไม่มีค่ารายเดือน PDPA Compliant
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🌐 **Website**: [localaithai.com](https://localaithai.com)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 🧠 AI ส่วนตัว 100% บนเครื่องของคุณ
+- 🔒 PDPA Compliant — ข้อมูลไม่ออกจากออฟฟิศ
+- 💰 จ่ายครั้งเดียว ไม่มี subscription
+- 🇹🇭 รองรับภาษาไทยเต็มรูปแบบ
+- 📄 RAG — ค้นหาเอกสาร PDF, Word, Excel ด้วย AI
+- 💬 LINE Bot — AI ตอบลูกค้าอัตโนมัติ
+- 🎨 สร้างรูป AI ไม่จำกัด (Stable Diffusion / Flux)
+- 🎙️ Voice — พูดกับ AI ได้ สร้าง Subtitle อัตโนมัติ
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Packages
 
-## Learn More
+| Package | Price | For |
+|---------|-------|-----|
+| AI Compact Starter | ฿59,900 | 1-3 คน |
+| AI Compact Pro | ฿109,900 | ทีม 3-5 คน |
+| AI Powerstation | ฿179,900 | ทีม 5-15 คน |
+| GPU Server | ฿1,190,000+ | 20-500+ คน |
+| Creator | ฿59,900+ | YouTuber, TikToker |
+| Home AI | ฿59,900+ | ใช้ที่บ้าน |
 
-To learn more about Next.js, take a look at the following resources:
+## Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Ollama • vLLM • MLX • Qwen 2.5 • Llama 3.1 • LlamaIndex • ChromaDB • Qdrant • Open WebUI • Dify • ComfyUI • Whisper • n8n • Docker • Caddy • WireGuard • Grafana
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+All open source. All self-hosted. 100% local.
 
-## Deploy on Vercel
+## Pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Home](https://localaithai.com) — Landing page
+- [How it Works](https://localaithai.com/how-it-works) — RAG Pipeline explained
+- [Packages & Pricing](https://localaithai.com/packages) — All packages with system builder
+- [Creator](https://localaithai.com/creator) — AI for YouTuber, TikToker, Influencer
+- [Personal](https://localaithai.com/personal) — JARVIS-style home AI assistant
+- [Tech Stack](https://localaithai.com/tech-stack) — 35+ self-hosted tools
+- [Services](https://localaithai.com/services) — Installation, RAG, Fine-tune, Support
+- [Contact](https://localaithai.com/contact) — Free consultation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contact
+
+- 🌐 [localaithai.com](https://localaithai.com)
+- 💚 [LINE Official](https://lin.ee/rYvSzrg)
+- 📞 082-704-7606
+- 📧 chavin@pace-design.co.th
+
+---
+
+Built with Next.js + Tailwind CSS + Framer Motion + Remotion
