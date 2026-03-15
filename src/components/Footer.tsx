@@ -17,16 +17,19 @@ export default function Footer() {
 
           <div className="flex flex-wrap justify-center gap-6 text-sm text-[#64748b]">
             <a href="#how-it-works" className="hover:text-[#00e5ff] transition-colors">
-              AI ส่วนตัวทำงานยังไง
+              วิธีทำงาน
             </a>
             <a href="#packages" className="hover:text-[#00e5ff] transition-colors">
-              แพ็คเกจติดตั้ง AI
+              แพ็คเกจ & ราคา
+            </a>
+            <a href="/creator" className="hover:text-[#ec4899] transition-colors">
+              สำหรับ Creator
             </a>
             <a href="#services" className="hover:text-[#00e5ff] transition-colors">
-              บริการติดตั้ง AI
+              บริการ
             </a>
             <a href="#contact" className="hover:text-[#00e5ff] transition-colors">
-              ติดต่อ
+              ติดต่อเรา
             </a>
           </div>
 

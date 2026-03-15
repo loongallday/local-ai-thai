@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { Menu, X, Cpu } from "lucide-react";
 
 const links = [
-  { href: "#how-it-works", label: "ทำงานยังไง" },
-  { href: "#packages", label: "แพ็คเกจ" },
-  { href: "/creator", label: "Creator" },
+  { href: "#how-it-works", label: "วิธีทำงาน" },
+  { href: "#packages", label: "แพ็คเกจ & ราคา" },
+  { href: "/creator", label: "สำหรับ Creator" },
   { href: "#services", label: "บริการ" },
-  { href: "#contact", label: "ติดต่อ" },
+  { href: "#contact", label: "ติดต่อเรา" },
 ];
 
 export default function Navbar() {
@@ -33,23 +33,30 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 group">
+        <a href="/" className="flex items-center gap-2 group">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00e5ff] to-[#00ff88] flex items-center justify-center">
             <Cpu size={18} className="text-[#060a14]" />
           </div>
           <span className="text-lg font-bold tracking-tight">
             <span className="gradient-text-cyan">Local</span>
             <span className="text-[#f0f4f8]">AI</span>
+            <span className="text-[#64748b] text-xs ml-1.5 font-normal hidden sm:inline">
+              Thailand
+            </span>
           </span>
         </a>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-[#94a3b8] hover:text-[#00e5ff] transition-colors font-medium"
+              className={`text-sm font-medium transition-colors ${
+                l.href === "/creator"
+                  ? "text-[#ec4899] hover:text-[#ec4899]/80"
+                  : "text-[#94a3b8] hover:text-[#00e5ff]"
+              }`}
             >
               {l.label}
             </a>
@@ -83,7 +90,11 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="block py-3 text-[#94a3b8] hover:text-[#00e5ff] transition-colors font-medium"
+              className={`block py-3 font-medium transition-colors ${
+                l.href === "/creator"
+                  ? "text-[#ec4899]"
+                  : "text-[#94a3b8] hover:text-[#00e5ff]"
+              }`}
             >
               {l.label}
             </a>
