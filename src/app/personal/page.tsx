@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI ส่วนตัวที่บ้าน — เหมือนมี JARVIS | LocalAI Thailand",
     description: "สรุปอีเมล ช่วยการบ้านลูก เขียนงาน แนะนำอาหาร จ่ายครั้งเดียว ฿59,900",
-    url: "https://localai-th.com/personal",
+    url: "https://localaithai.com/personal",
   },
-  alternates: { canonical: "https://localai-th.com/personal" },
+  alternates: { canonical: "https://localaithai.com/personal" },
 };
 
 export default function PersonalPage() {

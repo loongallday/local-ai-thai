@@ -60,7 +60,7 @@ export default function Contact() {
             </a>
 
             <a
-              href="mailto:hello@localai-th.com"
+              href="mailto:hello@localaithai.com"
               className="flex items-center gap-4 p-5 rounded-xl bg-[#111827] border border-[#1e293b] hover:border-[#8b5cf6]/40 transition-all group"
             >
               <div className="w-12 h-12 rounded-xl bg-[#8b5cf6]/10 flex items-center justify-center shrink-0">
@@ -70,7 +70,7 @@ export default function Contact() {
                 <p className="font-bold text-[#f0f4f8] group-hover:text-[#8b5cf6] transition-colors">
                   ส่งอีเมล
                 </p>
-                <p className="text-sm text-[#64748b]">hello@localai-th.com</p>
+                <p className="text-sm text-[#64748b]">hello@localaithai.com</p>
               </div>
             </a>
 

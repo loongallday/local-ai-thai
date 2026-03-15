@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "AI ส่วนตัวทำงานยังไง | ระบบ RAG Pipeline ภาษาไทย",
   description:
     "เข้าใจวิธีทำงานของ AI ส่วนตัว ตั้งแต่นำเอกสารเข้าระบบ ตัดแบ่ง Embedding จัดเก็บใน Vector Database จนถึงถามคำถามภาษาไทยแล้วได้คำตอบทันที",
-  alternates: { canonical: "https://localai-th.com/how-it-works" },
+  alternates: { canonical: "https://localaithai.com/how-it-works" },
 };
 
 export default function HowItWorksPage() {

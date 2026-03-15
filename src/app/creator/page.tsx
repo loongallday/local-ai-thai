@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     title: "AI สำหรับ Creator & Influencer | LocalAI Thailand",
     description:
       "หยุดจ่าย Subscription ทุกเดือน สร้าง Content ด้วย AI ส่วนตัว ไม่จำกัด เริ่มต้น ฿59,900",
-    url: "https://localai-th.com/creator",
+    url: "https://localaithai.com/creator",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   alternates: {
-    canonical: "https://localai-th.com/creator",
+    canonical: "https://localaithai.com/creator",
   },
 };
 

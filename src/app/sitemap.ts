@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://localai-th.com";
+  const baseUrl = "https://localaithai.com";
 
   return [
     {

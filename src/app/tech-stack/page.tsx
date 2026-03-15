@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Tech Stack | เทคโนโลยีที่เราใช้ติดตั้ง AI ส่วนตัว",
   description:
     "เทคโนโลยีทั้งหมดที่ใช้ในระบบ AI ส่วนตัว: Ollama, vLLM, MLX, LlamaIndex, ChromaDB, Open WebUI, Stable Diffusion, Docker และอื่นๆ พร้อมฮาร์ดแวร์ Apple Silicon, NVIDIA Blackwell, GPU Server",
-  alternates: { canonical: "https://localai-th.com/tech-stack" },
+  alternates: { canonical: "https://localaithai.com/tech-stack" },
 };
 
 export default function TechStackPage() {

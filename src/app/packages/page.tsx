@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "แพ็คเกจ AI ส่วนตัว & ราคา | เริ่มต้น ฿59,900",
   description:
     "เปรียบเทียบแพ็คเกจติดตั้ง AI ส่วนตัว ตั้งแต่ Mac Mini ฿59,900 ไปจนถึง GPU Server ฿2,890,000 พร้อม UPS Rack NAS ครบวงจร ออกแบบระบบได้ตามต้องการ",
-  alternates: { canonical: "https://localai-th.com/packages" },
+  alternates: { canonical: "https://localaithai.com/packages" },
 };
 
 export default function PackagesPage() {

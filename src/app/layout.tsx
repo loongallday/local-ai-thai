@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const SITE_URL = "https://localai-th.com";
+const SITE_URL = "https://localaithai.com";
 const TITLE = "LocalAI Thailand | ติดตั้ง AI ส่วนตัว บนเครื่องของคุณ ไม่ส่งข้อมูลขึ้นคลาวด์ เริ่มต้น ฿59,900";
 const DESCRIPTION =
   "ติดตั้งระบบ AI ส่วนตัวสำหรับธุรกิจ ทำงานบนเครื่องของคุณ 100% ไม่ส่งข้อมูลออก PDPA Compliant จ่ายครั้งเดียว ไม่มีค่ารายเดือน พร้อม UPS, Rack, NAS ครบวงจร เริ่มต้น ฿59,900";

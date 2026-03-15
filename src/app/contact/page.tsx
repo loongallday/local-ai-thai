@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "ติดต่อเรา | ปรึกษาฟรี ขอใบเสนอราคา AI ส่วนตัว",
   description:
     "ติดต่อ LocalAI Thailand ปรึกษาฟรีเรื่องติดตั้ง AI ส่วนตัว ขอใบเสนอราคา LINE @localai.th โทร ส่งอีเมล หรือกรอกฟอร์ม ตอบกลับภายใน 1 วันทำการ",
-  alternates: { canonical: "https://localai-th.com/contact" },
+  alternates: { canonical: "https://localaithai.com/contact" },
 };
 
 export default function ContactPage() {

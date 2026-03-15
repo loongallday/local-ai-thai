@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "บริการติดตั้ง AI ส่วนตัว | RAG, Fine-tune, LINE Bot, Support",
   description:
     "บริการติดตั้ง AI ครบวงจร ตั้งแต่ Setup ระบบ RAG Pipeline ปรับแต่งภาษาไทย เชื่อม LINE Bot ERP CRM พัฒนา AI App เฉพาะทาง อบรมทีมงาน ดูแลรายเดือน",
-  alternates: { canonical: "https://localai-th.com/services" },
+  alternates: { canonical: "https://localaithai.com/services" },
 };
 
 export default function ServicesPage() {
