@@ -8,7 +8,7 @@ const links = [
   { href: "/packages", label: "แพ็คเกจ & ราคา" },
   { href: "/personal", label: "ใช้ที่บ้าน" },
   { href: "/creator", label: "Creator", highlight: true },
-  { href: "/services", label: "บริการ" },
+  { href: "/tech-stack", label: "Tech Stack" },
   { href: "/contact", label: "ติดต่อเรา" },
 ];
 
