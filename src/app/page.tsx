@@ -6,6 +6,7 @@ import HowItWorks from "@/components/HowItWorks";
 import DataFlowDiagram from "@/components/DataFlowDiagram";
 import SystemBuilder from "@/components/SystemBuilder";
 import Packages from "@/components/Packages";
+import CreatorSection from "@/components/CreatorSection";
 import Comparison from "@/components/Comparison";
 import Infrastructure from "@/components/Infrastructure";
 import Services from "@/components/Services";
@@ -25,6 +26,7 @@ export default function Home() {
         <DataFlowDiagram />
         <SystemBuilder />
         <Packages />
+        <CreatorSection />
         <Comparison />
         <Infrastructure />
         <Services />
