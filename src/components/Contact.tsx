@@ -1,8 +1,25 @@
 "use client";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, Phone, Mail, MapPin, Send } from "lucide-react";
+import { MessageCircle, Phone, Mail, MapPin, Send, CheckCircle } from "lucide-react";
 
 export default function Contact() {
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSubmitting(true);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    await fetch("https://formspree.io/f/mvzwbyrd", {
+      method: "POST",
+      body: data,
+      headers: { Accept: "application/json" },
+    });
+    setSubmitting(false);
+    setSubmitted(true);
+  }
   return (
     <section id="contact" className="py-16 lg:py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(0,229,255,0.06)_0%,transparent_60%)]" />
@@ -102,9 +119,30 @@ export default function Contact() {
             <p className="text-xs text-[#64748b] mb-6">
               กรอกข้อมูลคร่าวๆ แล้วเราจะติดต่อกลับภายใน 1 วันทำการ
             </p>
-            <form className="space-y-4" action="https://formspree.io/f/mvzwbyrd" method="POST">
-              <input type="hidden" name="_subject" value="ใบเสนอราคาใหม่จาก LocalAI Thailand" />
-              <input type="hidden" name="_next" value="https://localaithai.com/contact?submitted=true" />
+            {submitted ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="flex flex-col items-center justify-center py-12 text-center"
+              >
+                <div className="w-16 h-16 rounded-full bg-[#00ff88]/10 flex items-center justify-center mb-4">
+                  <CheckCircle size={32} className="text-[#00ff88]" />
+                </div>
+                <h4 className="text-lg font-bold text-[#f0f4f8] mb-2">
+                  ส่งข้อมูลเรียบร้อยแล้ว!
+                </h4>
+                <p className="text-sm text-[#94a3b8] mb-6">
+                  เราจะติดต่อกลับภายใน 1 วันทำการ
+                </p>
+                <button
+                  onClick={() => setSubmitted(false)}
+                  className="text-sm text-[#00e5ff] hover:underline"
+                >
+                  ส่งอีกครั้ง
+                </button>
+              </motion.div>
+            ) : (
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label className="text-xs text-[#94a3b8] mb-1 block">
                   ชื่อ / บริษัท
@@ -160,9 +198,10 @@ export default function Contact() {
                 className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-[#00e5ff] to-[#00ff88] text-[#060a14] font-bold text-sm hover:opacity-90 transition-opacity"
               >
                 <Send size={16} />
-                ส่งข้อมูล
+                {submitting ? "กำลังส่ง..." : "ส่งข้อมูล"}
               </button>
             </form>
+            )}
           </motion.div>
         </div>
       </div>
