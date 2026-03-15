@@ -576,8 +576,9 @@ export default function HardwareSection() {
             <p className="text-sm text-[#94a3b8]">Bandwidth (GB/s) คือตัวเลขที่สำคัญที่สุดสำหรับความเร็ว AI</p>
           </div>
 
-          <div className="overflow-x-auto -mx-6 sm:mx-0">
-            <div className="min-w-[800px]">
+          <p className="text-xs text-[#64748b] text-center mb-2 sm:hidden">เลื่อนซ้าย-ขวาเพื่อดูตาราง →</p>
+          <div className="overflow-x-auto -mx-6 sm:mx-0 pb-2">
+            <div className="min-w-[700px]">
               <GlowCard color="#00e5ff">
                 <div className="p-4 overflow-hidden rounded-2xl">
                   <table className="w-full text-xs">
