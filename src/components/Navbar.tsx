@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { Menu, X, Cpu } from "lucide-react";
 
 const links = [
-  { href: "#how-it-works", label: "วิธีทำงาน" },
-  { href: "#packages", label: "แพ็คเกจ & ราคา" },
-  { href: "/creator", label: "สำหรับ Creator" },
-  { href: "#services", label: "บริการ" },
-  { href: "#contact", label: "ติดต่อเรา" },
+  { href: "/how-it-works", label: "วิธีทำงาน" },
+  { href: "/packages", label: "แพ็คเกจ & ราคา" },
+  { href: "/creator", label: "สำหรับ Creator", highlight: true },
+  { href: "/services", label: "บริการ" },
+  { href: "/contact", label: "ติดต่อเรา" },
 ];
 
 export default function Navbar() {
@@ -53,7 +53,7 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               className={`text-sm font-medium transition-colors ${
-                l.href === "/creator"
+                (l as any).highlight
                   ? "text-[#ec4899] hover:text-[#ec4899]/80"
                   : "text-[#94a3b8] hover:text-[#00e5ff]"
               }`}
@@ -62,7 +62,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#contact"
+            href="/contact"
             className="text-sm font-semibold px-5 py-2 rounded-lg bg-gradient-to-r from-[#00e5ff] to-[#00ff88] text-[#060a14] hover:opacity-90 transition-opacity"
           >
             ขอใบเสนอราคา
@@ -91,7 +91,7 @@ export default function Navbar() {
               href={l.href}
               onClick={() => setOpen(false)}
               className={`block py-3 font-medium transition-colors ${
-                l.href === "/creator"
+                (l as any).highlight
                   ? "text-[#ec4899]"
                   : "text-[#94a3b8] hover:text-[#00e5ff]"
               }`}
@@ -100,7 +100,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#contact"
+            href="/contact"
             onClick={() => setOpen(false)}
             className="block mt-2 text-center text-sm font-semibold px-5 py-3 rounded-lg bg-gradient-to-r from-[#00e5ff] to-[#00ff88] text-[#060a14]"
           >
