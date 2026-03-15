@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, ExternalLink, ChevronDown, Zap, Cpu, HardDrive, Shield } from "lucide-react";
+import { Check, ExternalLink, ChevronDown, Zap, Cpu, Shield } from "lucide-react";
 
 function GlowCard({ children, color = "#00e5ff", className = "" }: { children: React.ReactNode; color?: string; className?: string }) {
   return (
@@ -11,14 +11,28 @@ function GlowCard({ children, color = "#00e5ff", className = "" }: { children: R
   );
 }
 
-// ─── Types ───
+// Real SVG icon from CDN
+function TechIcon({ slug, color, size = 24 }: { slug: string; color: string; size?: number }) {
+  return (
+    <img
+      src={`https://cdn.simpleicons.org/${slug}/${color.replace("#", "")}`}
+      alt={slug}
+      width={size}
+      height={size}
+      className="shrink-0"
+      style={{ filter: "drop-shadow(0 0 4px rgba(255,255,255,0.1))" }}
+    />
+  );
+}
+
 interface Tech {
   name: string;
-  logo: string;
+  iconSlug?: string; // simpleicons slug
+  emoji?: string; // fallback if no icon
   tagline: string;
   tag: string;
   color: string;
-  url?: string;
+  url: string;
   description: string;
   whyWeChoseIt: string;
   keyFeatures: string[];
@@ -37,123 +51,64 @@ interface Category {
   techs: Tech[];
 }
 
-// ─── Data ───
 const categories: Category[] = [
   {
     id: "llm",
     emoji: "🧠",
     title: "LLM Inference Engine",
-    subtitle: "เครื่องยนต์ AI หลักที่ทำให้ AI คิด อ่าน และตอบ",
+    subtitle: "ซอฟต์แวร์ที่ทำให้ AI คิด อ่าน และตอบ",
     color: "#00e5ff",
-    description: "Inference Engine คือซอฟต์แวร์ที่โหลดโมเดล AI เข้า RAM/VRAM แล้วรับคำถามจากผู้ใช้ → ประมวลผล → สร้างคำตอบทีละ token ความเร็วของ inference ขึ้นอยู่กับ memory bandwidth ของฮาร์ดแวร์และ optimization ของ engine",
-    howItFits: "Inference Engine อยู่ตรงกลางของระบบทั้งหมด — ทุก request จาก UI, LINE Bot, API ล้วนวิ่งผ่านตัวนี้",
+    description: "Inference Engine โหลดโมเดล AI เข้า RAM แล้วรับคำถาม → ประมวลผล → สร้างคำตอบทีละ token",
+    howItFits: "ทุก request จาก UI, LINE Bot, API วิ่งผ่าน Inference Engine",
     techs: [
       {
         name: "Ollama",
-        logo: "🦙",
+        iconSlug: "ollama",
         tagline: "The easiest way to run LLMs locally",
         tag: "Default • ทุก Tier",
-        color: "#00e5ff",
+        color: "#ffffff",
         url: "https://ollama.com",
-        description: "Ollama ทำให้การรัน LLM บนเครื่อง local เป็นเรื่องง่ายมาก — แค่คำสั่งเดียว `ollama run llama3.1` ก็ได้ AI ที่ทำงานบนเครื่องคุณทันที รองรับทั้ง macOS, Linux, Windows",
-        whyWeChoseIt: "ติดตั้งง่ายที่สุดในตลาด ลูกค้าที่ไม่ใช่ technical ก็ใช้ได้ มี model library กว่า 100+ ตัว อัพเดทง่าย community ใหญ่",
-        keyFeatures: [
-          "ติดตั้งคำสั่งเดียว ไม่ต้อง config อะไร",
-          "รองรับ model: Llama, Qwen, Mistral, Gemma, Phi, DeepSeek",
-          "Auto quantization — เลือก precision ตาม RAM ที่มี",
-          "OpenAI-compatible API — app ที่เขียนสำหรับ ChatGPT ใช้ได้เลย",
-          "Multi-model — โหลดหลาย model พร้อมกัน สลับได้",
-          "GPU acceleration — CUDA (NVIDIA), Metal (Apple), ROCm (AMD)",
-        ],
-        specs: [
-          { label: "Supported OS", value: "macOS, Linux, Windows" },
-          { label: "GPU Support", value: "CUDA, Metal, ROCm" },
-          { label: "Model Format", value: "GGUF (llama.cpp)" },
-          { label: "API", value: "OpenAI-compatible REST API" },
-          { label: "License", value: "MIT (Free)" },
-        ],
-        alternatives: [
-          { name: "llama.cpp", whyNot: "ต้อง compile เอง ไม่มี model management" },
-          { name: "LocalAI", whyNot: "setup ซับซ้อนกว่า community เล็กกว่า" },
-        ],
+        description: "รัน LLM บนเครื่อง local ด้วยคำสั่งเดียว `ollama run llama3.1` รองรับ macOS, Linux, Windows",
+        whyWeChoseIt: "ติดตั้งง่ายที่สุด, model library 100+ ตัว, community ใหญ่, OpenAI-compatible API",
+        keyFeatures: ["ติดตั้งคำสั่งเดียว", "100+ models: Llama, Qwen, Mistral, Gemma, DeepSeek", "Auto quantization ตาม RAM", "OpenAI-compatible API", "Multi-model พร้อมกัน", "GPU: CUDA, Metal, ROCm"],
+        specs: [{ label: "OS", value: "macOS, Linux, Windows" }, { label: "GPU", value: "CUDA, Metal, ROCm" }, { label: "Format", value: "GGUF" }, { label: "License", value: "MIT" }],
+        alternatives: [{ name: "llama.cpp", whyNot: "ต้อง compile เอง ไม่มี model management" }, { name: "LocalAI", whyNot: "setup ซับซ้อนกว่า" }],
       },
       {
         name: "vLLM",
-        logo: "⚡",
+        emoji: "⚡",
         tagline: "High-throughput LLM serving for production",
-        tag: "Server Tier",
+        tag: "Server Tier • Multi-user",
         color: "#00ff88",
         url: "https://vllm.ai",
-        description: "vLLM เป็น inference engine ที่ออกแบบมาสำหรับ production — รองรับหลายคนใช้พร้อมกันได้ดีเยี่ยม ด้วยเทคนิค PagedAttention ที่จัดการ GPU memory ได้ efficient มาก ทำให้รองรับ concurrent request ได้มากกว่า engine อื่น 2-4x",
-        whyWeChoseIt: "เร็วที่สุดสำหรับ NVIDIA GPU เมื่อมีหลายคนใช้พร้อมกัน รองรับ continuous batching ทำให้ throughput สูงมาก เป็น standard ของ industry",
-        keyFeatures: [
-          "PagedAttention — GPU memory management ระดับ OS",
-          "Continuous batching — ไม่ต้องรอ batch เต็ม process ได้เลย",
-          "Tensor parallelism — กระจายโมเดลข้าม GPU ได้",
-          "2-4x throughput เทียบกับ HuggingFace Transformers",
-          "Streaming output — เห็นคำตอบทันทีไม่ต้องรอจนเสร็จ",
-          "OpenAI-compatible API",
-        ],
-        specs: [
-          { label: "GPU Required", value: "NVIDIA (CUDA)" },
-          { label: "Quantization", value: "AWQ, GPTQ, FP8, INT8" },
-          { label: "Max Concurrent", value: "50-500+ users" },
-          { label: "Tensor Parallel", value: "Multi-GPU supported" },
-          { label: "License", value: "Apache 2.0 (Free)" },
-        ],
-        alternatives: [
-          { name: "TGI (HuggingFace)", whyNot: "ช้ากว่า vLLM, community เล็กกว่า" },
-          { name: "TensorRT-LLM", whyNot: "NVIDIA only, setup ซับซ้อน, ไม่ open source เต็มที่" },
-        ],
+        description: "Inference engine สำหรับ production ด้วย PagedAttention รองรับหลายคนใช้พร้อมกันได้ 2-4x ดีกว่า engine อื่น",
+        whyWeChoseIt: "เร็วที่สุดบน NVIDIA GPU สำหรับ multi-user, continuous batching, industry standard",
+        keyFeatures: ["PagedAttention — GPU memory management", "Continuous batching", "Tensor parallelism (multi-GPU)", "2-4x throughput vs HuggingFace", "Streaming output", "OpenAI-compatible API"],
+        specs: [{ label: "GPU", value: "NVIDIA CUDA" }, { label: "Quantization", value: "AWQ, GPTQ, FP8" }, { label: "Concurrent", value: "50-500+ users" }, { label: "License", value: "Apache 2.0" }],
       },
       {
         name: "MLX",
-        logo: "🍎",
+        iconSlug: "apple",
         tagline: "Apple's ML framework for Apple Silicon",
-        tag: "Apple Compact Tier",
-        color: "#8b5cf6",
+        tag: "Apple Tier • 30-50% faster",
+        color: "#999999",
         url: "https://ml-explore.github.io/mlx/",
-        description: "MLX เป็น framework จาก Apple Research ที่ออกแบบมาเพื่อ Apple Silicon โดยเฉพาะ ใช้ unified memory architecture ได้เต็มที่ ทำให้ inference เร็วกว่า Ollama 30-50% บน Mac",
-        whyWeChoseIt: "เร็วที่สุดบน Mac เพราะ native Apple Silicon ลูกค้าที่เลือก Mac Mini/Studio ได้ performance สูงสุด",
-        keyFeatures: [
-          "Native Apple Silicon — ใช้ Neural Engine + GPU + CPU ร่วมกัน",
-          "Unified Memory — ไม่ต้อง copy ข้อมูลระหว่าง CPU↔GPU",
-          "30-50% เร็วกว่า Ollama บน Mac",
-          "Lazy evaluation — ประมวลผลเฉพาะที่จำเป็น",
-          "รองรับ model: Llama, Mistral, Qwen, Phi, Gemma",
-          "Fine-tuning ด้วย LoRA บน Mac ได้",
-        ],
-        specs: [
-          { label: "Platform", value: "macOS only (Apple Silicon)" },
-          { label: "Memory", value: "Unified Memory (shared CPU/GPU)" },
-          { label: "Bandwidth", value: "120-546 GB/s (M4 series)" },
-          { label: "Quantization", value: "4-bit, 8-bit" },
-          { label: "License", value: "MIT (Free)" },
-        ],
+        description: "Framework จาก Apple Research ใช้ Unified Memory ได้เต็มที่ เร็วกว่า Ollama 30-50% บน Mac",
+        whyWeChoseIt: "เร็วที่สุดบน Mac, native Apple Silicon, LoRA fine-tuning บน Mac ได้",
+        keyFeatures: ["Native Apple Silicon", "Unified Memory — ไม่ต้อง copy CPU↔GPU", "30-50% เร็วกว่า Ollama", "Lazy evaluation", "LoRA fine-tuning บน Mac"],
+        specs: [{ label: "Platform", value: "macOS (Apple Silicon)" }, { label: "Bandwidth", value: "120-546 GB/s" }, { label: "License", value: "MIT" }],
       },
       {
         name: "LiteLLM",
-        logo: "🔀",
-        tagline: "Unified API proxy for 100+ LLM providers",
+        emoji: "🔀",
+        tagline: "Unified API proxy for all LLMs",
         tag: "API Gateway • ทุก Tier",
         color: "#f59e0b",
         url: "https://litellm.ai",
-        description: "LiteLLM เป็น API gateway ที่แปลง request เป็น OpenAI format แล้วส่งต่อให้ backend ที่เหมาะสม ทำให้ app ที่เขียนสำหรับ OpenAI API ใช้กับ Ollama/vLLM/MLX ได้โดยไม่ต้องแก้โค้ด",
-        whyWeChoseIt: "เปลี่ยน model, เปลี่ยน engine ได้โดยไม่กระทบ app ที่เชื่อมต่ออยู่ เป็นตัวกลางที่ทำให้ระบบ flexible",
-        keyFeatures: [
-          "OpenAI-compatible API สำหรับทุก backend",
-          "Load balancing ระหว่างหลาย model/server",
-          "Rate limiting ป้องกัน overload",
-          "Usage logging & analytics",
-          "Fallback — ถ้า model หลักล่ม สลับไป model สำรอง",
-          "Auth — แต่ละ user มี API key ของตัวเอง",
-        ],
-        specs: [
-          { label: "Backend Support", value: "Ollama, vLLM, MLX, OpenAI, Anthropic" },
-          { label: "Protocol", value: "REST API (OpenAI format)" },
-          { label: "Auth", value: "API key per user" },
-          { label: "License", value: "MIT (Free)" },
-        ],
+        description: "API gateway ที่แปลง request เป็น OpenAI format ส่งต่อให้ backend ที่เหมาะสม เปลี่ยน model ไม่ต้องแก้โค้ด",
+        whyWeChoseIt: "เปลี่ยน model/engine ได้โดยไม่กระทบ app, load balancing, rate limiting, auth",
+        keyFeatures: ["OpenAI-compatible API สำหรับทุก backend", "Load balancing", "Rate limiting", "Usage logging", "Fallback — สลับ model อัตโนมัติ", "API key per user"],
+        specs: [{ label: "Backend", value: "Ollama, vLLM, MLX, OpenAI" }, { label: "Auth", value: "API key per user" }, { label: "License", value: "MIT" }],
       },
     ],
   },
@@ -161,803 +116,148 @@ const categories: Category[] = [
     id: "models",
     emoji: "📦",
     title: "AI Models",
-    subtitle: "โมเดลที่เราเลือกมาแล้วว่าดีที่สุดสำหรับไทย",
+    subtitle: "โมเดลที่เราเลือกว่าดีที่สุดสำหรับภาษาไทย",
     color: "#ec4899",
-    description: "โมเดลภาษา (LLM) คือ \"สมอง\" ของ AI — ยิ่งใหญ่ยิ่งฉลาด แต่ก็ต้องใช้ RAM มากขึ้น เราเลือกโมเดลที่ balance ระหว่างความฉลาด ความเร็ว และการรองรับภาษาไทย",
-    howItFits: "โมเดลถูกโหลดเข้า RAM โดย Inference Engine แล้วรับ prompt จาก RAG pipeline มาประมวลผล",
+    description: "โมเดลภาษา (LLM) คือ \"สมอง\" ของ AI — ยิ่งใหญ่ยิ่งฉลาด แต่ใช้ RAM มากขึ้น",
+    howItFits: "โมเดลถูกโหลดเข้า RAM โดย Inference Engine แล้วรับ prompt จาก RAG pipeline",
     techs: [
-      {
-        name: "Qwen 2.5",
-        logo: "🔮",
-        tagline: "Best multilingual model for Thai",
-        tag: "Default • ภาษาไทยดีที่สุด",
-        color: "#ec4899",
-        description: "Qwen 2.5 จาก Alibaba Cloud เป็นโมเดลที่รองรับภาษาไทยได้ดีที่สุดในตลาด open source มีตั้งแต่ 7B ถึง 72B เหมาะกับทุก tier",
-        whyWeChoseIt: "ภาษาไทยดีกว่า Llama ในหลายกรณี โดยเฉพาะ document analysis, summarization, และ instruction following เป็นภาษาไทย",
-        keyFeatures: [
-          "ภาษาไทยดีเยี่ยม — เข้าใจบริบท สำนวน คำย่อ",
-          "มีทุกขนาด: 7B (เร็ว), 14B (balance), 32B (ฉลาด), 72B (ฉลาดมาก)",
-          "128K context window — อ่านเอกสารยาวๆ ได้",
-          "Code generation ดี — เขียนโปรแกรมได้",
-          "Math reasoning ดี — คำนวณ วิเคราะห์ตัวเลข",
-        ],
-        specs: [
-          { label: "Sizes", value: "7B, 14B, 32B, 72B" },
-          { label: "Context", value: "128K tokens" },
-          { label: "RAM (7B Q4)", value: "~5 GB" },
-          { label: "RAM (32B Q4)", value: "~20 GB" },
-          { label: "RAM (72B Q4)", value: "~42 GB" },
-          { label: "License", value: "Apache 2.0 (Free)" },
-          { label: "Thai Score", value: "⭐⭐⭐⭐⭐ (ดีที่สุด)" },
-        ],
-      },
-      {
-        name: "Llama 3.1",
-        logo: "🦙",
-        tagline: "Meta's flagship open-source LLM",
-        tag: "Alternative • Performance",
-        color: "#3b82f6",
-        description: "Llama 3.1 จาก Meta เป็น open source LLM ที่ดีที่สุดตัวหนึ่ง มีจนถึง 405B parameters ภาษาไทยดี แต่ไม่เท่า Qwen",
-        whyWeChoseIt: "Fallback model ที่ดี มี community ใหญ่ที่สุด fine-tune version เยอะ เหมาะกับงานภาษาอังกฤษ",
-        keyFeatures: [
-          "Community ใหญ่ที่สุด — fine-tune versions เยอะมาก",
-          "มีถึง 405B — ใหญ่ที่สุดใน open source",
-          "Tool use / Function calling ดีมาก",
-          "Multilingual 8 ภาษา รวมไทย",
-          "128K context window",
-        ],
-        specs: [
-          { label: "Sizes", value: "8B, 70B, 405B" },
-          { label: "Context", value: "128K tokens" },
-          { label: "RAM (8B Q4)", value: "~5 GB" },
-          { label: "RAM (70B Q4)", value: "~42 GB" },
-          { label: "License", value: "Llama 3.1 Community License" },
-          { label: "Thai Score", value: "⭐⭐⭐⭐ (ดี)" },
-        ],
-      },
-      {
-        name: "BGE-M3",
-        logo: "🔢",
-        tagline: "Best multilingual embedding model",
-        tag: "Embedding • RAG",
-        color: "#00ff88",
-        description: "BGE-M3 จาก BAAI เป็น embedding model ที่แปลงข้อความเป็น vector ตัวเลข สำหรับ semantic search ใน RAG pipeline รองรับ 100+ ภาษา รวมภาษาไทย",
-        whyWeChoseIt: "Multilingual embedding ที่ดีที่สุด ภาษาไทยแม่นยำ ขนาดเล็กรันได้บนทุกเครื่อง",
-        keyFeatures: [
-          "100+ ภาษา รวมไทย ใน model เดียว",
-          "Dense + Sparse + Multi-vector retrieval",
-          "8192 token input — chunk ใหญ่ได้",
-          "ขนาดเล็ก ~2GB รันได้แม้บน Mac Mini",
-        ],
-        specs: [
-          { label: "Model Size", value: "~560M params (~2 GB)" },
-          { label: "Max Input", value: "8,192 tokens" },
-          { label: "Dimensions", value: "1,024" },
-          { label: "Languages", value: "100+" },
-          { label: "License", value: "MIT (Free)" },
-        ],
-      },
-      {
-        name: "Stable Diffusion / Flux",
-        logo: "🎨",
-        tagline: "AI image generation on your device",
-        tag: "Image Gen • Creator",
-        color: "#f59e0b",
-        description: "โมเดลสร้างรูปภาพจาก text prompt — Thumbnail, ภาพประกอบ, product shots, artwork ใช้ได้ไม่จำกัดบนเครื่องคุณ ไม่มีค่ารายเดือน",
-        whyWeChoseIt: "Open source image gen ที่ดีที่สุด community ใหญ่มี LoRA/style models เป็นหมื่น",
-        keyFeatures: [
-          "Generate รูปจาก text ภาษาไทย/อังกฤษ",
-          "SDXL: 1024x1024 คุณภาพสูง",
-          "Flux: รุ่นใหม่ คุณภาพใกล้ Midjourney",
-          "LoRA: เปลี่ยนสไตล์ได้ หลายพัน styles",
-          "ControlNet: ควบคุม pose, layout ได้",
-          "ไม่จำกัด — สร้างกี่รูปก็ได้ ไม่มี quota",
-        ],
-        specs: [
-          { label: "SDXL RAM", value: "~8 GB (GPU) / ~12 GB (CPU)" },
-          { label: "Flux RAM", value: "~12-24 GB" },
-          { label: "Speed (Mac M4)", value: "~15-30 วินาที/รูป" },
-          { label: "Speed (RTX 4090)", value: "~3-5 วินาที/รูป" },
-          { label: "License", value: "Open (varies by model)" },
-        ],
-      },
+      { name: "Qwen 2.5", iconSlug: "alibabadotcom", tagline: "Best multilingual model for Thai", tag: "Default • ภาษาไทยดีที่สุด", color: "#FF6A00", url: "https://qwenlm.github.io", description: "โมเดลจาก Alibaba รองรับภาษาไทยดีที่สุดใน open source มีตั้งแต่ 7B ถึง 72B", whyWeChoseIt: "ภาษาไทยดีกว่า Llama, document analysis ดี, 128K context", keyFeatures: ["ภาษาไทยดีเยี่ยม", "7B, 14B, 32B, 72B", "128K context", "Code + Math reasoning"], specs: [{ label: "RAM (7B Q4)", value: "~5GB" }, { label: "RAM (32B Q4)", value: "~20GB" }, { label: "RAM (72B Q4)", value: "~42GB" }, { label: "License", value: "Apache 2.0" }] },
+      { name: "Llama 3.1", iconSlug: "meta", tagline: "Meta's flagship open-source LLM", tag: "Alternative • Community ใหญ่สุด", color: "#0668E1", url: "https://llama.meta.com", description: "Open source LLM จาก Meta มีจนถึง 405B community ใหญ่ที่สุด", whyWeChoseIt: "Community ใหญ่สุด, fine-tune versions เยอะ, tool calling ดี", keyFeatures: ["8B, 70B, 405B", "128K context", "Tool use / Function calling", "Multilingual 8 ภาษา"], specs: [{ label: "RAM (8B Q4)", value: "~5GB" }, { label: "RAM (70B Q4)", value: "~42GB" }, { label: "License", value: "Llama Community" }] },
+      { name: "DeepSeek R1", emoji: "🧠", tagline: "Reasoning model rivaling OpenAI o1", tag: "Reasoning • ขั้นสูง", color: "#4D6BFE", url: "https://deepseek.com", description: "โมเดลที่คิดเป็นขั้นตอน (chain-of-thought) เทียบเท่า OpenAI o1 มี distilled version รันบน local ได้", whyWeChoseIt: "Reasoning ดีที่สุดใน open source, มี distilled 7B-70B รัน local ได้", keyFeatures: ["Chain-of-thought reasoning", "Math & coding ระดับสูง", "Distilled: 7B, 14B, 32B, 70B", "เทียบ OpenAI o1"], specs: [{ label: "Full model", value: "671B MoE" }, { label: "Distilled", value: "7B, 14B, 32B, 70B" }, { label: "License", value: "MIT" }] },
+      { name: "Stable Diffusion / Flux", iconSlug: "stability-ai", tagline: "AI image generation on your device", tag: "Image Gen • Creator", color: "#BF40FF", url: "https://stability.ai", description: "สร้างรูปภาพจาก text prompt — Thumbnail, artwork, product shots ใช้ไม่จำกัด ไม่มีค่ารายเดือน", whyWeChoseIt: "Open source image gen ที่ดีที่สุด, community ใหญ่, LoRA เป็นหมื่น", keyFeatures: ["Generate จาก text ไทย/อังกฤษ", "SDXL 1024x1024", "Flux คุณภาพใกล้ Midjourney", "LoRA หลายพัน styles", "ControlNet", "สร้างกี่รูปก็ได้"], specs: [{ label: "SDXL VRAM", value: "~8GB" }, { label: "Flux VRAM", value: "~12-24GB" }, { label: "License", value: "Open (varies)" }] },
+      { name: "BGE-M3", emoji: "🔢", tagline: "Best multilingual embedding model", tag: "Embedding • RAG", color: "#00ff88", url: "https://huggingface.co/BAAI/bge-m3", description: "Embedding model แปลงข้อความเป็น vector สำหรับ semantic search รองรับ 100+ ภาษา", whyWeChoseIt: "Multilingual ที่ดีที่สุด, ภาษาไทยแม่นยำ, ขนาดเล็ก", keyFeatures: ["100+ ภาษา", "Dense + Sparse retrieval", "8192 token input", "~2GB"], specs: [{ label: "Size", value: "~560M params" }, { label: "Dim", value: "1,024" }, { label: "License", value: "MIT" }] },
     ],
   },
   {
     id: "rag",
     emoji: "🔍",
     title: "RAG Pipeline",
-    subtitle: "ระบบค้นหาเอกสาร — ทำให้ AI อ่านไฟล์ของคุณได้",
+    subtitle: "ทำให้ AI อ่านเอกสารของคุณได้",
     color: "#00ff88",
-    description: "RAG (Retrieval-Augmented Generation) คือเทคนิคที่ทำให้ AI ตอบคำถามจากเอกสารจริงของคุณได้ แทนที่จะแต่งเอง: 1) ตัดเอกสารเป็นชิ้นเล็ก 2) แปลงเป็น vector 3) เก็บใน database 4) เมื่อมีคำถาม ค้นหาชิ้นที่เกี่ยวข้อง 5) ส่งให้ LLM อ่านแล้วตอบ",
-    howItFits: "RAG อยู่ระหว่าง UI กับ LLM — เมื่อผู้ใช้ถามคำถาม RAG ค้นหาเอกสารที่เกี่ยวข้องก่อน แล้วส่งให้ LLM พร้อมคำถาม",
+    description: "RAG: 1) ตัดเอกสาร 2) แปลงเป็น vector 3) เก็บใน DB 4) ค้นหาเมื่อมีคำถาม 5) ส่งให้ LLM ตอบ",
+    howItFits: "อยู่ระหว่าง UI กับ LLM — ค้นหาเอกสารที่เกี่ยวข้องก่อนส่งให้ AI",
     techs: [
-      {
-        name: "LlamaIndex",
-        logo: "🦙",
-        tagline: "The data framework for LLM applications",
-        tag: "Core • Document Processing",
-        color: "#00ff88",
-        url: "https://llamaindex.ai",
-        description: "LlamaIndex เป็น framework ที่จัดการทุกขั้นตอนของ RAG: อ่านไฟล์ทุกรูปแบบ → ตัดเป็นชิ้น → แปลงเป็น vector → เก็บใน database → ค้นหา → ส่งให้ LLM",
-        whyWeChoseIt: "ครบจบในตัวเดียว รองรับไฟล์ไทยได้ดี มี connector สำหรับทุก data source community ใหญ่ documentation ดี",
-        keyFeatures: [
-          "อ่านได้: PDF, Word, Excel, PowerPoint, Email, HTML, Markdown, CSV, JSON",
-          "OCR: อ่านรูปภาพที่มีข้อความได้ (ภาษาไทย)",
-          "Smart chunking: ตัดตามหัวข้อ ไม่ตัดกลางประโยค",
-          "Recursive retrieval: ค้นหาแบบเจาะลึกหลายระดับ",
-          "Query engine: ถามคำถามซับซ้อนได้ (multi-step reasoning)",
-          "Auto-refresh: เอกสารใหม่เข้ามา index อัตโนมัติ",
-        ],
-        specs: [
-          { label: "Supported Files", value: "PDF, DOCX, XLSX, PPTX, EML, HTML, MD, CSV, JSON, images" },
-          { label: "Chunk Strategy", value: "RecursiveCharacter, Sentence, Semantic" },
-          { label: "Default Chunk Size", value: "512 tokens, 50 overlap" },
-          { label: "License", value: "MIT (Free)" },
-        ],
-      },
-      {
-        name: "ChromaDB",
-        logo: "🎨",
-        tagline: "The AI-native open-source embedding database",
-        tag: "Vector DB • Simple",
-        color: "#f59e0b",
-        url: "https://www.trychroma.com",
-        description: "ChromaDB เป็น vector database ที่ใช้งานง่ายมาก ไม่ต้อง setup server แยก — embed ใน app ได้เลย เหมาะกับ deployment ขนาดเล็ก-กลาง",
-        whyWeChoseIt: "ง่ายที่สุด เหมาะกับ Compact และ Powerstation tier ไม่ต้อง manage database แยก",
-        keyFeatures: [
-          "Embedded — ไม่ต้อง setup server แยก",
-          "Persistent storage — ปิดเครื่องข้อมูลไม่หาย",
-          "Metadata filtering — ค้นหาพร้อม filter ได้",
-          "Multi-tenancy — แยก collection ต่อ user ได้",
-        ],
-        specs: [
-          { label: "Max Documents", value: "~1M (single node)" },
-          { label: "Search Speed", value: "<100ms" },
-          { label: "Storage", value: "SQLite + Parquet" },
-          { label: "License", value: "Apache 2.0 (Free)" },
-        ],
-      },
-      {
-        name: "Qdrant",
-        logo: "🔷",
-        tagline: "High-performance vector search engine",
-        tag: "Vector DB • Enterprise",
-        color: "#DC382D",
-        url: "https://qdrant.tech",
-        description: "Qdrant เป็น vector database ระดับ production ที่รองรับ scale ใหญ่ เหมาะกับ Server tier ที่มีเอกสารจำนวนมากและผู้ใช้หลายร้อยคน",
-        whyWeChoseIt: "Performance ดีกว่า ChromaDB มากเมื่อมีเอกสาร 100K+ รองรับ filtering ซับซ้อน horizontal scaling ได้",
-        keyFeatures: [
-          "Written in Rust — เร็วมาก memory-safe",
-          "Payload filtering — ค้นหา + filter ซับซ้อนได้",
-          "Horizontal scaling — เพิ่ม node ได้",
-          "Snapshot & backup",
-          "Multi-tenancy ระดับ enterprise",
-        ],
-        specs: [
-          { label: "Max Documents", value: "100M+ (cluster)" },
-          { label: "Search Speed", value: "<10ms" },
-          { label: "Clustering", value: "Horizontal sharding" },
-          { label: "License", value: "Apache 2.0 (Free)" },
-        ],
-      },
+      { name: "LlamaIndex", iconSlug: "llamaindex", tagline: "The data framework for LLM apps", tag: "Core • Document Processing", color: "#000000", url: "https://llamaindex.ai", description: "จัดการทุกขั้นตอนของ RAG: อ่านไฟล์ทุกรูปแบบ → ตัดชิ้น → vector → เก็บ → ค้นหา → ส่งให้ LLM", whyWeChoseIt: "ครบจบในตัวเดียว, รองรับไฟล์ไทย, connector เยอะ, community ใหญ่", keyFeatures: ["PDF, Word, Excel, PowerPoint, Email, CSV", "OCR ภาษาไทย", "Smart chunking", "Query engine (multi-step)", "Auto-refresh เอกสารใหม่"], specs: [{ label: "Formats", value: "PDF, DOCX, XLSX, PPTX, EML, CSV, JSON, images" }, { label: "Chunk", value: "512 tokens, 50 overlap" }, { label: "License", value: "MIT" }] },
+      { name: "ChromaDB", iconSlug: "chroma", tagline: "AI-native embedding database", tag: "Vector DB • Simple", color: "#FFD700", url: "https://www.trychroma.com", description: "Vector database ใช้งานง่าย embed ใน app ได้ ไม่ต้อง setup server แยก", whyWeChoseIt: "ง่ายที่สุด เหมาะกับ Compact/Powerstation tier", keyFeatures: ["Embedded — ไม่ต้อง server แยก", "Persistent storage", "Metadata filtering", "Multi-tenancy"], specs: [{ label: "Max Docs", value: "~1M" }, { label: "Speed", value: "<100ms" }, { label: "License", value: "Apache 2.0" }] },
+      { name: "Qdrant", iconSlug: "qdrant", tagline: "High-performance vector search", tag: "Vector DB • Enterprise", color: "#DC382D", url: "https://qdrant.tech", description: "Vector database ระดับ production รองรับ scale ใหญ่ เอกสาร 100K+ ผู้ใช้หลายร้อย", whyWeChoseIt: "Performance ดีกว่า ChromaDB มากที่ scale, horizontal scaling ได้", keyFeatures: ["Rust — เร็ว memory-safe", "Payload filtering ซับซ้อน", "Horizontal scaling", "Snapshot & backup"], specs: [{ label: "Max Docs", value: "100M+ (cluster)" }, { label: "Speed", value: "<10ms" }, { label: "License", value: "Apache 2.0" }] },
     ],
   },
   {
     id: "ui",
     emoji: "💻",
-    title: "User Interface",
-    subtitle: "หน้าจอแชทกับ AI — สวยเหมือน ChatGPT",
+    title: "User Interface & AI Platforms",
+    subtitle: "หน้าจอแชท, RAG builder, AI app platform",
     color: "#8b5cf6",
-    description: "ผู้ใช้เข้าถึง AI ผ่าน web browser — พิมพ์คำถาม upload ไฟล์ ดูประวัติแชท เปลี่ยน model ทุกอย่างทำผ่านหน้าจอเดียว",
-    howItFits: "UI → API Gateway (LiteLLM) → RAG Pipeline → Inference Engine → Model → คำตอบกลับมาที่ UI",
+    description: "ผู้ใช้เข้าถึง AI ผ่าน web browser — พิมพ์คำถาม upload ไฟล์ ดูประวัติ",
+    howItFits: "UI → API Gateway → RAG → LLM → คำตอบ",
     techs: [
-      {
-        name: "Open WebUI",
-        logo: "💬",
-        tagline: "Self-hosted ChatGPT alternative",
-        tag: "Core • ทุก Tier",
-        color: "#8b5cf6",
-        url: "https://openwebui.com",
-        description: "Open WebUI เป็น chat interface ที่หน้าตาเหมือน ChatGPT แต่ทำงานบนเครื่องคุณ 100% รองรับ multi-user, file upload, voice input, model switching, RAG ในตัว",
-        whyWeChoseIt: "UX ดีที่สุดในตลาด open source ลูกค้าที่เคยใช้ ChatGPT จะรู้สึกคุ้นเคยทันที ไม่ต้อง train การใช้งาน",
-        keyFeatures: [
-          "หน้าตาเหมือน ChatGPT — ใช้งานง่าย",
-          "Multi-user — แต่ละคนมี account แยก",
-          "Upload files — PDF, Word, Excel, รูปภาพ",
-          "Voice input — พูดแทนพิมพ์ได้",
-          "Model switching — เปลี่ยน model ได้ทันที",
-          "Conversation history — บันทึกทุกการสนทนา",
-          "RAG built-in — upload เอกสารแล้วถามได้เลย",
-          "Mobile responsive — ใช้ผ่านมือถือได้",
-        ],
-        specs: [
-          { label: "Deploy", value: "Docker (1 command)" },
-          { label: "Auth", value: "Email/password, OAuth, LDAP" },
-          { label: "Languages", value: "Thai, English, 30+ languages" },
-          { label: "Mobile", value: "Responsive web app" },
-          { label: "License", value: "MIT (Free)" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "infra",
-    emoji: "🏗️",
-    title: "Infrastructure",
-    subtitle: "โครงสร้างที่ทำให้ทุกอย่างทำงานเสถียร",
-    color: "#f59e0b",
-    description: "Infrastructure คือ layer ที่ wrap ทุก component ไว้ ทำให้ deploy, update, monitor, backup ได้ง่ายและปลอดภัย",
-    howItFits: "Docker wrap ทุก component → Caddy ทำ HTTPS → Grafana monitor → Restic backup → NAS storage",
-    techs: [
-      {
-        name: "Docker",
-        logo: "🐳",
-        tagline: "Containerize everything",
-        tag: "Core • ทุก Tier",
-        color: "#2496ED",
-        description: "ทุก component (Ollama, Open WebUI, ChromaDB, LlamaIndex) รันใน Docker container แยกกัน ทำให้ update, rollback, scale ได้ง่าย",
-        whyWeChoseIt: "Industry standard สำหรับ deployment อัพเดท model ใหม่ได้โดยไม่กระทบ component อื่น rollback ได้ทันทีถ้ามีปัญหา",
-        keyFeatures: [
-          "แยก component เป็น container อิสระ",
-          "docker-compose up — เปิดทุกอย่างคำสั่งเดียว",
-          "Update model → restart container เดียว ไม่กระทบ UI",
-          "Resource limits — จำกัด CPU/RAM ต่อ container",
-          "Portable — ย้ายเครื่องได้ง่าย",
-        ],
-        specs: [
-          { label: "Compose", value: "docker-compose.yml" },
-          { label: "Containers", value: "4-8 ต่อ deployment" },
-          { label: "Overhead", value: "~200MB RAM" },
-          { label: "License", value: "Apache 2.0 (Free)" },
-        ],
-      },
-      {
-        name: "Grafana + Prometheus",
-        logo: "📊",
-        tagline: "Monitoring & observability",
-        tag: "Server Tier • Monitor",
-        color: "#F46800",
-        description: "Dashboard สำหรับดู performance ของระบบ: CPU, GPU, RAM, ความเร็ว inference, จำนวนคำถาม, response time ทุกอย่าง real-time",
-        whyWeChoseIt: "Industry standard monitoring เห็นปัญหาก่อนลูกค้าเห็น alert ได้เมื่อ resource ใกล้เต็ม",
-        keyFeatures: [
-          "Dashboard สวย ดูง่าย customize ได้",
-          "GPU monitoring — temp, utilization, VRAM usage",
-          "LLM metrics — tokens/sec, latency, queue size",
-          "Alert — แจ้งเตือนเมื่อ CPU > 90%, GPU temp > 80°C",
-          "Historical data — ดูย้อนหลังได้",
-        ],
-        specs: [
-          { label: "Scrape Interval", value: "15 seconds" },
-          { label: "Retention", value: "30 days default" },
-          { label: "Alert Channels", value: "Email, LINE, Slack, Webhook" },
-          { label: "License", value: "AGPLv3 (Free)" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "hardware",
-    emoji: "⚙️",
-    title: "Hardware Platforms",
-    subtitle: "เครื่องที่รัน AI — จาก Mac Mini ถึง GPU Server",
-    color: "#94a3b8",
-    description: "Performance ของ AI ขึ้นอยู่กับ 2 อย่าง: 1) ขนาด RAM (กำหนดว่ารัน model ใหญ่แค่ไหนได้) 2) Memory Bandwidth (กำหนดว่า AI ตอบเร็วแค่ไหน)",
-    howItFits: "Hardware เป็น foundation — ซอฟต์แวร์ทั้งหมดรันอยู่บนเครื่องเหล่านี้",
-    techs: [
-      {
-        name: "Apple Mac Mini / Studio",
-        logo: "🍎",
-        tagline: "Silent, tiny, powerful AI machine",
-        tag: "Compact Tier",
-        color: "#94a3b8",
-        description: "Mac Mini M4 / M4 Pro / M4 Max เป็นเครื่องที่เหมาะที่สุดสำหรับ AI ส่วนตัว — เงียบสนิท เล็กเท่าฝ่ามือ ใช้ไฟแค่ 20-60W แต่รัน AI ได้ดีเยี่ยมด้วย Apple Silicon",
-        whyWeChoseIt: "Unified Memory Architecture ของ Apple ทำให้ RAM ทั้งหมดใช้ร่วมกันระหว่าง CPU และ GPU ไม่ต้องมี VRAM แยก ทำให้รัน model ใหญ่ได้แม้ RAM ไม่เยอะ",
-        keyFeatures: [
-          "เงียบสนิท — ไม่มีเสียงพัดลม (M4) หรือเสียงเบามาก (M4 Pro/Max)",
-          "ใช้ไฟน้อย — 20-60W (เท่าชาร์จมือถือ)",
-          "Unified Memory — RAM ทุก GB ใช้ได้กับ AI",
-          "Memory Bandwidth 120-546 GB/s",
-          "รองรับ macOS — ใช้ง่าย familiar",
-          "ขนาด 12.7 x 12.7 ซม.",
-        ],
-        specs: [
-          { label: "M4", value: "16-32GB, 120 GB/s, ~30 tok/s (8B)" },
-          { label: "M4 Pro", value: "24-64GB, 273 GB/s, ~50 tok/s (8B)" },
-          { label: "M4 Max (Studio)", value: "64-128GB, 546 GB/s, ~70 tok/s (8B)" },
-          { label: "Max Model (64GB)", value: "~70B parameters (Q4)" },
-          { label: "Max Model (128GB)", value: "~100B+ parameters (Q4)" },
-          { label: "Power", value: "20-60W" },
-          { label: "Noise", value: "Silent — 0 dB (fanless M4)" },
-        ],
-      },
-      {
-        name: "NVIDIA DGX Spark / ASUS GX10",
-        logo: "💚",
-        tagline: "Desktop AI supercomputer",
-        tag: "Powerstation Tier",
-        color: "#76B900",
-        description: "Mini PC ขนาดกล่องทิชชู่ที่มี GB10 Grace Blackwell Superchip ข้างใน — 128GB unified memory, 1 petaFLOP FP4 รัน model ถึง 200B parameters ได้",
-        whyWeChoseIt: "128GB memory ใน form factor เล็กมาก รัน model ที่ Mac Mini ไม่ไหว (70B+ full precision, 200B quantized) พร้อม NVIDIA software ecosystem",
-        keyFeatures: [
-          "128GB LPDDR5X unified memory",
-          "1 petaFLOP FP4 compute",
-          "GB10 Grace Blackwell Superchip",
-          "ConnectX-7 SmartNIC — เชื่อม 2 เครื่อง 200Gbps",
-          "รัน model ถึง 200B parameters (4-bit)",
-          "Fine-tune model ถึง 200B ด้วย Unsloth",
-          "เชื่อม 2 เครื่อง = 256GB รัน 405B ได้",
-        ],
-        specs: [
-          { label: "Memory", value: "128GB LPDDR5X @ 273 GB/s" },
-          { label: "Compute", value: "1 petaFLOP FP4" },
-          { label: "GPU Cores", value: "6,144 CUDA + Tensor Cores" },
-          { label: "Storage", value: "1TB (GX10) / 4TB (DGX Spark)" },
-          { label: "Network", value: "10GbE + ConnectX-7 (2x 200G)" },
-          { label: "Size", value: "15 x 15 x 5 cm" },
-          { label: "Power", value: "~150W" },
-        ],
-      },
-      {
-        name: "NVIDIA GPU Servers",
-        logo: "🖥️",
-        tagline: "Enterprise-grade AI infrastructure",
-        tag: "Server Tier",
-        color: "#76B900",
-        description: "GPU Server จาก Dell, HPE, Supermicro ติดตั้ง NVIDIA L40S, H100, H200 สำหรับองค์กรที่ต้องรองรับ 50-500+ คนพร้อมกัน training model ได้",
-        whyWeChoseIt: "รองรับ concurrent users สูงสุด training model ได้ เป็น platform ระดับเดียวกับ Google, Meta ใช้",
-        keyFeatures: [
-          "Multi-GPU — 1 ถึง 8 GPUs ต่อ server",
-          "L40S: 48GB — inference ที่คุ้มค่าที่สุด",
-          "H100: 80GB — training + inference ระดับสูง",
-          "H200: 141GB — HBM3e bandwidth สูงสุด",
-          "NVLink — GPU คุยกันเร็วมาก",
-          "Rack-mount — ติดตู้ Rack มาตรฐาน 19\"",
-        ],
-        specs: [
-          { label: "L40S", value: "48GB GDDR6, 864 GB/s, 350W" },
-          { label: "H100 SXM", value: "80GB HBM3, 3,350 GB/s, 700W" },
-          { label: "H200 SXM", value: "141GB HBM3e, 4,800 GB/s, 700W" },
-          { label: "Max GPUs/Server", value: "8 (NVLink connected)" },
-          { label: "Concurrent Users", value: "50-500+" },
-          { label: "Vendors", value: "Dell, HPE, Supermicro, Lenovo" },
-        ],
-      },
+      { name: "Open WebUI", emoji: "💬", tagline: "Self-hosted ChatGPT alternative", tag: "Chat UI • Core", color: "#8b5cf6", url: "https://openwebui.com", description: "Chat interface หน้าตาเหมือน ChatGPT แต่ self-hosted 100% Multi-user, file upload, voice input, model switching, RAG ในตัว", whyWeChoseIt: "UX ดีที่สุดใน open source, ลูกค้าคุ้นเคยทันที", keyFeatures: ["หน้าตาเหมือน ChatGPT", "Multi-user + accounts", "Upload files (PDF, Word)", "Voice input", "Model switching", "RAG built-in", "Mobile responsive"], specs: [{ label: "Deploy", value: "Docker" }, { label: "Auth", value: "Email, OAuth, LDAP" }, { label: "License", value: "MIT" }] },
+      { name: "Dify", iconSlug: "dify", tagline: "Open-source LLM app platform", tag: "AI Platform • All-in-one", color: "#1C64F2", url: "https://dify.ai", description: "Platform สร้าง AI app ครบจบ — RAG, Agent, Workflow, Chat UI, API ในตัวเดียว Self-hosted ได้", whyWeChoseIt: "All-in-one ที่ดีที่สุด, visual workflow builder, agent mode, self-hosted", keyFeatures: ["RAG pipeline builder", "AI Agent — ใช้เครื่องมือได้", "Visual workflow builder", "Built-in Chat UI", "API สำหรับ embed", "Multi-model (Ollama, vLLM)", "User analytics"], specs: [{ label: "Deploy", value: "Docker Compose" }, { label: "LLMs", value: "Ollama, vLLM, OpenAI, 100+" }, { label: "License", value: "Apache 2.0" }] },
+      { name: "Flowise", emoji: "🌊", tagline: "Build LLM apps with drag & drop", tag: "RAG Builder • No-code", color: "#00e5ff", url: "https://flowiseai.com", description: "สร้าง RAG pipeline, chatbot, AI agent โดยไม่ต้องเขียนโค้ด ลาก drop component แล้วเชื่อม", whyWeChoseIt: "ง่ายที่สุดสำหรับ non-developer สร้าง AI workflow เองได้", keyFeatures: ["Visual RAG builder", "เชื่อม Ollama, HuggingFace", "Document loaders ครบ", "Chat UI ในตัว", "API export", "Templates สำเร็จรูป"], specs: [{ label: "Deploy", value: "Docker / npm" }, { label: "Vector DBs", value: "Chroma, Qdrant, Pinecone" }, { label: "License", value: "Apache 2.0" }] },
+      { name: "AnythingLLM", emoji: "🗂️", tagline: "All-in-one desktop AI app with RAG", tag: "Desktop • Easy", color: "#00ff88", url: "https://anythingllm.com", description: "Desktop app ที่รวม chat + RAG + document management ในตัว ลาก drop ไฟล์แล้วถามได้เลย", whyWeChoseIt: "ง่ายที่สุดสำหรับ end user, ลาก drop ไฟล์ได้, built-in vector DB", keyFeatures: ["Desktop app + web", "ลาก drop เอกสาร", "Built-in vector DB", "Multi-user", "Workspace แยกหัวข้อ", "เชื่อม Ollama ทันที"], specs: [{ label: "Deploy", value: "Desktop app / Docker" }, { label: "Vector DB", value: "LanceDB (built-in)" }, { label: "License", value: "MIT" }] },
     ],
   },
   {
     id: "voice",
     emoji: "🎙️",
     title: "Voice & Audio AI",
-    subtitle: "แปลงเสียง → ข้อความ, ข้อความ → เสียง, Subtitle อัตโนมัติ",
+    subtitle: "เสียง → ข้อความ, ข้อความ → เสียง, Subtitle อัตโนมัติ",
     color: "#06b6d4",
-    description: "Voice AI ทำให้ระบบฟังคำพูด แปลงเป็นข้อความ หรือพูดตอบกลับเป็นเสียงได้ ใช้สำหรับ voice input, auto subtitle, podcast transcription, meeting notes",
-    howItFits: "Voice input → Whisper (STT) → text → LLM → text → TTS → voice output",
+    description: "Voice AI: ฟังเสียง แปลงเป็นข้อความ หรือพูดตอบกลับ ใช้สำหรับ voice input, subtitle, transcription",
+    howItFits: "Voice → Whisper (STT) → text → LLM → text → TTS → voice",
     techs: [
-      {
-        name: "OpenAI Whisper",
-        logo: "🎧",
-        tagline: "Best open-source speech-to-text, 99 languages",
-        tag: "Speech-to-Text • Core",
-        color: "#06b6d4",
-        url: "https://github.com/openai/whisper",
-        description: "Whisper จาก OpenAI เป็นโมเดลแปลงเสียงพูดเป็นข้อความ (Speech-to-Text) ที่ดีที่สุดในโลก open source รองรับ 99 ภาษา รวมภาษาไทย ความแม่นยำสูงมาก รัน local ได้ 100%",
-        whyWeChoseIt: "ภาษาไทยแม่นยำที่สุดใน open source, รัน local ได้ ข้อมูลเสียงไม่ออก, มีหลายขนาดเลือกตาม hardware",
-        keyFeatures: [
-          "ภาษาไทย accuracy 90%+ (large-v3)",
-          "99 ภาษา ใน model เดียว",
-          "Auto-detect language",
-          "Timestamp per word — ทำ subtitle ได้แม่นยำ",
-          "รัน local 100% — เสียงไม่ออกจากเครื่อง",
-          "มีหลายขนาด: tiny, base, small, medium, large-v3",
-          "Whisper.cpp — optimized สำหรับ Apple Silicon",
-        ],
-        specs: [
-          { label: "tiny", value: "39M params, ~1GB RAM, real-time" },
-          { label: "base", value: "74M params, ~1GB RAM" },
-          { label: "small", value: "244M params, ~2GB RAM" },
-          { label: "medium", value: "769M params, ~5GB RAM" },
-          { label: "large-v3", value: "1.5B params, ~10GB RAM, best accuracy" },
-          { label: "Thai Accuracy", value: "~90%+ (large-v3)" },
-          { label: "License", value: "MIT (Free)" },
-        ],
-      },
-      {
-        name: "Faster Whisper",
-        logo: "⚡",
-        tagline: "4x faster Whisper with CTranslate2",
-        tag: "Speech-to-Text • Fast",
-        color: "#00ff88",
-        url: "https://github.com/SYSTRAN/faster-whisper",
-        description: "Faster Whisper ใช้ CTranslate2 backend ทำให้เร็วกว่า Whisper ดั้งเดิม 4 เท่า ใช้ RAM น้อยกว่า ผลลัพธ์เหมือนกัน",
-        whyWeChoseIt: "เร็วกว่า original Whisper มาก ใช้ RAM น้อยกว่า เหมาะกับ real-time transcription",
-        keyFeatures: [
-          "4x เร็วกว่า Whisper ดั้งเดิม",
-          "ใช้ RAM น้อยกว่า 2x",
-          "INT8 quantization",
-          "VAD (Voice Activity Detection) — ข้ามช่วงเงียบ",
-          "Streaming mode — ถอดเสียง real-time ได้",
-        ],
-        specs: [
-          { label: "Speed", value: "4x faster than original" },
-          { label: "RAM (large-v3)", value: "~5GB (vs ~10GB original)" },
-          { label: "Quantization", value: "INT8, FP16" },
-          { label: "License", value: "MIT (Free)" },
-        ],
-      },
-      {
-        name: "Piper TTS",
-        logo: "🔊",
-        tagline: "Fast, local text-to-speech in 30+ languages",
-        tag: "Text-to-Speech",
-        color: "#ec4899",
-        url: "https://github.com/rhasspy/piper",
-        description: "Piper เป็น TTS engine ที่เร็วมาก รัน local ได้ มีเสียงภาษาไทย ใช้สำหรับให้ AI อ่านคำตอบออกเสียง หรือสร้าง voiceover",
-        whyWeChoseIt: "เร็วที่สุดในตลาด open source, เสียงธรรมชาติ, รัน local ได้ ไม่ต้องส่งข้อมูลออก",
-        keyFeatures: [
-          "Real-time TTS — ไม่ต้องรอ",
-          "30+ ภาษา รวมภาษาไทย",
-          "เสียงธรรมชาติ — ไม่ใช่เสียง robot",
-          "ใช้ RAM น้อยมาก (~50MB)",
-          "ONNX runtime — เร็วมากบนทุก hardware",
-          "Custom voice — train เสียงใหม่ได้",
-        ],
-        specs: [
-          { label: "Speed", value: "Real-time (faster than speech)" },
-          { label: "RAM", value: "~50-100 MB" },
-          { label: "Thai Voice", value: "Available" },
-          { label: "License", value: "MIT (Free)" },
-        ],
-      },
+      { name: "OpenAI Whisper", iconSlug: "openai", tagline: "Best open-source speech-to-text", tag: "STT • 99 languages", color: "#412991", url: "https://github.com/openai/whisper", description: "โมเดลแปลงเสียง→ข้อความที่ดีที่สุดในโลก open source 99 ภาษา รวมไทย รัน local 100%", whyWeChoseIt: "ภาษาไทยแม่นที่สุดใน open source, timestamp per word, self-hosted", keyFeatures: ["ภาษาไทย ~90%+ accuracy", "99 ภาษาใน model เดียว", "Timestamp per word → subtitle", "Self-hosted 100%", "tiny → large-v3 หลายขนาด", "Whisper.cpp สำหรับ Apple Silicon"], specs: [{ label: "large-v3", value: "1.5B params, ~10GB RAM" }, { label: "small", value: "244M params, ~2GB RAM" }, { label: "License", value: "MIT" }] },
+      { name: "Faster Whisper", emoji: "⚡", tagline: "4x faster Whisper", tag: "STT • Optimized", color: "#00ff88", url: "https://github.com/SYSTRAN/faster-whisper", description: "Whisper ที่เร็วกว่า 4x ใช้ RAM น้อยกว่า 2x ด้วย CTranslate2 ผลลัพธ์เหมือนกัน", whyWeChoseIt: "เร็วกว่า original มาก เหมาะกับ real-time transcription", keyFeatures: ["4x เร็วกว่า original", "2x น้อยกว่า RAM", "VAD — ข้ามช่วงเงียบ", "Streaming mode"], specs: [{ label: "Speed", value: "4x faster" }, { label: "RAM (large-v3)", value: "~5GB" }, { label: "License", value: "MIT" }] },
+      { name: "Piper TTS", emoji: "🔊", tagline: "Fast local text-to-speech", tag: "TTS • 30+ languages", color: "#ec4899", url: "https://github.com/rhasspy/piper", description: "TTS engine เร็วมาก มีเสียงไทย ให้ AI อ่านคำตอบออกเสียง หรือสร้าง voiceover", whyWeChoseIt: "เร็วที่สุด เสียงธรรมชาติ RAM น้อย self-hosted", keyFeatures: ["Real-time TTS", "30+ ภาษา รวมไทย", "เสียงธรรมชาติ", "~50MB RAM", "Custom voice training"], specs: [{ label: "Speed", value: "Real-time" }, { label: "RAM", value: "~50MB" }, { label: "License", value: "MIT" }] },
     ],
   },
   {
     id: "image",
     emoji: "🎨",
     title: "Image & Video AI",
-    subtitle: "สร้างรูป แก้รูป สร้างวิดีโอ ด้วย AI",
+    subtitle: "สร้างรูป แก้รูป upscale วิดีโอ ลบ background",
     color: "#f59e0b",
-    description: "AI สร้างภาพจากข้อความ, แก้ไขรูปอัตโนมัติ, upscale วิดีโอ, ลบพื้นหลัง ทั้งหมดรัน local ได้ ไม่มีค่ารายเดือน",
-    howItFits: "User พิมพ์ prompt → Image model generate รูป → ส่งกลับ UI / ใช้เป็น Thumbnail / ส่งไป social media",
+    description: "สร้างภาพจากข้อความ, upscale, ลบพื้นหลัง, แก้หน้า ทั้งหมด self-hosted ไม่มีค่ารายเดือน",
+    howItFits: "User prompt → Image model → output / ใช้เป็น Thumbnail / post",
     techs: [
-      {
-        name: "ComfyUI",
-        logo: "🔧",
-        tagline: "The most powerful Stable Diffusion GUI",
-        tag: "Image Gen • Advanced",
-        color: "#f59e0b",
-        url: "https://www.comfy.org",
-        description: "ComfyUI เป็น node-based UI สำหรับ Stable Diffusion ที่ให้ control ทุกอย่าง — สร้าง workflow ซับซ้อนได้ เช่น generate → upscale → face fix → add text ใน pipeline เดียว",
-        whyWeChoseIt: "Control ได้มากที่สุด สร้าง workflow ที่ทำซ้ำได้ batch production ง่าย community ใหญ่มี workflow ให้ดาวน์โหลดเป็นพัน",
-        keyFeatures: [
-          "Node-based — ลาก drop สร้าง workflow",
-          "ทำซ้ำได้ — save workflow แชร์ได้",
-          "Batch generation — สร้าง 100 รูปใน workflow เดียว",
-          "ControlNet, IP-Adapter, Face swap, Inpainting",
-          "SDXL, Flux, SD3 support",
-          "LoRA / Textual Inversion / Hypernetwork",
-          "Video generation (AnimateDiff)",
-        ],
-        specs: [
-          { label: "GPU VRAM (SDXL)", value: "~8GB minimum" },
-          { label: "GPU VRAM (Flux)", value: "~12-24GB" },
-          { label: "CPU Mode", value: "Supported (slow)" },
-          { label: "Apple Silicon", value: "MPS backend" },
-          { label: "License", value: "GPL-3.0 (Free)" },
-        ],
-      },
-      {
-        name: "Real-ESRGAN",
-        logo: "🔍",
-        tagline: "AI image & video upscaling",
-        tag: "Upscale • Enhancement",
-        color: "#00e5ff",
-        url: "https://github.com/xinntao/Real-ESRGAN",
-        description: "Real-ESRGAN เป็น AI upscaler ที่ดีที่สุด — ขยายรูป 2x-4x โดยไม่เบลอ ใช้กับวิดีโอได้ด้วย เหมาะกับ upscale Thumbnail, วิดีโอเก่า, รูปสินค้า",
-        whyWeChoseIt: "คุณภาพดีที่สุดในตลาด open source, เร็ว, ใช้กับวิดีโอได้",
-        keyFeatures: [
-          "Upscale 2x, 3x, 4x",
-          "ใช้กับรูปและวิดีโอ",
-          "Face enhancement ในตัว",
-          "Anime/Cartoon mode",
-          "Batch processing",
-        ],
-        specs: [
-          { label: "Speed (1080p→4K)", value: "~2-5 sec/frame (GPU)" },
-          { label: "VRAM", value: "~2-4GB" },
-          { label: "License", value: "BSD-3 (Free)" },
-        ],
-      },
-      {
-        name: "Rembg",
-        logo: "✂️",
-        tagline: "AI background removal",
-        tag: "Background Removal",
-        color: "#ec4899",
-        url: "https://github.com/danielgatis/rembg",
-        description: "ลบพื้นหลังรูปอัตโนมัติด้วย AI — ใช้กับรูปสินค้า, portrait, product shots ได้ผลดีเยี่ยม",
-        whyWeChoseIt: "ง่ายที่สุด ผลลัพธ์ดี รัน local ได้",
-        keyFeatures: [
-          "ลบ background 1 คลิก",
-          "รองรับ batch processing",
-          "หลาย model: u2net, isnet, sam",
-          "API mode สำหรับเชื่อมต่อ",
-        ],
-        specs: [
-          { label: "Speed", value: "~1-3 sec/image" },
-          { label: "RAM", value: "~1-2GB" },
-          { label: "License", value: "MIT (Free)" },
-        ],
-      },
+      { name: "ComfyUI", emoji: "🔧", tagline: "Most powerful Stable Diffusion GUI", tag: "Image Gen • Advanced", color: "#f59e0b", url: "https://www.comfy.org", description: "Node-based UI สำหรับ Stable Diffusion สร้าง workflow ซับซ้อน: generate → upscale → face fix → text ใน pipeline เดียว", whyWeChoseIt: "Control มากที่สุด, workflow ทำซ้ำได้, batch production, community ใหญ่", keyFeatures: ["Node-based workflow", "Batch generation", "ControlNet, IP-Adapter, Face swap", "SDXL, Flux, SD3", "LoRA / Textual Inversion", "AnimateDiff (video)"], specs: [{ label: "SDXL VRAM", value: "~8GB" }, { label: "Flux VRAM", value: "~12-24GB" }, { label: "License", value: "GPL-3.0" }] },
+      { name: "Real-ESRGAN", emoji: "🔍", tagline: "AI image & video upscaling", tag: "Upscale", color: "#00e5ff", url: "https://github.com/xinntao/Real-ESRGAN", description: "AI upscaler ที่ดีที่สุด ขยาย 2-4x ไม่เบลอ ใช้กับวิดีโอได้", whyWeChoseIt: "คุณภาพดีที่สุด, เร็ว, ใช้กับวิดีโอได้", keyFeatures: ["Upscale 2-4x", "รูป + วิดีโอ", "Face enhancement", "Batch processing"], specs: [{ label: "Speed", value: "~2-5 sec/frame" }, { label: "VRAM", value: "~2-4GB" }, { label: "License", value: "BSD-3" }] },
+      { name: "Rembg", emoji: "✂️", tagline: "AI background removal", tag: "Background Remove", color: "#ec4899", url: "https://github.com/danielgatis/rembg", description: "ลบพื้นหลังอัตโนมัติ ใช้กับรูปสินค้า portrait product shots", whyWeChoseIt: "ง่ายที่สุด ผลดี self-hosted", keyFeatures: ["ลบ background 1 คลิก", "Batch processing", "หลาย model", "API mode"], specs: [{ label: "Speed", value: "~1-3 sec/image" }, { label: "License", value: "MIT" }] },
     ],
   },
   {
     id: "automation",
     emoji: "🤖",
     title: "Automation & Workflow",
-    subtitle: "เชื่อม AI เข้ากับทุกระบบ สร้าง workflow อัตโนมัติ",
-    color: "#10b981",
-    description: "No-code / low-code platform ที่ทำให้สร้าง AI workflow ได้โดยไม่ต้องเขียนโค้ด เช่น อีเมลเข้า → AI สรุป → ส่ง LINE, เอกสารใหม่ → AI index → พร้อมค้นหา",
-    howItFits: "Automation layer อยู่บน LLM — trigger event → ส่งไป AI → ทำ action อัตโนมัติ",
+    subtitle: "เชื่อม AI กับทุกระบบ สร้าง workflow อัตโนมัติ",
+    color: "#FF6D5A",
+    description: "No-code platform สร้าง AI workflow: อีเมลเข้า → AI สรุป → ส่ง LINE ทุกอย่าง self-hosted",
+    howItFits: "Trigger event → ส่งไป AI → ทำ action อัตโนมัติ",
     techs: [
-      {
-        name: "n8n",
-        logo: "🔄",
-        tagline: "Open-source workflow automation",
-        tag: "Workflow • No-code",
-        color: "#FF6D5A",
-        url: "https://n8n.io",
-        description: "n8n เป็น workflow automation platform แบบ open source ที่เชื่อม AI กับ app อื่นๆ ได้ — เช่น อีเมลเข้า → AI สรุป → โพสต์ Slack, ไฟล์ใหม่ใน Google Drive → AI อ่าน → เก็บใน vector DB",
-        whyWeChoseIt: "Open source, self-hosted, มี node สำหรับ AI (OpenAI-compatible), community ใหญ่, UI สวย",
-        keyFeatures: [
-          "400+ integrations (LINE, Gmail, Slack, Google Drive, etc.)",
-          "AI nodes — เชื่อมกับ Ollama, OpenAI API",
-          "Visual workflow builder — ลาก drop ไม่ต้องเขียนโค้ด",
-          "Webhook trigger — รับ event จากภายนอก",
-          "Schedule trigger — ตั้งเวลาทำงานอัตโนมัติ",
-          "Error handling & retry",
-          "Self-hosted — ข้อมูลอยู่ในเครื่อง",
-        ],
-        specs: [
-          { label: "Integrations", value: "400+" },
-          { label: "AI Support", value: "OpenAI-compatible (Ollama)" },
-          { label: "Deploy", value: "Docker" },
-          { label: "License", value: "Fair-code (Free self-hosted)" },
-        ],
-      },
-      {
-        name: "Flowise",
-        logo: "🌊",
-        tagline: "Build LLM apps with drag & drop",
-        tag: "RAG Builder • No-code",
-        color: "#00e5ff",
-        url: "https://flowiseai.com",
-        description: "Flowise ทำให้สร้าง RAG pipeline, chatbot, AI agent ได้โดยไม่ต้องเขียนโค้ด — ลาก drop component แล้วเชื่อมกัน",
-        whyWeChoseIt: "ง่ายที่สุดสำหรับสร้าง RAG, ลูกค้าที่ไม่ใช่ developer สร้าง AI workflow เองได้",
-        keyFeatures: [
-          "Visual RAG builder — ลาก drop",
-          "เชื่อม Ollama, OpenAI, HuggingFace",
-          "Document loaders ครบ (PDF, Word, Web)",
-          "Vector store integration (Chroma, Qdrant, Pinecone)",
-          "Chat UI ในตัว",
-          "API export — เอาไปใช้ใน app อื่นได้",
-          "Chatflow templates สำเร็จรูป",
-        ],
-        specs: [
-          { label: "Deploy", value: "Docker / npm" },
-          { label: "LLM Support", value: "Ollama, OpenAI, Anthropic, HuggingFace" },
-          { label: "Vector DBs", value: "Chroma, Qdrant, Pinecone, Weaviate" },
-          { label: "License", value: "Apache 2.0 (Free)" },
-        ],
-      },
-      {
-        name: "Dify",
-        logo: "✨",
-        tagline: "Open-source LLM app development platform",
-        tag: "AI Platform • All-in-one",
-        color: "#8b5cf6",
-        url: "https://dify.ai",
-        description: "Dify เป็น platform สำหรับสร้าง AI application ครบจบ — RAG, Agent, Workflow, Chat UI, API ทั้งหมดในตัวเดียว",
-        whyWeChoseIt: "All-in-one platform ที่ดีที่สุด สำหรับลูกค้าที่ต้องการหลาย AI app พร้อมกัน",
-        keyFeatures: [
-          "RAG pipeline builder",
-          "AI Agent — ให้ AI ใช้เครื่องมือได้ (search, calculator, API call)",
-          "Workflow builder — สร้าง multi-step AI process",
-          "Built-in Chat UI",
-          "API สำหรับ embed ใน app อื่น",
-          "Multi-model support (Ollama, OpenAI, etc.)",
-          "Dataset management — จัดการเอกสารง่าย",
-          "User analytics — ดูว่าคนถามอะไรบ่อย",
-        ],
-        specs: [
-          { label: "Deploy", value: "Docker Compose" },
-          { label: "LLM Support", value: "Ollama, vLLM, OpenAI, Anthropic, 100+" },
-          { label: "Features", value: "RAG + Agent + Workflow + Chat" },
-          { label: "License", value: "Apache 2.0 (Free)" },
-        ],
-      },
+      { name: "n8n", iconSlug: "n8n", tagline: "Open-source workflow automation", tag: "Workflow • 400+ integrations", color: "#EA4B71", url: "https://n8n.io", description: "Workflow automation ที่เชื่อม AI กับ 400+ app: อีเมลเข้า → AI สรุป → Slack, ไฟล์ใหม่ → AI อ่าน → vector DB", whyWeChoseIt: "Open source, self-hosted, AI nodes, 400+ integrations, UI สวย", keyFeatures: ["400+ integrations", "AI nodes (Ollama compatible)", "Visual workflow builder", "Webhook trigger", "Schedule trigger", "Error handling", "Self-hosted 100%"], specs: [{ label: "Integrations", value: "400+" }, { label: "AI", value: "OpenAI-compatible" }, { label: "Deploy", value: "Docker" }, { label: "License", value: "Fair-code (Free)" }] },
+      { name: "Activepieces", iconSlug: "activepieces", tagline: "Open-source Zapier alternative", tag: "Automation • Simple", color: "#3b82f6", url: "https://activepieces.com", description: "Zapier/Make alternative ที่ self-hosted ได้ ง่ายกว่า n8n เหมาะกับ non-technical user", whyWeChoseIt: "ง่ายกว่า n8n, UI สวย, self-hosted, เหมาะกับลูกค้าที่ไม่ใช่ developer", keyFeatures: ["ง่ายกว่า n8n", "100+ integrations", "AI pieces (Ollama)", "Self-hosted", "Visual builder", "Template library"], specs: [{ label: "Deploy", value: "Docker" }, { label: "License", value: "MIT" }] },
     ],
   },
   {
     id: "finetune",
     emoji: "🎯",
     title: "Fine-tuning & Training",
-    subtitle: "สอน AI ให้เข้าใจธุรกิจของคุณ พูดเป็นสไตล์คุณ",
+    subtitle: "สอน AI ให้เข้าใจธุรกิจคุณ พูดเป็นสไตล์คุณ",
     color: "#f97316",
-    description: "Fine-tuning คือการเอาโมเดล AI ที่มีอยู่แล้ว มา train เพิ่มด้วยข้อมูลของคุณ — ทำให้ AI เข้าใจคำศัพท์เฉพาะทาง พูดเป็นสไตล์ของคุณ ตอบได้ตรงกับธุรกิจ",
-    howItFits: "ข้อมูล training → Fine-tune tool → โมเดลใหม่ที่ customize แล้ว → Deploy บน Ollama/vLLM",
+    description: "เอาโมเดลที่มี มา train เพิ่มด้วยข้อมูลของคุณ ทำให้ AI เข้าใจคำศัพท์เฉพาะ ตอบตรงกับธุรกิจ",
+    howItFits: "Training data → Fine-tune tool → โมเดลใหม่ → Deploy บน Ollama/vLLM",
     techs: [
-      {
-        name: "Unsloth",
-        logo: "🦥",
-        tagline: "2x faster fine-tuning with 80% less memory",
-        tag: "LoRA Fine-tune • Core",
-        color: "#f97316",
-        url: "https://unsloth.ai",
-        description: "Unsloth ทำให้ fine-tune LLM ได้เร็วขึ้น 2x และใช้ memory น้อยลง 80% เมื่อเทียบกับ HuggingFace standard — ทำให้ fine-tune model ขนาดใหญ่บนเครื่องเล็กๆ ได้",
-        whyWeChoseIt: "เร็วที่สุด ใช้ VRAM น้อยที่สุด fine-tune 70B ได้บน single GPU, รองรับ DGX Spark (fine-tune 200B model ได้)",
-        keyFeatures: [
-          "2x faster than standard LoRA",
-          "80% less VRAM",
-          "LoRA, QLoRA, full fine-tune",
-          "รองรับ Llama, Qwen, Mistral, Gemma, Phi",
-          "Export เป็น GGUF สำหรับ Ollama ได้ทันที",
-          "Free tier available",
-          "Notebook templates พร้อมใช้",
-        ],
-        specs: [
-          { label: "7B model", value: "~6GB VRAM (QLoRA)" },
-          { label: "13B model", value: "~10GB VRAM (QLoRA)" },
-          { label: "70B model", value: "~40GB VRAM (QLoRA)" },
-          { label: "Speed", value: "2x faster than standard" },
-          { label: "Export", value: "GGUF, safetensors, HF format" },
-          { label: "License", value: "Apache 2.0 (Free)" },
-        ],
-      },
-      {
-        name: "Axolotl",
-        logo: "🦎",
-        tagline: "Go-to tool for fine-tuning LLMs",
-        tag: "Fine-tune • Advanced",
-        color: "#00ff88",
-        url: "https://github.com/axolotl-ai-cloud/axolotl",
-        description: "Axolotl เป็น fine-tuning framework ที่รองรับทุก technique — LoRA, QLoRA, full fine-tune, DPO, RLHF ใช้ YAML config ไม่ต้องเขียนโค้ด",
-        whyWeChoseIt: "Flexible ที่สุด รองรับทุก technique, config-driven ทำซ้ำได้ เหมาะกับงาน fine-tune ที่ซับซ้อน",
-        keyFeatures: [
-          "YAML config — ไม่ต้องเขียนโค้ด",
-          "LoRA, QLoRA, Full fine-tune",
-          "DPO, RLHF, SFT",
-          "Multi-GPU training",
-          "Flash Attention 2",
-          "DeepSpeed integration",
-        ],
-        specs: [
-          { label: "Techniques", value: "LoRA, QLoRA, Full, DPO, RLHF" },
-          { label: "Multi-GPU", value: "DeepSpeed, FSDP" },
-          { label: "License", value: "Apache 2.0 (Free)" },
-        ],
-      },
-      {
-        name: "Label Studio",
-        logo: "🏷️",
-        tagline: "Open-source data labeling platform",
-        tag: "Data Labeling • Preparation",
-        color: "#3b82f6",
-        url: "https://labelstud.io",
-        description: "Label Studio เป็น platform สำหรับจัดเตรียมข้อมูล training — label, annotate, review ข้อมูลก่อนเอาไป fine-tune",
-        whyWeChoseIt: "ดีที่สุดสำหรับ data preparation, UI ใช้งานง่าย, self-hosted, รองรับทุกประเภทข้อมูล",
-        keyFeatures: [
-          "Text, Image, Audio, Video labeling",
-          "Multi-user collaboration",
-          "Quality control — reviewer workflow",
-          "Pre-annotation with ML",
-          "Export formats: JSON, CSV, CoNLL",
-          "Self-hosted — ข้อมูลไม่ออก",
-        ],
-        specs: [
-          { label: "Data Types", value: "Text, Image, Audio, Video, HTML" },
-          { label: "Deploy", value: "Docker" },
-          { label: "License", value: "Apache 2.0 (Free)" },
-        ],
-      },
+      { name: "Unsloth", emoji: "🦥", tagline: "2x faster fine-tuning, 80% less memory", tag: "LoRA • Core", color: "#f97316", url: "https://unsloth.ai", description: "Fine-tune LLM เร็ว 2x ใช้ memory น้อย 80% fine-tune 70B ได้บน single GPU export GGUF สำหรับ Ollama ทันที", whyWeChoseIt: "เร็วที่สุด VRAM น้อยที่สุด export GGUF ได้ทันที", keyFeatures: ["2x faster", "80% less VRAM", "LoRA, QLoRA, full fine-tune", "Llama, Qwen, Mistral, Gemma", "Export GGUF → Ollama", "Notebook templates"], specs: [{ label: "7B QLoRA", value: "~6GB VRAM" }, { label: "70B QLoRA", value: "~40GB VRAM" }, { label: "License", value: "Apache 2.0" }] },
+      { name: "Axolotl", emoji: "🦎", tagline: "Full-featured fine-tuning framework", tag: "Advanced • YAML config", color: "#00ff88", url: "https://github.com/axolotl-ai-cloud/axolotl", description: "Fine-tuning framework ที่รองรับทุก technique: LoRA, DPO, RLHF ใช้ YAML config ไม่ต้องเขียนโค้ด", whyWeChoseIt: "Flexible ที่สุด, config-driven, ทำซ้ำได้, ทุก technique", keyFeatures: ["YAML config", "LoRA, QLoRA, Full, DPO, RLHF", "Multi-GPU (DeepSpeed)", "Flash Attention 2"], specs: [{ label: "Techniques", value: "LoRA, QLoRA, DPO, RLHF" }, { label: "License", value: "Apache 2.0" }] },
+      { name: "Label Studio", iconSlug: "labelstudio", tagline: "Open-source data labeling", tag: "Data Prep • Labeling", color: "#FF5722", url: "https://labelstud.io", description: "จัดเตรียมข้อมูล training: label, annotate, review ก่อนเอาไป fine-tune Self-hosted", whyWeChoseIt: "ดีที่สุดสำหรับ data prep, UI ง่าย, self-hosted, ทุกประเภทข้อมูล", keyFeatures: ["Text, Image, Audio, Video labeling", "Multi-user collaboration", "Quality control", "Pre-annotation with ML", "Self-hosted"], specs: [{ label: "Data Types", value: "Text, Image, Audio, Video" }, { label: "Deploy", value: "Docker" }, { label: "License", value: "Apache 2.0" }] },
     ],
   },
   {
-    id: "security",
-    emoji: "🔒",
-    title: "Security & Privacy",
-    subtitle: "ปกป้องข้อมูล PDPA Compliant ครบวงจร",
-    color: "#ef4444",
-    description: "ทุก layer ของระบบถูกออกแบบมาให้ปลอดภัย — encryption, authentication, access control, audit log ข้อมูลไม่เคยออกจากเครื่อง",
-    howItFits: "Security layer ครอบทุก component — HTTPS, auth, encryption at rest, network isolation",
+    id: "infra",
+    emoji: "🏗️",
+    title: "Infrastructure & Security",
+    subtitle: "Deploy, monitor, backup, protect ทุกอย่าง self-hosted",
+    color: "#f59e0b",
+    description: "Layer ที่ wrap ทุก component: containerize, HTTPS, monitor, backup, VPN, firewall",
+    howItFits: "Docker → Caddy (HTTPS) → Grafana (monitor) → Restic (backup) → WireGuard (VPN)",
     techs: [
-      {
-        name: "Caddy",
-        logo: "🔐",
-        tagline: "Auto-HTTPS reverse proxy",
-        tag: "HTTPS • Network",
-        color: "#00ff88",
-        url: "https://caddyserver.com",
-        description: "Caddy เป็น reverse proxy ที่ทำ HTTPS อัตโนมัติ — ไม่ต้อง config SSL certificate เอง ปลอดภัยตั้งแต่ day 1",
-        whyWeChoseIt: "ง่ายที่สุด auto-HTTPS, config แค่ 3 บรรทัด, performance ดี, memory น้อย",
-        keyFeatures: [
-          "Auto HTTPS — certificate จาก Let's Encrypt อัตโนมัติ",
-          "Reverse proxy — ซ่อน internal services",
-          "Config แค่ 3 บรรทัด",
-          "HTTP/2, HTTP/3 support",
-          "Rate limiting",
-          "ใช้ RAM น้อยมาก (~10MB)",
-        ],
-        specs: [
-          { label: "HTTPS", value: "Auto (Let's Encrypt)" },
-          { label: "Protocol", value: "HTTP/1.1, HTTP/2, HTTP/3" },
-          { label: "RAM", value: "~10-20 MB" },
-          { label: "License", value: "Apache 2.0 (Free)" },
-        ],
-      },
-      {
-        name: "WireGuard",
-        logo: "🛡️",
-        tagline: "Modern, fast, secure VPN",
-        tag: "VPN • Remote Access",
-        color: "#88171a",
-        url: "https://www.wireguard.com",
-        description: "WireGuard เป็น VPN ที่เร็วที่สุดและปลอดภัยที่สุดในปัจจุบัน — ใช้เข้าถึง AI จากนอกบ้าน/ออฟฟิศ โดยไม่ต้องเปิด port ให้ internet",
-        whyWeChoseIt: "เร็วที่สุด ปลอดภัยที่สุด config ง่าย codebase เล็กมาก (4,000 บรรทัด) audit ได้ง่าย",
-        keyFeatures: [
-          "เร็วกว่า OpenVPN 3-4x",
-          "Codebase เล็ก (~4,000 บรรทัด) — audit ง่าย",
-          "Modern cryptography (ChaCha20, Curve25519)",
-          "ใช้ได้ทุก platform: macOS, iOS, Android, Windows, Linux",
-          "Config ง่ายมาก — QR code scan บนมือถือ",
-        ],
-        specs: [
-          { label: "Speed", value: "3-4x faster than OpenVPN" },
-          { label: "Encryption", value: "ChaCha20, Curve25519, BLAKE2s" },
-          { label: "Platforms", value: "macOS, iOS, Android, Windows, Linux" },
-          { label: "License", value: "GPL-2.0 (Free)" },
-        ],
-      },
-      {
-        name: "CrowdSec",
-        logo: "🛡️",
-        tagline: "Collaborative security engine",
-        tag: "Firewall • Intrusion Detection",
-        color: "#ef4444",
-        url: "https://www.crowdsec.net",
-        description: "CrowdSec เป็น security engine ที่ป้องกัน brute force, DDoS, และ malicious traffic — แชร์ threat intelligence กับ community ทั่วโลก",
-        whyWeChoseIt: "Open source, ป้องกัน attack อัตโนมัติ, community threat intelligence, ใช้ RAM น้อย",
-        keyFeatures: [
-          "Detect & block brute force attacks",
-          "Community threat intelligence — แชร์ข้อมูลภัยกับคนทั่วโลก",
-          "Auto-ban malicious IPs",
-          "Dashboard สวย",
-          "ใช้ RAM น้อยมาก",
-        ],
-        specs: [
-          { label: "Detection", value: "Brute force, DDoS, Scanner, Bot" },
-          { label: "Response", value: "Auto-ban IP" },
-          { label: "RAM", value: "~50MB" },
-          { label: "License", value: "MIT (Free)" },
-        ],
-      },
+      { name: "Docker", iconSlug: "docker", tagline: "Containerize everything", tag: "Container • Core", color: "#2496ED", url: "https://docker.com", description: "ทุก component รันใน Docker container แยกกัน update, rollback, scale ง่าย", whyWeChoseIt: "Industry standard, อัพเดท model ไม่กระทบ component อื่น", keyFeatures: ["docker-compose up — คำสั่งเดียว", "Container isolation", "Update → restart container เดียว", "Resource limits", "Portable"], specs: [{ label: "Containers/deploy", value: "4-8" }, { label: "Overhead", value: "~200MB RAM" }, { label: "License", value: "Apache 2.0" }] },
+      { name: "Caddy", emoji: "🔐", tagline: "Auto-HTTPS reverse proxy", tag: "HTTPS • Security", color: "#00ff88", url: "https://caddyserver.com", description: "Reverse proxy ทำ HTTPS อัตโนมัติ ไม่ต้อง config SSL config แค่ 3 บรรทัด", whyWeChoseIt: "ง่ายที่สุด auto-HTTPS performance ดี", keyFeatures: ["Auto HTTPS (Let's Encrypt)", "Config 3 บรรทัด", "HTTP/2, HTTP/3", "Rate limiting", "~10MB RAM"], specs: [{ label: "HTTPS", value: "Auto" }, { label: "RAM", value: "~10MB" }, { label: "License", value: "Apache 2.0" }] },
+      { name: "Grafana + Prometheus", iconSlug: "grafana", tagline: "Monitoring & observability", tag: "Monitor • Server Tier", color: "#F46800", url: "https://grafana.com", description: "Dashboard ดู performance: CPU, GPU, RAM, inference speed, queue ทุกอย่าง real-time", whyWeChoseIt: "Industry standard monitoring, alert เมื่อ resource ใกล้เต็ม", keyFeatures: ["GPU monitoring", "LLM metrics (tok/s, latency)", "Alert (Email, LINE, Slack)", "Historical data", "Custom dashboards"], specs: [{ label: "Scrape", value: "15 sec" }, { label: "Retention", value: "30 days" }, { label: "License", value: "AGPLv3" }] },
+      { name: "WireGuard", iconSlug: "wireguard", tagline: "Modern secure VPN", tag: "VPN • Remote Access", color: "#88171A", url: "https://wireguard.com", description: "VPN เร็วที่สุด ปลอดภัยที่สุด เข้าถึง AI จากนอกบ้าน/ออฟฟิศ ไม่ต้องเปิด port", whyWeChoseIt: "เร็ว 3-4x กว่า OpenVPN, codebase เล็ก 4,000 บรรทัด audit ง่าย", keyFeatures: ["3-4x เร็วกว่า OpenVPN", "4,000 บรรทัด — audit ง่าย", "ทุก platform", "QR code setup บนมือถือ"], specs: [{ label: "Speed", value: "3-4x vs OpenVPN" }, { label: "Crypto", value: "ChaCha20, Curve25519" }, { label: "License", value: "GPL-2.0" }] },
+      { name: "CrowdSec", iconSlug: "crowdsec", tagline: "Collaborative security engine", tag: "Firewall • IDS", color: "#2E2E3A", url: "https://crowdsec.net", description: "ป้องกัน brute force, DDoS, malicious traffic แชร์ threat intelligence กับ community ทั่วโลก", whyWeChoseIt: "Open source, auto-ban, community threat intel, RAM น้อย", keyFeatures: ["Detect brute force, DDoS", "Community threat intelligence", "Auto-ban IPs", "~50MB RAM"], specs: [{ label: "Detection", value: "Brute force, DDoS, Bot" }, { label: "RAM", value: "~50MB" }, { label: "License", value: "MIT" }] },
+      { name: "Restic", emoji: "💾", tagline: "Fast, secure, efficient backups", tag: "Backup • NAS", color: "#8b5cf6", url: "https://restic.net", description: "Backup อัตโนมัติ encrypted, incremental ส่งไป NAS ประหยัดพื้นที่ กู้คืนทันที", whyWeChoseIt: "เร็ว encrypted deduplicated self-hosted", keyFeatures: ["Encrypted backup", "Incremental — เฉพาะที่เปลี่ยน", "Deduplication", "กู้คืนไฟล์เดียวได้", "Cron schedule"], specs: [{ label: "Encryption", value: "AES-256" }, { label: "Dedup", value: "Content-defined chunking" }, { label: "License", value: "BSD-2" }] },
+    ],
+  },
+  {
+    id: "hardware",
+    emoji: "⚙️",
+    title: "Hardware Platforms",
+    subtitle: "จาก Mac Mini เท่าฝ่ามือ ถึง GPU Server ระดับ Data Center",
+    color: "#94a3b8",
+    description: "Performance ขึ้นกับ: 1) RAM = รัน model ใหญ่แค่ไหน 2) Memory Bandwidth = AI ตอบเร็วแค่ไหน",
+    howItFits: "ซอฟต์แวร์ทั้งหมดรันบน hardware เหล่านี้",
+    techs: [
+      { name: "Apple Mac Mini / Studio", iconSlug: "apple", tagline: "Silent, tiny AI machine", tag: "Compact • 24-128GB", color: "#999999", url: "https://apple.com/mac-mini", description: "เงียบสนิท เล็กเท่าฝ่ามือ ใช้ไฟ 20-60W Apple Silicon ทำ AI ดีเยี่ยมด้วย Unified Memory", whyWeChoseIt: "Unified Memory ทั้งหมดใช้กับ AI ได้, เงียบ, ประหยัดไฟ, macOS ใช้ง่าย", keyFeatures: ["เงียบสนิท 0 dB", "20-60W", "Unified Memory 24-128GB", "Bandwidth 120-546 GB/s", "12.7 x 12.7 cm"], specs: [{ label: "M4", value: "16-32GB, 120 GB/s" }, { label: "M4 Pro", value: "24-64GB, 273 GB/s" }, { label: "M4 Max (Studio)", value: "64-128GB, 546 GB/s" }] },
+      { name: "NVIDIA DGX Spark / ASUS GX10", iconSlug: "nvidia", tagline: "Desktop AI supercomputer", tag: "Powerstation • 128GB", color: "#76B900", url: "https://nvidia.com/dgx-spark", description: "Mini PC ขนาดกล่องทิชชู่ GB10 Grace Blackwell 128GB unified memory 1 petaFLOP รัน 200B model ได้", whyWeChoseIt: "128GB ใน form factor เล็ก, รัน model ที่ Mac ไม่ไหว, NVIDIA ecosystem", keyFeatures: ["128GB LPDDR5X", "1 petaFLOP FP4", "GB10 Blackwell", "ConnectX-7 (200Gbps link)", "รัน 200B model", "เชื่อม 2 เครื่อง = 256GB"], specs: [{ label: "Memory", value: "128GB @ 273 GB/s" }, { label: "Compute", value: "1 petaFLOP FP4" }, { label: "Size", value: "15x15x5 cm" }, { label: "Power", value: "~150W" }] },
+      { name: "NVIDIA GPU Servers", iconSlug: "nvidia", tagline: "Enterprise AI infrastructure", tag: "Server • 48GB-141GB/GPU", color: "#76B900", url: "https://nvidia.com/data-center", description: "GPU Server จาก Dell, HPE, Supermicro ติดตั้ง L40S, H100, H200 สำหรับ 50-500+ concurrent users", whyWeChoseIt: "Multi-GPU, training ได้, concurrent users สูงสุด, ระดับ Google/Meta", keyFeatures: ["1-8 GPUs per server", "L40S 48GB, H100 80GB, H200 141GB", "NVLink", "Rack-mount 19\""], specs: [{ label: "L40S", value: "48GB, 864 GB/s, 350W" }, { label: "H100", value: "80GB, 3,350 GB/s, 700W" }, { label: "H200", value: "141GB, 4,800 GB/s, 700W" }, { label: "Vendors", value: "Dell, HPE, Supermicro" }] },
+      { name: "Synology / QNAP NAS", iconSlug: "synology", tagline: "Network Attached Storage", tag: "Storage • Backup", color: "#B6B5B6", url: "https://synology.com", description: "ที่เก็บไฟล์ส่วนกลาง สำรองข้อมูลซ้ำซ้อน เข้าถึงจากทุกเครื่อง RAID protection", whyWeChoseIt: "RAID สำรองซ้ำซ้อน, 10GbE, เก็บ dataset/model/media, ไม่มีค่ารายเดือน cloud", keyFeatures: ["RAID — HDD พังตัวนึงข้อมูลยังอยู่", "10GbE", "เข้าถึงจากมือถือ", "Snapshot & version", "iSCSI / SMB / NFS"], specs: [{ label: "2-Bay", value: "8-32 TB" }, { label: "4-Bay", value: "16-80 TB" }, { label: "Rackmount", value: "48-200+ TB" }] },
+      { name: "Eaton / Schneider UPS", emoji: "🔋", tagline: "Uninterruptible Power Supply", tag: "Power • Protection", color: "#f59e0b", url: "https://eaton.com", description: "ระบบสำรองไฟ ป้องกันไฟดับ ไฟกระชาก auto shutdown ข้อมูลไม่เสียหาย", whyWeChoseIt: "Authorized dealer, Line Interactive / Online Double Conversion, Network Card, auto shutdown", keyFeatures: ["ป้องกันไฟดับ ไฟกระชาก", "Auto shutdown เมื่อ battery ต่ำ", "Network Card — monitor ผ่าน web", "1-40 kVA"], specs: [{ label: "Compact", value: "1-3 kVA" }, { label: "Rack", value: "5-10 kVA" }, { label: "Enterprise", value: "10-40 kVA" }] },
     ],
   },
 ];
 
 const integrations = [
-  { name: "LINE OA", emoji: "💚", color: "#00C300", desc: "AI chatbot ตอบลูกค้าอัตโนมัติ" },
-  { name: "SAP / ERP", emoji: "📊", color: "#0070f3", desc: "ดึงข้อมูลจากระบบบัญชี" },
-  { name: "Odoo CRM", emoji: "🟣", color: "#8b5cf6", desc: "เชื่อม CRM, POS, Inventory" },
-  { name: "Google Workspace", emoji: "📧", color: "#4285F4", desc: "Gmail, Drive, Calendar" },
-  { name: "Microsoft 365", emoji: "📘", color: "#0078D4", desc: "Outlook, OneDrive, Teams" },
-  { name: "Slack", emoji: "💬", color: "#4A154B", desc: "AI ตอบใน Slack channel" },
-  { name: "Notion", emoji: "📝", color: "#f0f4f8", desc: "ดึงข้อมูลจาก Notion workspace" },
-  { name: "Discord", emoji: "🎮", color: "#5865F2", desc: "AI bot ใน Discord server" },
-  { name: "Telegram", emoji: "✈️", color: "#26A5E4", desc: "AI bot ตอบใน Telegram" },
-  { name: "Zapier / Make", emoji: "⚡", color: "#FF4A00", desc: "เชื่อม 5,000+ apps" },
+  { name: "LINE OA", iconSlug: "line", color: "#00C300", desc: "AI chatbot ตอบลูกค้า" },
+  { name: "Slack", iconSlug: "slack", color: "#4A154B", desc: "AI ใน Slack channel" },
+  { name: "Discord", iconSlug: "discord", color: "#5865F2", desc: "AI bot ใน server" },
+  { name: "Telegram", iconSlug: "telegram", color: "#26A5E4", desc: "AI bot ตอบอัตโนมัติ" },
+  { name: "Google", iconSlug: "google", color: "#4285F4", desc: "Gmail, Drive, Calendar" },
+  { name: "Microsoft", iconSlug: "microsoft", color: "#0078D4", desc: "Outlook, OneDrive" },
+  { name: "SAP", emoji: "📊", color: "#0FAAFF", desc: "ดึงข้อมูลจาก ERP" },
+  { name: "Odoo", emoji: "🟣", color: "#8b5cf6", desc: "CRM, POS, Inventory" },
   { name: "REST API", emoji: "🔌", color: "#00e5ff", desc: "เชื่อมกับ app ใดก็ได้" },
-  { name: "Webhook", emoji: "🪝", color: "#f59e0b", desc: "Trigger event อัตโนมัติ" },
+  { name: "Webhook", emoji: "🪝", color: "#f59e0b", desc: "Trigger อัตโนมัติ" },
 ];
 
 export default function TechStackSection() {
@@ -967,40 +267,27 @@ export default function TechStackSection() {
 
   return (
     <section className="relative">
-      {/* ─── Header ─── */}
       <div className="max-w-6xl mx-auto px-6 mb-16">
         <div className="text-center mb-12">
           <span className="text-4xl mb-4 block">⚡</span>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#f0f4f8] mb-4">
-            Tech Stack
-          </h1>
-          <p className="text-[#94a3b8] max-w-2xl mx-auto text-base lg:text-lg leading-relaxed">
-            Open Source ระดับ World-class ทุกตัว — ไม่มีค่า license ไม่ถูก lock-in
-            <br />
-            คุณเป็นเจ้าของระบบ 100%
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#f0f4f8] mb-4">Tech Stack</h1>
+          <p className="text-[#94a3b8] max-w-2xl mx-auto text-base lg:text-lg">
+            100% Open Source, 100% Self-hosted — ไม่มีค่า license, ไม่ถูก lock-in
           </p>
         </div>
 
         {/* Architecture nav */}
         <GlowCard color="#00e5ff">
-          <div className="p-5 md:p-6">
-            <h3 className="text-[10px] font-bold text-[#00e5ff] mb-4 text-center tracking-[0.3em]">SYSTEM ARCHITECTURE</h3>
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
+          <div className="p-4 md:p-6">
+            <h3 className="text-[9px] font-bold text-[#00e5ff] mb-4 text-center tracking-[0.3em]">SYSTEM ARCHITECTURE — {categories.length} LAYERS — {categories.reduce((a, c) => a + c.techs.length, 0)}+ TOOLS</h3>
+            <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-10 gap-1.5">
               {categories.map((cat) => (
-                <motion.button
-                  key={cat.id}
-                  onClick={() => { setActiveCategory(cat.id); setExpandedTech(null); }}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="rounded-xl p-3 text-center transition-all border"
-                  style={{
-                    borderColor: activeCategory === cat.id ? cat.color + "50" : "#1e293b",
-                    background: activeCategory === cat.id ? cat.color + "10" : "#111827",
-                    boxShadow: activeCategory === cat.id ? `0 0 15px ${cat.color}12` : undefined,
-                  }}
+                <motion.button key={cat.id} onClick={() => { setActiveCategory(cat.id); setExpandedTech(null); }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                  className="rounded-lg p-2 text-center transition-all border"
+                  style={{ borderColor: activeCategory === cat.id ? cat.color + "50" : "#1e293b", background: activeCategory === cat.id ? cat.color + "10" : "#111827" }}
                 >
-                  <span className="text-xl block mb-1">{cat.emoji}</span>
-                  <p className="text-[9px] sm:text-[10px] font-bold text-[#f0f4f8] leading-tight">{cat.title}</p>
+                  <span className="text-lg block">{cat.emoji}</span>
+                  <p className="text-[7px] sm:text-[8px] font-bold text-[#f0f4f8] leading-tight mt-0.5">{cat.title.split(" ")[0]}</p>
                 </motion.button>
               ))}
             </div>
@@ -1008,17 +295,9 @@ export default function TechStackSection() {
         </GlowCard>
       </div>
 
-      {/* ─── Active Category ─── */}
+      {/* Active Category */}
       <AnimatePresence mode="wait">
-        <motion.div
-          key={current.id}
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -15 }}
-          transition={{ duration: 0.3 }}
-          className="max-w-6xl mx-auto px-6 mb-20"
-        >
-          {/* Category header */}
+        <motion.div key={current.id} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.3 }} className="max-w-6xl mx-auto px-6 mb-20">
           <div className="mb-8">
             <div className="flex items-start gap-4 mb-4">
               <span className="text-4xl">{current.emoji}</span>
@@ -1028,34 +307,26 @@ export default function TechStackSection() {
               </div>
             </div>
             <p className="text-sm text-[#94a3b8] leading-relaxed mb-3">{current.description}</p>
-            {current.howItFits && (
-              <div className="flex items-start gap-2 px-4 py-3 rounded-xl bg-[#111827] border border-[#1e293b]">
-                <Zap size={14} className="text-[#f59e0b] mt-0.5 shrink-0" />
-                <p className="text-xs text-[#94a3b8]"><span className="text-[#f59e0b] font-bold">ตำแหน่งใน pipeline:</span> {current.howItFits}</p>
-              </div>
-            )}
+            <div className="flex items-start gap-2 px-4 py-3 rounded-xl bg-[#111827] border border-[#1e293b]">
+              <Zap size={14} className="text-[#f59e0b] mt-0.5 shrink-0" />
+              <p className="text-xs text-[#94a3b8]"><span className="text-[#f59e0b] font-bold">Pipeline:</span> {current.howItFits}</p>
+            </div>
           </div>
 
-          {/* Tech cards */}
           <div className="space-y-4">
             {current.techs.map((tech, i) => (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.05 }}
-              >
+              <motion.div key={tech.name} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
                 <GlowCard color={tech.color}>
                   <div className="p-5 md:p-6">
-                    {/* Header row */}
-                    <button
-                      onClick={() => setExpandedTech(expandedTech === tech.name ? null : tech.name)}
-                      className="w-full text-left"
-                    >
+                    <button onClick={() => setExpandedTech(expandedTech === tech.name ? null : tech.name)} className="w-full text-left">
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: tech.color + "12", border: `1px solid ${tech.color}20` }}>
-                            {tech.logo}
+                          <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#111827] border border-[#1e293b]">
+                            {tech.iconSlug ? (
+                              <TechIcon slug={tech.iconSlug} color={tech.color} size={22} />
+                            ) : (
+                              <span className="text-2xl">{tech.emoji}</span>
+                            )}
                           </div>
                           <div>
                             <div className="flex items-center gap-2 flex-wrap">
@@ -1065,92 +336,20 @@ export default function TechStackSection() {
                             <p className="text-[11px] text-[#64748b] italic">{tech.tagline}</p>
                           </div>
                         </div>
-                        <motion.div animate={{ rotate: expandedTech === tech.name ? 180 : 0 }}>
-                          <ChevronDown size={16} className="text-[#64748b]" />
-                        </motion.div>
+                        <motion.div animate={{ rotate: expandedTech === tech.name ? 180 : 0 }}><ChevronDown size={16} className="text-[#64748b]" /></motion.div>
                       </div>
-
                       <p className="text-sm text-[#94a3b8] leading-relaxed">{tech.description}</p>
                     </button>
 
-                    {/* Expanded detail */}
                     <AnimatePresence>
                       {expandedTech === tech.name && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          className="overflow-hidden"
-                        >
+                        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
                           <div className="mt-5 pt-5 border-t border-[#1e293b] space-y-5">
-                            {/* Why we chose it */}
-                            <div>
-                              <h4 className="text-xs font-bold text-[#f0f4f8] mb-2 flex items-center gap-2">
-                                <Shield size={12} style={{ color: tech.color }} /> ทำไมเราถึงเลือก
-                              </h4>
-                              <p className="text-xs text-[#94a3b8] leading-relaxed">{tech.whyWeChoseIt}</p>
-                            </div>
-
-                            {/* Key features */}
-                            <div>
-                              <h4 className="text-xs font-bold text-[#f0f4f8] mb-2 flex items-center gap-2">
-                                <Zap size={12} style={{ color: tech.color }} /> ฟีเจอร์หลัก
-                              </h4>
-                              <div className="grid sm:grid-cols-2 gap-1.5">
-                                {tech.keyFeatures.map((f) => (
-                                  <div key={f} className="flex items-start gap-2 text-xs text-[#94a3b8]">
-                                    <Check size={11} className="mt-0.5 shrink-0" style={{ color: tech.color }} />
-                                    {f}
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-
-                            {/* Specs table */}
-                            {tech.specs && (
-                              <div>
-                                <h4 className="text-xs font-bold text-[#f0f4f8] mb-2 flex items-center gap-2">
-                                  <Cpu size={12} style={{ color: tech.color }} /> สเปค
-                                </h4>
-                                <div className="rounded-xl bg-[#111827] border border-[#1e293b] overflow-hidden">
-                                  {tech.specs.map((spec, si) => (
-                                    <div key={spec.label} className={`flex justify-between px-4 py-2 text-xs ${si % 2 === 0 ? "bg-[#0c1220]/50" : ""}`}>
-                                      <span className="text-[#64748b]">{spec.label}</span>
-                                      <span className="text-[#f0f4f8] font-mono text-right">{spec.value}</span>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-
-                            {/* Alternatives */}
-                            {tech.alternatives && tech.alternatives.length > 0 && (
-                              <div>
-                                <h4 className="text-xs font-bold text-[#f0f4f8] mb-2">ทำไมไม่ใช้ตัวอื่น?</h4>
-                                <div className="space-y-1.5">
-                                  {tech.alternatives.map((alt) => (
-                                    <div key={alt.name} className="flex items-start gap-2 text-xs text-[#64748b]">
-                                      <span className="text-[#f87171] shrink-0">✗</span>
-                                      <span><span className="text-[#94a3b8] font-medium">{alt.name}</span> — {alt.whyNot}</span>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-
-                            {/* Link */}
-                            {tech.url && (
-                              <a
-                                href={tech.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-lg transition-colors"
-                                style={{ background: tech.color + "15", color: tech.color }}
-                              >
-                                <ExternalLink size={12} />
-                                เว็บไซต์ {tech.name}
-                              </a>
-                            )}
+                            <div><h4 className="text-xs font-bold text-[#f0f4f8] mb-2 flex items-center gap-2"><Shield size={12} style={{ color: tech.color }} /> ทำไมเราถึงเลือก</h4><p className="text-xs text-[#94a3b8] leading-relaxed">{tech.whyWeChoseIt}</p></div>
+                            <div><h4 className="text-xs font-bold text-[#f0f4f8] mb-2 flex items-center gap-2"><Zap size={12} style={{ color: tech.color }} /> ฟีเจอร์หลัก</h4><div className="grid sm:grid-cols-2 gap-1.5">{tech.keyFeatures.map((f) => (<div key={f} className="flex items-start gap-2 text-xs text-[#94a3b8]"><Check size={11} className="mt-0.5 shrink-0" style={{ color: tech.color }} />{f}</div>))}</div></div>
+                            {tech.specs && (<div><h4 className="text-xs font-bold text-[#f0f4f8] mb-2 flex items-center gap-2"><Cpu size={12} style={{ color: tech.color }} /> สเปค</h4><div className="rounded-xl bg-[#111827] border border-[#1e293b] overflow-hidden">{tech.specs.map((s, si) => (<div key={s.label} className={`flex justify-between px-4 py-2 text-xs ${si % 2 === 0 ? "bg-[#0c1220]/50" : ""}`}><span className="text-[#64748b]">{s.label}</span><span className="text-[#f0f4f8] font-mono text-right">{s.value}</span></div>))}</div></div>)}
+                            {tech.alternatives && tech.alternatives.length > 0 && (<div><h4 className="text-xs font-bold text-[#f0f4f8] mb-2">ทำไมไม่ใช้ตัวอื่น?</h4>{tech.alternatives.map((alt) => (<div key={alt.name} className="flex items-start gap-2 text-xs text-[#64748b] mb-1"><span className="text-[#f87171]">✗</span><span><span className="text-[#94a3b8] font-medium">{alt.name}</span> — {alt.whyNot}</span></div>))}</div>)}
+                            <a href={tech.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-lg" style={{ background: tech.color + "15", color: tech.color }}><ExternalLink size={12} />{tech.name}</a>
                           </div>
                         </motion.div>
                       )}
@@ -1163,7 +362,7 @@ export default function TechStackSection() {
         </motion.div>
       </AnimatePresence>
 
-      {/* ─── Integrations ─── */}
+      {/* Integrations */}
       <div className="py-16 lg:py-20">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-10">
@@ -1171,14 +370,16 @@ export default function TechStackSection() {
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-[#f0f4f8] mb-3">เชื่อมต่อได้กับทุกระบบ</h2>
             <p className="text-[#94a3b8]">ผ่าน REST API มาตรฐาน OpenAI-compatible</p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
             {integrations.map((intg, i) => (
-              <motion.div key={intg.name} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.04 }}>
+              <motion.div key={intg.name} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.03 }}>
                 <GlowCard color={intg.color}>
-                  <div className="p-4 text-center">
-                    <span className="text-2xl block mb-2">{intg.emoji}</span>
-                    <p className="text-xs font-bold text-[#f0f4f8] mb-1">{intg.name}</p>
-                    <p className="text-[9px] text-[#64748b]">{intg.desc}</p>
+                  <div className="p-3 text-center">
+                    <div className="w-8 h-8 mx-auto mb-2 flex items-center justify-center">
+                      {intg.iconSlug ? <TechIcon slug={intg.iconSlug} color={intg.color} size={20} /> : <span className="text-xl">{intg.emoji}</span>}
+                    </div>
+                    <p className="text-[10px] font-bold text-[#f0f4f8] mb-0.5">{intg.name}</p>
+                    <p className="text-[8px] text-[#64748b]">{intg.desc}</p>
                   </div>
                 </GlowCard>
               </motion.div>
@@ -1187,20 +388,20 @@ export default function TechStackSection() {
         </div>
       </div>
 
-      {/* ─── Open Source ─── */}
+      {/* Open Source */}
       <div className="py-16 lg:py-20">
         <div className="max-w-3xl mx-auto px-6">
           <GlowCard color="#00ff88">
             <div className="p-8 md:p-10 text-center">
               <span className="text-4xl block mb-4">🌍</span>
-              <h3 className="text-xl md:text-2xl font-black text-[#f0f4f8] mb-3">100% Open Source — ไม่มีค่า License</h3>
+              <h3 className="text-xl md:text-2xl font-black text-[#f0f4f8] mb-3">100% Open Source — 100% Self-hosted</h3>
               <p className="text-sm text-[#94a3b8] leading-relaxed max-w-xl mx-auto mb-6">
-                ทุกซอฟต์แวร์ที่เราใช้เป็น Open Source ที่ได้รับการพิสูจน์แล้วจาก community นับล้านคนทั่วโลก
-                คุณเป็นเจ้าของระบบ 100% จะเปลี่ยน model, เปลี่ยน UI, เพิ่มฟีเจอร์เอง หรือจ้างคนอื่นมาดูแลต่อ ทำได้หมด
+                ทุกเครื่องมือ self-hosted ได้ ข้อมูลไม่ออกจากเครื่องคุณ ไม่มีค่า license ไม่ถูก lock-in
+                เปลี่ยน model, UI, เพิ่มฟีเจอร์ หรือจ้างคนอื่นดูแลต่อ ทำได้หมด
               </p>
               <div className="flex flex-wrap justify-center gap-2">
-                {["No License Fee", "No Vendor Lock-in", "Community 1M+", "Audit-friendly", "Customizable", "Self-hosted"].map((badge) => (
-                  <span key={badge} className="px-3 py-1.5 rounded-full bg-[#00ff88]/10 border border-[#00ff88]/20 text-[10px] font-bold text-[#00ff88]">✓ {badge}</span>
+                {["Self-hosted", "No License Fee", "No Vendor Lock-in", "PDPA Compliant", "Audit-friendly", "Customizable"].map((b) => (
+                  <span key={b} className="px-3 py-1.5 rounded-full bg-[#00ff88]/10 border border-[#00ff88]/20 text-[10px] font-bold text-[#00ff88]">✓ {b}</span>
                 ))}
               </div>
             </div>
