@@ -148,10 +148,42 @@ export default function ScrollAnimation() {
           </div>
         )}
 
-        {/* Scroll hint */}
-        {progress < 0.03 && loaded && (
+        {/* Intro overlay — shows before scrolling */}
+        {progress < 0.05 && loaded && (
+          <div
+            className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6"
+            style={{ opacity: 1 - progress * 20 }}
+          >
+            {/* Animated ring */}
+            <div className="relative w-24 h-24 mb-8">
+              <div className="absolute inset-0 rounded-full border-2 border-[#00e5ff]/30 animate-ping" />
+              <div className="absolute inset-2 rounded-full border border-[#00e5ff]/20" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-3xl">🧠</span>
+              </div>
+            </div>
+
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#f0f4f8] mb-3">
+              ดูวิธีทำงานของ AI ส่วนตัว
+            </h2>
+            <p className="text-sm text-[#94a3b8] mb-8 max-w-md">
+              เลื่อนลงเพื่อดูแต่ละขั้นตอน ตั้งแต่รวบรวมเอกสาร จนถึง AI ตอบคำถาม
+            </p>
+
+            {/* Scroll indicator */}
+            <div className="flex flex-col items-center gap-2 animate-bounce">
+              <div className="w-6 h-10 rounded-full border-2 border-[#00e5ff]/40 flex justify-center pt-2">
+                <div className="w-1.5 h-3 rounded-full bg-[#00e5ff] animate-pulse" />
+              </div>
+              <span className="text-xs text-[#00e5ff] font-medium tracking-wider">SCROLL</span>
+            </div>
+          </div>
+        )}
+
+        {/* Small scroll hint (shows when partially scrolled) */}
+        {progress >= 0.05 && progress < 0.1 && (
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce z-20">
-            <span className="text-xs text-[#64748b]">เลื่อนลงเพื่อดู</span>
+            <span className="text-xs text-[#64748b]">เลื่อนต่อ...</span>
             <svg
               width="20"
               height="20"
