@@ -1,0 +1,175 @@
+"use client";
+import { useEffect, useRef, useState, useCallback } from "react";
+
+const TOTAL_FRAMES = 180;
+
+const phases = [
+  {
+    range: [0, 0.22],
+    label: "STEP 1",
+    title: "รวบรวมเอกสารทั้งหมด",
+    subtitle: "PDF, Word, Excel, อีเมล — นำเข้าระบบ AI ได้หมด",
+  },
+  {
+    range: [0.25, 0.47],
+    label: "STEP 2",
+    title: "ตัดแบ่ง & แปลงเป็นภาษา AI",
+    subtitle: "ระบบตัดเอกสารเป็นชิ้นเล็กๆ แล้วแปลงให้ AI เข้าใจได้",
+  },
+  {
+    range: [0.5, 0.72],
+    label: "STEP 3",
+    title: "ถามคำถาม → ค้นหาเอกสาร",
+    subtitle: "พิมพ์คำถามภาษาไทย ระบบหาเอกสารที่เกี่ยวข้องทันที",
+  },
+  {
+    range: [0.75, 1],
+    label: "STEP 4",
+    title: "AI อ่านเอกสาร → ตอบคำถาม",
+    subtitle: "ได้คำตอบเป็นภาษาไทย พร้อมอ้างอิงเอกสารต้นทาง",
+  },
+];
+
+export default function ScrollAnimation() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [progress, setProgress] = useState(0);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
+  const loadedRef = useRef<boolean[]>(new Array(TOTAL_FRAMES).fill(false));
+  const [loaded, setLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const FRAME_WIDTH = isMobile ? 780 : 1920;
+  const FRAME_HEIGHT = isMobile ? 1400 : 1080;
+  const frameDir = isMobile ? "/frames-mobile" : "/frames";
+
+  // Preload all frames
+  useEffect(() => {
+    let loadedCount = 0;
+    const images: HTMLImageElement[] = [];
+    loadedRef.current = new Array(TOTAL_FRAMES).fill(false);
+    setLoaded(false);
+
+    for (let i = 0; i < TOTAL_FRAMES; i++) {
+      const img = new Image();
+      img.src = `${frameDir}/element-${String(i).padStart(3, "0")}.jpeg`;
+      img.onload = () => {
+        loadedCount++;
+        loadedRef.current[i] = true;
+        if (loadedCount === TOTAL_FRAMES) {
+          setLoaded(true);
+        }
+      };
+      images.push(img);
+    }
+
+    imagesRef.current = images;
+  }, [frameDir]);
+
+  // Scroll tracking
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const onScroll = () => {
+      const rect = section.getBoundingClientRect();
+      const sectionHeight = section.offsetHeight - window.innerHeight;
+      const scrolled = -rect.top;
+      const p = Math.max(0, Math.min(scrolled / sectionHeight, 1));
+      setProgress(p);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Draw current frame to canvas
+  const drawFrame = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const frameIndex = Math.min(
+      Math.floor(progress * (TOTAL_FRAMES - 1)),
+      TOTAL_FRAMES - 1
+    );
+
+    const img = imagesRef.current[frameIndex];
+    if (img && loadedRef.current[frameIndex]) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    }
+  }, [progress]);
+
+  useEffect(() => {
+    const raf = requestAnimationFrame(drawFrame);
+    return () => cancelAnimationFrame(raf);
+  }, [drawFrame]);
+
+  return (
+    <section ref={sectionRef} className="relative" style={{ height: isMobile ? "300vh" : "400vh" }}>
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden bg-[#030810]">
+        {/* Progress bar */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#1e293b] z-20">
+          <div
+            className="h-full bg-gradient-to-r from-[#00e5ff] to-[#00ff88]"
+            style={{ width: `${progress * 100}%`, transition: "none" }}
+          />
+        </div>
+
+        {/* Canvas - fits viewport, no crop */}
+        <canvas
+          ref={canvasRef}
+          width={FRAME_WIDTH}
+          height={FRAME_HEIGHT}
+          style={{
+            width: `min(100vw, ${100 * (FRAME_WIDTH / FRAME_HEIGHT)}vh)`,
+            height: `min(100vh, ${100 * (FRAME_HEIGHT / FRAME_WIDTH)}vw)`,
+          }}
+        />
+
+        {/* Loading indicator */}
+        {!loaded && (
+          <div className="absolute inset-0 flex items-center justify-center bg-[#060a14] z-30">
+            <div className="text-center">
+              <div className="w-8 h-8 border-2 border-[#00e5ff] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+              <p className="text-sm text-[#64748b]">กำลังโหลด...</p>
+            </div>
+          </div>
+        )}
+
+        {/* Scroll hint */}
+        {progress < 0.03 && loaded && (
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce z-20">
+            <span className="text-xs text-[#64748b]">เลื่อนลงเพื่อดู</span>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              className="text-[#64748b]"
+            >
+              <path
+                d="M10 4v12m0 0l-4-4m4 4l4-4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}

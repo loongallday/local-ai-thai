@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# old frame formats
+public/frames/*.webp
+public/frames/*.png

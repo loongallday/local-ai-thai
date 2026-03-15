@@ -1,0 +1,217 @@
+"use client";
+import { motion } from "framer-motion";
+import {
+  FileText,
+  ArrowRight,
+  Cpu,
+  MessageSquareText,
+  Search,
+  Image,
+  BarChart3,
+} from "lucide-react";
+
+const steps = [
+  {
+    num: "01",
+    title: "นำเอกสาร & ข้อมูลของคุณเข้าระบบ",
+    desc: "ไม่ว่าจะเป็นไฟล์ Word, PDF, Excel, อีเมล หรือข้อมูลลูกค้า — เราใส่เข้าระบบ AI ให้คุณ เหมือนสอนพนักงานใหม่ให้รู้จักบริษัท",
+    icon: FileText,
+    color: "#00e5ff",
+  },
+  {
+    num: "02",
+    title: "AI เรียนรู้ & เข้าใจข้อมูลของคุณ",
+    desc: "ระบบจะจัดระเบียบและทำความเข้าใจข้อมูลทั้งหมด ทำงานอยู่ในเครื่องของคุณตลอดเวลา ไม่ส่งข้อมูลออกไปข้างนอก",
+    icon: Cpu,
+    color: "#00ff88",
+  },
+  {
+    num: "03",
+    title: "ถาม พิมพ์ สั่ง — ได้คำตอบทันที",
+    desc: "ถาม AI เป็นภาษาไทยได้เลย เช่น \"สรุปยอดขายเดือนนี้\" หรือ \"ร่างอีเมลตอบลูกค้า\" — ได้คำตอบใน 2-3 วินาที",
+    icon: MessageSquareText,
+    color: "#8b5cf6",
+  },
+];
+
+const useCases = [
+  {
+    icon: Search,
+    title: "ค้นหาข้อมูลในบริษัท",
+    desc: "แทนที่จะเปิดไฟล์ทีละอัน ถาม AI ได้เลยว่า \"สัญญากับบริษัท XYZ อยู่ไหน\"",
+    example: "\"หาเอกสารสัญญาที่เซ็นเดือนมกราคม\"",
+  },
+  {
+    icon: MessageSquareText,
+    title: "ร่างเอกสาร & ตอบข้อความ",
+    desc: "ให้ AI ช่วยเขียนอีเมล ร่างรายงาน หรือตอบข้อความลูกค้าเป็นภาษาไทย",
+    example: "\"ร่างอีเมลตอบลูกค้าที่ถามเรื่องราคา\"",
+  },
+  {
+    icon: BarChart3,
+    title: "สรุป & วิเคราะห์ข้อมูล",
+    desc: "ส่งไฟล์ Excel หรือ PDF ยาวๆ ให้ AI สรุปให้เข้าใจง่ายๆ ใน 1 นาที",
+    example: "\"สรุปรายงานประจำปี 50 หน้านี้ให้หน่อย\"",
+  },
+  {
+    icon: Image,
+    title: "สร้างรูปภาพ & คอนเทนต์",
+    desc: "สำหรับ Creator — สร้างภาพ Thumbnail, แก้ไขรูป, เขียนสคริปต์ โดยไม่ต้องจ่าย Subscription",
+    example: "\"สร้าง Thumbnail สำหรับวิดีโอรีวิวมือถือ\"",
+  },
+];
+
+export default function HowItWorks() {
+  return (
+    <section id="how-it-works" className="py-16 lg:py-20 relative">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Section header */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#f0f4f8] mb-4">
+            AI ส่วนตัวทำงานยังไง?
+          </h2>
+          <p className="text-[#94a3b8] max-w-2xl mx-auto text-base lg:text-lg leading-relaxed">
+            ง่ายมาก — เหมือนมีพนักงานที่รู้ข้อมูลทุกอย่างในบริษัท
+            <br />
+            แต่ทำงานเร็วกว่า และพร้อมตอบ 24 ชั่วโมง
+          </p>
+        </div>
+
+        {/* 3-step diagram */}
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
+          {steps.map((step, i) => (
+            <motion.div
+              key={step.num}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.15 }}
+              className="relative rounded-2xl bg-[#111827] border border-[#1e293b] p-6"
+            >
+              {/* Step number */}
+              <span
+                className="text-5xl font-black absolute top-4 right-5 opacity-10"
+                style={{ color: step.color }}
+              >
+                {step.num}
+              </span>
+
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center mb-4"
+                style={{ background: step.color + "15" }}
+              >
+                <step.icon size={20} style={{ color: step.color }} />
+              </div>
+              <h3 className="text-lg font-bold text-[#f0f4f8] mb-3">
+                {step.title}
+              </h3>
+              <p className="text-sm text-[#94a3b8] leading-relaxed">
+                {step.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Arrow flow (desktop) */}
+        <div className="hidden md:flex justify-center items-center gap-2 mb-20 text-[#64748b]">
+          <span className="text-xs">ใส่ข้อมูล</span>
+          <ArrowRight size={14} />
+          <span className="text-xs">AI เรียนรู้</span>
+          <ArrowRight size={14} />
+          <span className="text-xs">ใช้งานได้ทันที</span>
+        </div>
+
+        {/* Use cases */}
+        <div className="text-center mb-10">
+          <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold text-[#f0f4f8] mb-3">
+            ใช้ทำอะไรได้บ้าง?
+          </h3>
+          <p className="text-[#94a3b8] text-sm">
+            ตัวอย่างที่ธุรกิจจริงใช้กันทุกวัน
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-5">
+          {useCases.map((uc, i) => (
+            <motion.div
+              key={uc.title}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
+              className="rounded-xl bg-[#111827] border border-[#1e293b] p-5 hover:border-[#00e5ff]/30 transition-all"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-[#00e5ff]/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <uc.icon size={18} className="text-[#00e5ff]" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-[#f0f4f8] mb-1">{uc.title}</h4>
+                  <p className="text-sm text-[#94a3b8] mb-3 leading-relaxed">
+                    {uc.desc}
+                  </p>
+                  {/* Example prompt */}
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0c1220] border border-[#1e293b]">
+                    <MessageSquareText size={12} className="text-[#00ff88]" />
+                    <span className="text-xs text-[#00ff88] font-mono">
+                      {uc.example}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Simple cost comparison */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-16 rounded-2xl border border-[#1e293b] bg-[#111827] overflow-hidden"
+        >
+          <div className="p-6 md:p-8 text-center border-b border-[#1e293b]">
+            <h3 className="text-xl font-bold text-[#f0f4f8] mb-2">
+              ทำไม AI ส่วนตัวถึงคุ้มกว่า?
+            </h3>
+            <p className="text-sm text-[#94a3b8]">
+              เปรียบเทียบค่าใช้จ่ายจริงกับบริการคลาวด์
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2">
+            {/* Cloud */}
+            <div className="p-6 md:p-8 border-b md:border-b-0 md:border-r border-[#1e293b]">
+              <div className="text-sm font-bold text-[#f87171] mb-4">
+                ❌ ใช้บริการคลาวด์ (ChatGPT, API)
+              </div>
+              <ul className="space-y-3 text-sm text-[#94a3b8]">
+                <li>• ค่า API ประมาณ ฿5,000-50,000/เดือน ขึ้นอยู่กับจำนวนผู้ใช้</li>
+                <li>• ข้อมูลของคุณถูกส่งไปประมวลผลบนเซิร์ฟเวอร์ต่างประเทศ</li>
+                <li>• ถ้าเน็ตล่ม ใช้งานไม่ได้</li>
+                <li>• ยิ่งใช้มาก ยิ่งจ่ายมาก ไม่มีเพดาน</li>
+              </ul>
+              <div className="mt-4 text-xs text-[#f87171] font-mono">
+                ค่าใช้จ่าย 2 ปี: ฿120,000 - 1,200,000
+              </div>
+            </div>
+            {/* Local */}
+            <div className="p-6 md:p-8">
+              <div className="text-sm font-bold text-[#00ff88] mb-4">
+                ✓ AI ส่วนตัว (NeuralBox)
+              </div>
+              <ul className="space-y-3 text-sm text-[#94a3b8]">
+                <li>• จ่ายครั้งเดียว ฿59,900 ขึ้นไป ใช้ได้ตลอด</li>
+                <li>• ข้อมูลอยู่ในออฟฟิศของคุณ 100%</li>
+                <li>• ไม่ต้องพึ่งอินเทอร์เน็ต ทำงานได้ตลอด</li>
+                <li>• ใช้กี่คนก็ได้ ไม่มีค่าใช้จ่ายเพิ่ม</li>
+              </ul>
+              <div className="mt-4 text-xs text-[#00ff88] font-mono">
+                ค่าใช้จ่าย 2 ปี: ฿59,900 - 219,900 (จ่ายครั้งเดียว)
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
