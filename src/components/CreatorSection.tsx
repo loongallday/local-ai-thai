@@ -127,6 +127,101 @@ const demos = [
       desc: "AI เขียนสคริปต์ 60 วิ + Hook ที่ดี + Subtitle อัตโนมัติ + Trending Hashtag → Batch 10 คลิปใน 10 นาที",
     },
   },
+  {
+    platform: "Video Editing",
+    emoji: "🎞️",
+    color: "#a78bfa",
+    before: {
+      time: "3-4 ชม./วิดีโอ",
+      desc: "ถ่ายวิดีโอ → ดูฟุต 2 ชม. → ตัดต่อ → Color grade → ทำ Subtitle ทีละบรรทัด → Export → ทำ Thumbnail แยก",
+    },
+    after: {
+      time: "30-45 นาที/วิดีโอ",
+      desc: "AI สรุปฟุตให้ → แนะนำจุดตัด → Auto subtitle ภาษาไทย → AI color grade → Upscale 1080p→4K → Generate Thumbnail จากเฟรมที่ดีที่สุด",
+    },
+  },
+];
+
+// ─── Creator Types ───
+const creatorTypes = [
+  {
+    emoji: "🎥",
+    type: "Lifestyle / Vlog",
+    color: "#ec4899",
+    desc: "ถ่ายวิดีโอชีวิตประจำวัน รีวิวร้านอาหาร ท่องเที่ยว",
+    aiHelps: [
+      "AI สรุปฟุตยาว 2 ชม. → เลือกช่วงเด็ดให้อัตโนมัติ",
+      "Auto Subtitle ภาษาไทย แม่นยำ ไม่ต้องพิมพ์เอง",
+      "เขียน Voiceover script จาก footage ที่ถ่ายมา",
+      "AI แนะนำ B-roll ที่ควรตัดสลับ",
+      "Upscale วิดีโอ 1080p → 4K ด้วย AI",
+    ],
+  },
+  {
+    emoji: "🍳",
+    type: "Food / Review",
+    color: "#f59e0b",
+    desc: "รีวิวร้านอาหาร สอนทำอาหาร รีวิวสินค้า",
+    aiHelps: [
+      "AI เขียนรีวิวจากจุดที่คุณพูดในวิดีโอ",
+      "สร้าง Thumbnail รูปอาหารที่ดูน่ากิน",
+      "Batch เขียน caption ร้านที่ไป 10 ร้าน ใน 5 นาที",
+      "AI สรุปคอมเมนต์ → รู้ว่า follower อยากดูอะไร",
+      "Auto subtitle สำหรับวิดีโอสอนทำอาหาร",
+    ],
+  },
+  {
+    emoji: "💄",
+    type: "Beauty / Fashion",
+    color: "#ec4899",
+    desc: "สอนแต่งหน้า รีวิวเครื่องสำอาง แฟชั่น OOTD",
+    aiHelps: [
+      "AI เขียน product review จากสเปคที่ให้",
+      "Generate ภาพ mood board / color palette",
+      "สร้าง OOTD caption + hashtag แบบ aesthetic",
+      "AI ตัด reels จากวิดีโอยาว → เลือก moment ที่ดีที่สุด",
+      "Batch สร้าง IG stories template",
+    ],
+  },
+  {
+    emoji: "🏋️",
+    type: "Fitness / Health",
+    color: "#00ff88",
+    desc: "สอนออกกำลังกาย โภชนาการ wellness",
+    aiHelps: [
+      "AI เขียนโปรแกรมออกกำลังกาย + สคริปต์อธิบาย",
+      "Auto subtitle ท่าออกกำลังกายพร้อมนับเซ็ต",
+      "สร้าง infographic โภชนาการจากข้อมูล",
+      "Batch เขียน tips สุขภาพ 30 วัน ล่วงหน้า",
+      "AI วิเคราะห์ comment → สรุปปัญหาสุขภาพที่ follower สนใจ",
+    ],
+  },
+  {
+    emoji: "🎮",
+    type: "Gaming / Tech",
+    color: "#00e5ff",
+    desc: "รีวิวเกม อุปกรณ์ สอนใช้ tech",
+    aiHelps: [
+      "AI ตัด highlight จาก stream ยาว 3 ชม. อัตโนมัติ",
+      "เขียนสคริปต์รีวิวจากสเปคที่ให้",
+      "Generate Thumbnail สไตล์ gaming",
+      "AI เปรียบเทียบสเปคสินค้า 5 รุ่น ให้เป็นตาราง",
+      "Batch สร้าง short clips จาก stream",
+    ],
+  },
+  {
+    emoji: "📚",
+    type: "Education / สอน",
+    color: "#8b5cf6",
+    desc: "ครู ติวเตอร์ สอนภาษา สอนทักษะ",
+    aiHelps: [
+      "AI สร้างสื่อการสอน slide + script",
+      "แปลงบทความยาว → สคริปต์วิดีโอ 10 นาที",
+      "Auto subtitle + แปลภาษาพร้อมกัน",
+      "สร้างแบบฝึกหัด + quiz จากเนื้อหาที่สอน",
+      "AI สรุป comment → รู้ว่านักเรียนไม่เข้าใจตรงไหน",
+    ],
+  },
 ];
 
 // ─── Workflow mockup ───
@@ -470,7 +565,142 @@ export default function CreatorSection() {
         </div>
       </div>
 
-      {/* ═══ Workflow ═══ */}
+      {/* ═══ Creator Types ═══ */}
+      <div className="py-16 lg:py-20 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(236,72,153,0.04),transparent_50%)]" />
+        <div className="max-w-7xl mx-auto px-6 relative">
+          <div className="text-center mb-12">
+            <span className="text-3xl mb-4 block">🎥</span>
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-[#f0f4f8] mb-3">
+              AI ช่วยได้ทุกสาย ไม่ใช่แค่สาย Generate รูป
+            </h2>
+            <p className="text-[#94a3b8] max-w-2xl mx-auto">
+              ไม่ว่าจะเป็น Vlogger ที่ถ่ายวิดีโอ, Food Reviewer, Beauty Creator
+              <br />
+              AI ช่วยได้ตั้งแต่เขียนสคริปต์ จนถึงตัดต่อ
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {creatorTypes.map((ct, i) => (
+              <motion.div
+                key={ct.type}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+              >
+                <GlowCard color={ct.color}>
+                  <div className="p-5">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-2xl">{ct.emoji}</span>
+                      <div>
+                        <h4 className="text-sm font-bold text-[#f0f4f8]">{ct.type}</h4>
+                        <p className="text-[10px] text-[#64748b]">{ct.desc}</p>
+                      </div>
+                    </div>
+                    <div className="space-y-1.5">
+                      {ct.aiHelps.map((help) => (
+                        <div key={help} className="flex items-start gap-2 text-xs text-[#94a3b8]">
+                          <Check size={11} className="mt-0.5 shrink-0" style={{ color: ct.color }} />
+                          {help}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </GlowCard>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ═══ AI + NAS Workflow ═══ */}
+      <div className="py-16 lg:py-20 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(139,92,246,0.05),transparent_50%)]" />
+        <div className="max-w-5xl mx-auto px-6 relative">
+          <div className="text-center mb-12">
+            <span className="text-3xl mb-4 block">💾</span>
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-[#f0f4f8] mb-3">
+              AI + NAS = Workflow ที่สมบูรณ์
+            </h2>
+            <p className="text-[#94a3b8] max-w-2xl mx-auto">
+              ถ่ายวิดีโอเสร็จ → ไฟล์ไปเก็บใน NAS อัตโนมัติ → AI ประมวลผลให้ → พร้อมโพสต์
+            </p>
+          </div>
+
+          {/* Visual Workflow Diagram */}
+          <GlowCard color="#8b5cf6" className="mb-8">
+            <div className="p-6 md:p-8">
+              {/* Step flow */}
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-3 md:gap-0 items-center">
+                {[
+                  { emoji: "📱", title: "ถ่ายวิดีโอ", desc: "กล้อง / มือถือ", color: "#f59e0b" },
+                  { emoji: "→", title: "", desc: "", color: "#64748b" },
+                  { emoji: "💾", title: "เก็บใน NAS", desc: "Auto sync ไม่ต้องก็อป", color: "#8b5cf6" },
+                  { emoji: "→", title: "", desc: "", color: "#64748b" },
+                  { emoji: "🧠", title: "AI ประมวลผล", desc: "สรุป ตัด สร้าง subtitle", color: "#00e5ff" },
+                ].map((step, i) => (
+                  <div key={i} className="text-center">
+                    {step.emoji === "→" ? (
+                      <div className="hidden md:block text-2xl text-[#64748b]">→</div>
+                    ) : (
+                      <div>
+                        <span className="text-3xl block mb-2">{step.emoji}</span>
+                        <p className="text-xs font-bold text-[#f0f4f8]">{step.title}</p>
+                        <p className="text-[10px] text-[#64748b]">{step.desc}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-[#1e293b]">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  {[
+                    { emoji: "📤", title: "Output พร้อมใช้", items: ["สคริปต์ที่เขียนเสร็จ", "Subtitle ภาษาไทย (.srt)", "Thumbnail 4 แบบ", "Caption + Hashtag ทุก platform"], color: "#00ff88" },
+                    { emoji: "📂", title: "ทุกไฟล์อยู่ใน NAS", items: ["Footage ต้นฉบับ", "Project files", "ไฟล์ที่ export แล้ว", "เข้าถึงจากทุกเครื่อง"], color: "#8b5cf6" },
+                    { emoji: "🔒", title: "ปลอดภัย 100%", items: ["ไฟล์ไม่อยู่บน Google Drive", "สำรองข้อมูลซ้ำซ้อน", "HDD พังตัวนึง ข้อมูลยังอยู่", "ไม่มีค่ารายเดือน cloud"], color: "#ec4899" },
+                  ].map((col) => (
+                    <div key={col.title} className="rounded-xl p-4" style={{ background: col.color + "08", border: `1px solid ${col.color}15` }}>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-lg">{col.emoji}</span>
+                        <span className="text-xs font-bold text-[#f0f4f8]">{col.title}</span>
+                      </div>
+                      <div className="space-y-1">
+                        {col.items.map((item) => (
+                          <div key={item} className="flex items-center gap-1.5 text-[11px] text-[#94a3b8]">
+                            <Check size={10} style={{ color: col.color }} className="shrink-0" />
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </GlowCard>
+
+          {/* NAS bundle callout */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-gradient-to-r from-[#8b5cf6]/10 to-[#ec4899]/10 border border-[#8b5cf6]/20">
+              <span className="text-lg">💡</span>
+              <span className="text-sm text-[#f0f4f8]">
+                <span className="font-bold">Creator Pro</span> มาพร้อม NAS 2-Bay + 8TB ในราคา Bundle —{" "}
+                <span className="text-[#00ff88] font-bold">ประหยัด ฿10,000</span>
+              </span>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* ═══ Workflow Steps ═══ */}
       <div className="py-16 lg:py-20 relative">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -483,9 +713,10 @@ export default function CreatorSection() {
 
           <div>
             <WorkflowStep step={1} emoji="💡" title="บอก AI ว่าอยากทำอะไร" desc='พิมพ์ไอเดียคร่าวๆ เช่น "ทำคลิปรีวิว iPhone ใหม่ แนว funny"' color="#00e5ff" delay={0} />
-            <WorkflowStep step={2} emoji="📝" title="AI เขียนสคริปต์ + สร้างรูปให้" desc="ได้สคริปต์เต็ม + Thumbnail 4 แบบ + Title/Caption + Hashtag ใน 1 นาที" color="#ec4899" delay={0.1} />
-            <WorkflowStep step={3} emoji="✏️" title="แก้ไขตามสไตล์คุณ" desc="AI ออกมาดี 80% แล้ว — คุณแค่ปรับอีก 20% ให้เป็นตัวคุณ" color="#8b5cf6" delay={0.2} />
-            <WorkflowStep step={4} emoji="🚀" title="โพสต์ได้เลย" desc="Content พร้อมลง ทุก Platform ใช้เวลาทั้งหมดไม่ถึง 10 นาที" color="#00ff88" delay={0.3} />
+            <WorkflowStep step={2} emoji="🎥" title="ถ่ายวิดีโอ → ไฟล์ไปเก็บใน NAS" desc="ถ่ายเสร็จ ไฟล์ sync ไป NAS อัตโนมัติ ไม่ต้องก็อปมือ AI เริ่มสรุปฟุตให้เลย" color="#f59e0b" delay={0.1} />
+            <WorkflowStep step={3} emoji="📝" title="AI เขียนสคริปต์ + สร้าง Thumbnail + Subtitle" desc="ได้สคริปต์เต็ม + Thumbnail 4 แบบ + Auto subtitle ภาษาไทย + Caption + Hashtag ใน 2 นาที" color="#ec4899" delay={0.2} />
+            <WorkflowStep step={4} emoji="✏️" title="แก้ไขตามสไตล์คุณ" desc="AI ออกมาดี 80% แล้ว — คุณแค่ปรับอีก 20% ให้เป็นตัวคุณ" color="#8b5cf6" delay={0.3} />
+            <WorkflowStep step={5} emoji="🚀" title="โพสต์ทุก Platform พร้อมกัน" desc="Content พร้อมลง YouTube + IG + TikTok + Facebook ใช้เวลาทั้งหมดไม่ถึง 15 นาที" color="#00ff88" delay={0.4} />
           </div>
         </div>
       </div>
