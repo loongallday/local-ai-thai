@@ -6,8 +6,8 @@ import { Menu, X, Cpu } from "lucide-react";
 const links = [
   { href: "#how-it-works", label: "ทำงานยังไง" },
   { href: "#packages", label: "แพ็คเกจ" },
+  { href: "/creator", label: "Creator" },
   { href: "#services", label: "บริการ" },
-  { href: "#why-us", label: "ทำไมเลือกเรา" },
   { href: "#contact", label: "ติดต่อ" },
 ];
 
