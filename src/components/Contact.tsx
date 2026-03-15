@@ -40,7 +40,7 @@ export default function Contact() {
                 <p className="font-bold text-[#f0f4f8] group-hover:text-[#00C300] transition-colors">
                   แชทผ่าน LINE (ตอบเร็วที่สุด)
                 </p>
-                <p className="text-sm text-[#64748b]">@localaithai</p>
+                <p className="text-sm text-[#64748b]">@542mgysj</p>
               </div>
             </a>
 
@@ -102,13 +102,17 @@ export default function Contact() {
             <p className="text-xs text-[#64748b] mb-6">
               กรอกข้อมูลคร่าวๆ แล้วเราจะติดต่อกลับภายใน 1 วันทำการ
             </p>
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-4" action="https://formspree.io/f/mvzwbyrd" method="POST">
+              <input type="hidden" name="_subject" value="ใบเสนอราคาใหม่จาก LocalAI Thailand" />
+              <input type="hidden" name="_next" value="https://localaithai.com/contact?submitted=true" />
               <div>
                 <label className="text-xs text-[#94a3b8] mb-1 block">
                   ชื่อ / บริษัท
                 </label>
                 <input
                   type="text"
+                  name="name"
+                  required
                   placeholder="เช่น สมชาย / บริษัท ABC จำกัด"
                   className="w-full px-4 py-2.5 rounded-lg bg-[#0c1220] border border-[#1e293b] text-[#f0f4f8] text-sm placeholder:text-[#64748b] focus:outline-none focus:border-[#00e5ff] transition-colors"
                 />
@@ -119,6 +123,8 @@ export default function Contact() {
                 </label>
                 <input
                   type="text"
+                  name="phone"
+                  required
                   placeholder="082-704-7606 หรือ LINE ID"
                   className="w-full px-4 py-2.5 rounded-lg bg-[#0c1220] border border-[#1e293b] text-[#f0f4f8] text-sm placeholder:text-[#64748b] focus:outline-none focus:border-[#00e5ff] transition-colors"
                 />
@@ -127,12 +133,13 @@ export default function Contact() {
                 <label className="text-xs text-[#94a3b8] mb-1 block">
                   สนใจเรื่องอะไร
                 </label>
-                <select className="w-full px-4 py-2.5 rounded-lg bg-[#0c1220] border border-[#1e293b] text-[#f0f4f8] text-sm focus:outline-none focus:border-[#00e5ff] transition-colors">
+                <select name="interest" required className="w-full px-4 py-2.5 rounded-lg bg-[#0c1220] border border-[#1e293b] text-[#f0f4f8] text-sm focus:outline-none focus:border-[#00e5ff] transition-colors">
                   <option value="">เลือกหัวข้อ</option>
                   <option>AI สำหรับออฟฟิศ / ทีมเล็ก</option>
                   <option>AI สำหรับ Startup / Developer</option>
                   <option>AI สำหรับองค์กรขนาดใหญ่</option>
                   <option>แพ็คเกจ Creator / Influencer</option>
+                  <option>AI ส่วนตัวที่บ้าน</option>
                   <option>UPS / Rack / NAS</option>
                   <option>ยังไม่แน่ใจ — ขอคำปรึกษาก่อน</option>
                 </select>
@@ -143,6 +150,7 @@ export default function Contact() {
                 </label>
                 <textarea
                   rows={3}
+                  name="message"
                   placeholder="เช่น มีทีม 10 คน อยากให้ AI ช่วยค้นเอกสารและตอบลูกค้า..."
                   className="w-full px-4 py-2.5 rounded-lg bg-[#0c1220] border border-[#1e293b] text-[#f0f4f8] text-sm placeholder:text-[#64748b] focus:outline-none focus:border-[#00e5ff] transition-colors resize-none"
                 />
