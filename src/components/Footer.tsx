@@ -7,9 +7,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#00e5ff] to-[#00ff88] flex items-center justify-center">
-              <Cpu size={14} className="text-[#060a14]" />
-            </div>
+            <img src="/icon.svg" alt="LocalAI" width={28} height={28} className="rounded-lg" />
             <span className="text-sm font-bold text-[#f0f4f8]">
               LocalAI Thailand
             </span>

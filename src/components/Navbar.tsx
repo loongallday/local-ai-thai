@@ -35,9 +35,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00e5ff] to-[#00ff88] flex items-center justify-center">
-            <Cpu size={18} className="text-[#060a14]" />
-          </div>
+          <img src="/icon.svg" alt="LocalAI" width={32} height={32} className="rounded-lg" />
           <span className="text-lg font-bold tracking-tight">
             <span className="gradient-text-cyan">Local</span>
             <span className="text-[#f0f4f8]">AI</span>
