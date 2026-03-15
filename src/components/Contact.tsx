@@ -28,7 +28,9 @@ export default function Contact() {
             className="space-y-5"
           >
             <a
-              href="#"
+              href="https://lin.ee/rYvSzrg"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-4 p-5 rounded-xl bg-[#111827] border border-[#1e293b] hover:border-[#00ff88]/40 transition-all group"
             >
               <div className="w-12 h-12 rounded-xl bg-[#00C300]/15 flex items-center justify-center shrink-0">
@@ -38,12 +40,12 @@ export default function Contact() {
                 <p className="font-bold text-[#f0f4f8] group-hover:text-[#00C300] transition-colors">
                   แชทผ่าน LINE (ตอบเร็วที่สุด)
                 </p>
-                <p className="text-sm text-[#64748b]">@localai.th</p>
+                <p className="text-sm text-[#64748b]">@localaithai</p>
               </div>
             </a>
 
             <a
-              href="tel:+66000000000"
+              href="tel:+66827047606"
               className="flex items-center gap-4 p-5 rounded-xl bg-[#111827] border border-[#1e293b] hover:border-[#00e5ff]/40 transition-all group"
             >
               <div className="w-12 h-12 rounded-xl bg-[#00e5ff]/10 flex items-center justify-center shrink-0">
@@ -54,13 +56,13 @@ export default function Contact() {
                   โทรหาเรา
                 </p>
                 <p className="text-sm text-[#64748b]">
-                  0XX-XXX-XXXX (จ-ศ 9:00-18:00)
+                  082-704-7606 (จ-ศ 9:00-18:00)
                 </p>
               </div>
             </a>
 
             <a
-              href="mailto:hello@localaithai.com"
+              href="mailto:chavin@pace-design.co.th"
               className="flex items-center gap-4 p-5 rounded-xl bg-[#111827] border border-[#1e293b] hover:border-[#8b5cf6]/40 transition-all group"
             >
               <div className="w-12 h-12 rounded-xl bg-[#8b5cf6]/10 flex items-center justify-center shrink-0">
@@ -70,7 +72,7 @@ export default function Contact() {
                 <p className="font-bold text-[#f0f4f8] group-hover:text-[#8b5cf6] transition-colors">
                   ส่งอีเมล
                 </p>
-                <p className="text-sm text-[#64748b]">hello@localaithai.com</p>
+                <p className="text-sm text-[#64748b]">chavin@pace-design.co.th</p>
               </div>
             </a>
 
@@ -117,7 +119,7 @@ export default function Contact() {
                 </label>
                 <input
                   type="text"
-                  placeholder="0XX-XXX-XXXX หรือ LINE ID"
+                  placeholder="082-704-7606 หรือ LINE ID"
                   className="w-full px-4 py-2.5 rounded-lg bg-[#0c1220] border border-[#1e293b] text-[#f0f4f8] text-sm placeholder:text-[#64748b] focus:outline-none focus:border-[#00e5ff] transition-colors"
                 />
               </div>
