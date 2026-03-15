@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const SITE_URL = "https://neuralbox.co.th";
-const TITLE = "NeuralBox Thailand | AI ส่วนตัว บนเครื่องของคุณ ไม่ต้องส่งข้อมูลขึ้นคลาวด์";
+const SITE_URL = "https://localai-th.com";
+const TITLE = "LocalAI Thailand | ติดตั้ง AI ส่วนตัว บนเครื่องของคุณ ไม่ส่งข้อมูลขึ้นคลาวด์ เริ่มต้น ฿59,900";
 const DESCRIPTION =
   "ติดตั้งระบบ AI ส่วนตัวสำหรับธุรกิจ ทำงานบนเครื่องของคุณ 100% ไม่ส่งข้อมูลออก PDPA Compliant จ่ายครั้งเดียว ไม่มีค่ารายเดือน พร้อม UPS, Rack, NAS ครบวงจร เริ่มต้น ฿59,900";
 
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: TITLE,
-    template: "%s | NeuralBox Thailand",
+    template: "%s | LocalAI Thailand — AI ส่วนตัว",
   },
   description: DESCRIPTION,
   keywords: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     "AI ภาษาไทย",
     "Private AI",
     "On-Premise AI",
-    "NeuralBox",
+    "LocalAI Thailand",
     "AI ออฟฟิศ",
     "AI โรงพยาบาล",
     "AI สำนักงานกฎหมาย",
@@ -40,9 +40,9 @@ export const metadata: Metadata = {
     "AI Creator",
     "AI Influencer",
   ],
-  authors: [{ name: "NeuralBox Thailand" }],
-  creator: "NeuralBox Thailand",
-  publisher: "NeuralBox Thailand",
+  authors: [{ name: "LocalAI Thailand" }],
+  creator: "LocalAI Thailand",
+  publisher: "LocalAI Thailand",
   robots: {
     index: true,
     follow: true,
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "th_TH",
     url: SITE_URL,
-    siteName: "NeuralBox Thailand",
+    siteName: "LocalAI Thailand",
     title: TITLE,
     description: DESCRIPTION,
     images: [
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "NeuralBox Thailand — AI ส่วนตัว บนเครื่องของคุณ",
+        alt: "LocalAI Thailand — AI ส่วนตัว บนเครื่องของคุณ",
       },
     ],
   },
@@ -105,7 +105,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "NeuralBox Thailand",
+              name: "LocalAI Thailand",
               url: SITE_URL,
               logo: `${SITE_URL}/logo.png`,
               description: DESCRIPTION,
@@ -132,7 +132,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              name: "NeuralBox Thailand",
+              name: "LocalAI Thailand",
               description:
                 "ติดตั้งระบบ AI ส่วนตัวสำหรับธุรกิจ ทำงานบนเครื่องของคุณ 100%",
               url: SITE_URL,
@@ -156,14 +156,14 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ItemList",
-              name: "NeuralBox AI Packages",
+              name: "LocalAI Packages",
               itemListElement: [
                 {
                   "@type": "ListItem",
                   position: 1,
                   item: {
                     "@type": "Product",
-                    name: "NeuralBox AI Compact Starter",
+                    name: "LocalAI Compact Starter",
                     description:
                       "AI ส่วนตัวบน Mac Mini สำหรับ 1-3 คน ถาม-ตอบภาษาไทย ค้นหาเอกสาร",
                     offers: {
@@ -179,7 +179,7 @@ export default function RootLayout({
                   position: 2,
                   item: {
                     "@type": "Product",
-                    name: "NeuralBox AI Compact Pro",
+                    name: "LocalAI Compact Pro",
                     description:
                       "AI ส่วนตัวบน Mac Mini Pro สำหรับทีม 3-5 คน หลายโมเดล Thai fine-tune",
                     offers: {
@@ -195,7 +195,7 @@ export default function RootLayout({
                   position: 3,
                   item: {
                     "@type": "Product",
-                    name: "NeuralBox AI Powerstation",
+                    name: "LocalAI Powerstation",
                     description:
                       "NVIDIA Blackwell mini PC 128GB สำหรับทีม 5-15 คน รันโมเดล 200B ได้",
                     offers: {
@@ -211,7 +211,7 @@ export default function RootLayout({
                   position: 4,
                   item: {
                     "@type": "Product",
-                    name: "NeuralBox AI Infrastructure Entry",
+                    name: "LocalAI Infrastructure Entry",
                     description:
                       "GPU Server สำหรับองค์กร 20-50 คน NVIDIA L40S Production-grade",
                     offers: {

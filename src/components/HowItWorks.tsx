@@ -68,7 +68,7 @@ export default function HowItWorks() {
         {/* Section header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#f0f4f8] mb-4">
-            AI ส่วนตัวทำงานยังไง?
+            ระบบ AI ส่วนตัวทำงานยังไง?
           </h2>
           <p className="text-[#94a3b8] max-w-2xl mx-auto text-base lg:text-lg leading-relaxed">
             ง่ายมาก — เหมือนมีพนักงานที่รู้ข้อมูลทุกอย่างในบริษัท
@@ -197,7 +197,7 @@ export default function HowItWorks() {
             {/* Local */}
             <div className="p-6 md:p-8">
               <div className="text-sm font-bold text-[#00ff88] mb-4">
-                ✓ AI ส่วนตัว (NeuralBox)
+                ✓ AI ส่วนตัว (LocalAI Thailand)
               </div>
               <ul className="space-y-3 text-sm text-[#94a3b8]">
                 <li>• จ่ายครั้งเดียว ฿59,900 ขึ้นไป ใช้ได้ตลอด</li>

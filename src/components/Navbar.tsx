@@ -38,8 +38,8 @@ export default function Navbar() {
             <Cpu size={18} className="text-[#060a14]" />
           </div>
           <span className="text-lg font-bold tracking-tight">
-            <span className="gradient-text-cyan">Neural</span>
-            <span className="text-[#f0f4f8]">Box</span>
+            <span className="gradient-text-cyan">Local</span>
+            <span className="text-[#f0f4f8]">AI</span>
           </span>
         </a>
 

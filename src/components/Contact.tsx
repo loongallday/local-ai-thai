@@ -38,7 +38,7 @@ export default function Contact() {
                 <p className="font-bold text-[#f0f4f8] group-hover:text-[#00C300] transition-colors">
                   แชทผ่าน LINE (ตอบเร็วที่สุด)
                 </p>
-                <p className="text-sm text-[#64748b]">@neuralbox</p>
+                <p className="text-sm text-[#64748b]">@localai.th</p>
               </div>
             </a>
 
@@ -60,7 +60,7 @@ export default function Contact() {
             </a>
 
             <a
-              href="mailto:hello@neuralbox.co.th"
+              href="mailto:hello@localai-th.com"
               className="flex items-center gap-4 p-5 rounded-xl bg-[#111827] border border-[#1e293b] hover:border-[#8b5cf6]/40 transition-all group"
             >
               <div className="w-12 h-12 rounded-xl bg-[#8b5cf6]/10 flex items-center justify-center shrink-0">
@@ -70,7 +70,7 @@ export default function Contact() {
                 <p className="font-bold text-[#f0f4f8] group-hover:text-[#8b5cf6] transition-colors">
                   ส่งอีเมล
                 </p>
-                <p className="text-sm text-[#64748b]">hello@neuralbox.co.th</p>
+                <p className="text-sm text-[#64748b]">hello@localai-th.com</p>
               </div>
             </a>
 

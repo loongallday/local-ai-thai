@@ -17,18 +17,18 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-3xl sm:text-6xl lg:text-8xl font-bold leading-tight mb-6 mt-16 sm:mt-0">
-            <span className="text-[#f0f4f8]">ใช้ AI ได้เต็มที่</span>
+            <span className="text-[#f0f4f8]">ติดตั้ง AI ส่วนตัว</span>
             <br />
-            <span className="gradient-text-cyan">โดยไม่ต้องแชร์ข้อมูลให้ใคร</span>
+            <span className="gradient-text-cyan">สำหรับธุรกิจในประเทศไทย</span>
           </h1>
 
           <p className="text-lg sm:text-xl lg:text-2xl text-[#94a3b8] max-w-3xl mx-auto mb-4 leading-relaxed">
-            ลองนึกภาพว่าคุณมี ChatGPT ส่วนตัว ที่ทำงานอยู่ในออฟฟิศของคุณเอง
+            เหมือนมี ChatGPT ส่วนตัว ทำงานบนเครื่องในออฟฟิศของคุณ
             <br className="hidden sm:block" />
-            ข้อมูลไม่หลุดไปไหน ไม่ต้องจ่ายรายเดือน ใช้ได้ไม่จำกัด
+            ข้อมูลไม่หลุดไปไหน ไม่มีค่ารายเดือน PDPA Compliant
           </p>
           <p className="text-base lg:text-lg text-[#64748b] max-w-xl mx-auto mb-12">
-            เราช่วยคุณตั้งแต่เลือกเครื่อง ติดตั้งระบบ จนพร้อมใช้งาน
+            บริการติดตั้ง AI ครบวงจร ตั้งแต่เลือกเครื่อง ติดตั้งระบบ จนพร้อมใช้งาน เริ่มต้น ฿59,900
           </p>
 
           {/* Value props as simple cards */}

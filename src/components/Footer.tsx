@@ -11,19 +11,19 @@ export default function Footer() {
               <Cpu size={14} className="text-[#060a14]" />
             </div>
             <span className="text-sm font-bold text-[#f0f4f8]">
-              NeuralBox Thailand
+              LocalAI Thailand
             </span>
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 text-sm text-[#64748b]">
-            <a href="#packages" className="hover:text-[#00e5ff] transition-colors">
-              แพ็คเกจ
+            <a href="#how-it-works" className="hover:text-[#00e5ff] transition-colors">
+              AI ส่วนตัวทำงานยังไง
             </a>
-            <a href="#infrastructure" className="hover:text-[#00e5ff] transition-colors">
-              โครงสร้างพื้นฐาน
+            <a href="#packages" className="hover:text-[#00e5ff] transition-colors">
+              แพ็คเกจติดตั้ง AI
             </a>
             <a href="#services" className="hover:text-[#00e5ff] transition-colors">
-              บริการ
+              บริการติดตั้ง AI
             </a>
             <a href="#contact" className="hover:text-[#00e5ff] transition-colors">
               ติดต่อ
@@ -31,7 +31,19 @@ export default function Footer() {
           </div>
 
           <p className="text-xs text-[#64748b]">
-            &copy; 2026 NeuralBox Thailand. All rights reserved.
+            &copy; 2026 LocalAI Thailand — บริการติดตั้ง AI ส่วนตัวสำหรับธุรกิจ
+          </p>
+        </div>
+
+        {/* SEO footer text */}
+        <div className="mt-8 pt-6 border-t border-[#1e293b]/50 text-center">
+          <p className="text-[10px] text-[#64748b]/60 max-w-4xl mx-auto leading-relaxed">
+            LocalAI Thailand — บริการติดตั้งระบบ AI ส่วนตัว (Private AI / Local AI) สำหรับธุรกิจในประเทศไทย
+            ทำงานบนเครื่องของคุณ 100% ไม่ส่งข้อมูลขึ้นคลาวด์ สอดคล้องกับ PDPA
+            รองรับภาษาไทย จ่ายครั้งเดียวไม่มีค่ารายเดือน
+            เหมาะสำหรับ SME, คลินิก, สำนักงานกฎหมาย, โรงพยาบาล, ธนาคาร, หน่วยงานรัฐ, Creator, Influencer
+            พร้อมบริการ UPS สำรองไฟ, ตู้ Rack, NAS เก็บข้อมูล ครบวงจร
+            ตัวแทนจำหน่าย Ingram Micro, TD Synnex, SIS, Eaton, Schneider Electric
           </p>
         </div>
       </div>

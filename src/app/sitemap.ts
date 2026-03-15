@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://neuralbox.co.th";
+  const baseUrl = "https://localai-th.com";
 
   return [
     {
