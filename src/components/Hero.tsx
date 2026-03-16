@@ -30,9 +30,14 @@ export default function Hero() {
           <p className="text-base lg:text-lg text-[#64748b] max-w-xl mx-auto mb-4">
             บริการติดตั้ง AI ครบวงจร ตั้งแต่เลือกเครื่อง ติดตั้งระบบ จนพร้อมใช้งาน เริ่มต้น ฿59,900
           </p>
-          <p className="text-sm text-[#475569] max-w-md mx-auto mb-12 tracking-wide">
-            ทุกระบบออกแบบเฉพาะสำหรับธุรกิจคุณ ไม่มี solution สำเร็จรูป
-          </p>
+          <div className="max-w-lg mx-auto mb-12 py-4 border-t border-b border-[#1e293b]/50">
+            <p className="text-sm sm:text-base text-[#94a3b8] font-medium italic text-center leading-relaxed">
+              "ไม่มี solution สำเร็จรูปที่เหมาะกับทุกคน
+              <br className="hidden sm:block" />
+              มีแต่ระบบที่สร้างขึ้นให้พอดีกับธุรกิจคุณ"
+            </p>
+            <p className="text-[10px] text-[#64748b] text-center mt-2 tracking-[0.2em] uppercase">Our Philosophy</p>
+          </div>
 
           {/* Value props as simple cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto mb-12">
