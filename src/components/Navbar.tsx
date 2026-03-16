@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Menu, X, Cpu } from "lucide-react";
 
@@ -14,6 +15,7 @@ const links = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -48,19 +50,25 @@ export default function Navbar() {
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-6">
-          {links.map((l) => (
+          {links.map((l) => {
+            const isActive = pathname === l.href;
+            return (
             <a
               key={l.href}
               href={l.href}
-              className={`text-sm font-medium transition-colors ${
-                (l as any).highlight
-                  ? "text-[#ec4899] hover:text-[#ec4899]/80"
-                  : "text-[#94a3b8] hover:text-[#00e5ff]"
+              className={`text-sm font-medium transition-colors relative ${
+                isActive
+                  ? "text-[#00e5ff]"
+                  : (l as any).highlight
+                    ? "text-[#ec4899] hover:text-[#ec4899]/80"
+                    : "text-[#94a3b8] hover:text-[#00e5ff]"
               }`}
             >
               {l.label}
+              {isActive && <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#00e5ff] rounded-full" />}
             </a>
-          ))}
+            );
+          })}
           <a
             href="/contact"
             className="text-sm font-semibold px-5 py-2 rounded-lg bg-gradient-to-r from-[#00e5ff] to-[#00ff88] text-[#060a14] hover:opacity-90 transition-opacity"
@@ -85,20 +93,25 @@ export default function Navbar() {
           animate={{ opacity: 1, y: 0 }}
           className="md:hidden bg-[#0c1220]/95 backdrop-blur-xl border-b border-[#1e293b] px-6 pb-6"
         >
-          {links.map((l) => (
+          {links.map((l) => {
+            const isActive = pathname === l.href;
+            return (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
               className={`block py-3 font-medium transition-colors ${
-                (l as any).highlight
-                  ? "text-[#ec4899]"
-                  : "text-[#94a3b8] hover:text-[#00e5ff]"
+                isActive
+                  ? "text-[#00e5ff]"
+                  : (l as any).highlight
+                    ? "text-[#ec4899]"
+                    : "text-[#94a3b8] hover:text-[#00e5ff]"
               }`}
             >
-              {l.label}
+              {isActive && "→ "}{l.label}
             </a>
-          ))}
+            );
+          })}
           <a
             href="/contact"
             onClick={() => setOpen(false)}
