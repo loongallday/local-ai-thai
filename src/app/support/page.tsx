@@ -22,11 +22,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "บริการดูแลระบบ AI ครบวงจร | LocalAI Thailand",
     description: "Preventive Maintenance, Repair, Monthly Support เริ่มต้น ฿9,900/เดือน",
-    url: "https://localaithai.com/support",
+    url: "https://www.localaithai.com/support",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title: "ดูแลระบบ AI | LocalAI Thailand", description: "Maintenance, Repair, Support เริ่ม ฿9,900/เดือน" },
-  alternates: { canonical: "https://localaithai.com/support" },
+  alternates: { canonical: "https://www.localaithai.com/support" },
 };
 
 export default function SupportPage() {

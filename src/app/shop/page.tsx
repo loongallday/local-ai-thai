@@ -24,11 +24,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ร้านค้า Hardware AI | LocalAI Thailand",
     description: "จำหน่าย Hardware AI ราคาปลีก Mac Mini, Mac Studio, GPU, NAS, UPS",
-    url: "https://localaithai.com/shop",
+    url: "https://www.localaithai.com/shop",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title: "ร้านค้า Hardware AI | LocalAI Thailand", description: "Mac Mini, Mac Studio, GPU, NAS, UPS ราคาปลีก" },
-  alternates: { canonical: "https://localaithai.com/shop" },
+  alternates: { canonical: "https://www.localaithai.com/shop" },
 };
 
 export default function ShopPage() {

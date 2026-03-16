@@ -28,11 +28,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "แพ็คเกจ AI ส่วนตัว & ราคา | เริ่มต้น ฿59,900 | LocalAI Thailand",
     description: "10 แพ็คเกจ ตั้งแต่ Mac Mini ฿59,900 ถึง GPU Server ฿2.89M จ่ายครั้งเดียว ไม่มีค่ารายเดือน",
-    url: "https://localaithai.com/packages",
+    url: "https://www.localaithai.com/packages",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title: "แพ็คเกจ AI ส่วนตัว เริ่มต้น ฿59,900", description: "Mac Mini ถึง GPU Server จ่ายครั้งเดียว" },
-  alternates: { canonical: "https://localaithai.com/packages" },
+  alternates: { canonical: "https://www.localaithai.com/packages" },
 };
 
 export default function PackagesPage() {

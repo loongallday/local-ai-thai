@@ -56,7 +56,7 @@ export default function Footer() {
           <p className="text-[11px] text-[#64748b]">
             &copy; 2026 LocalAI Thailand — บริการติดตั้ง AI ส่วนตัวสำหรับธุรกิจ
             {" | "}
-            <a href="https://cloudaithai.com" target="_blank" className="hover:text-[#00e5ff] transition-colors">
+            <a href="https://www.cloudaithai.com" target="_blank" className="hover:text-[#00e5ff] transition-colors">
               CloudAI Thailand
             </a>
           </p>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const SITE_URL = "https://localaithai.com";
+const SITE_URL = "https://www.localaithai.com";
 const TITLE = "Local AI Thailand (LocalAI) | ติดตั้ง AI ส่วนตัว บนเครื่องของคุณ ไม่ส่งข้อมูลขึ้นคลาวด์ เริ่มต้น ฿59,900";
 const DESCRIPTION =
   "Local AI Thailand (LocalAI Thailand) — ติดตั้งระบบ AI ส่วนตัวสำหรับธุรกิจ ทำงานบนเครื่องของคุณ 100% ไม่ส่งข้อมูลออก PDPA Compliant จ่ายครั้งเดียว ไม่มีค่ารายเดือน พร้อม UPS, Rack, NAS ครบวงจร เริ่มต้น ฿59,900";
@@ -180,7 +180,7 @@ export default function RootLayout({
                   item: {
                     "@type": "Product",
                     name: "Local AI Compact Starter",
-                    image: "https://localaithai.com/icon-512.png",
+                    image: "https://www.localaithai.com/icon-512.png",
                     description:
                       "AI ส่วนตัวบน Mac Mini สำหรับ 1-3 คน ถาม-ตอบภาษาไทย ค้นหาเอกสาร จ่ายครั้งเดียว",
                     brand: { "@type": "Brand", name: "LocalAI Thailand" },
@@ -190,7 +190,7 @@ export default function RootLayout({
                       priceCurrency: "THB",
                       availability: "https://schema.org/InStock",
                       priceValidUntil: "2026-12-31",
-                      url: "https://localaithai.com/packages",
+                      url: "https://www.localaithai.com/packages",
                       shippingDetails: { "@type": "OfferShippingDetails", shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "THB" }, shippingDestination: { "@type": "DefinedRegion", addressCountry: "TH" }, deliveryTime: { "@type": "ShippingDeliveryTime", handlingTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 14, unitCode: "DAY" } } },
                       hasMerchantReturnPolicy: { "@type": "MerchantReturnPolicy", applicableCountry: "TH", returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted" },
                     },
@@ -213,7 +213,7 @@ export default function RootLayout({
                   item: {
                     "@type": "Product",
                     name: "Local AI Compact Pro",
-                    image: "https://localaithai.com/icon-512.png",
+                    image: "https://www.localaithai.com/icon-512.png",
                     description:
                       "AI ส่วนตัวบน Mac Mini Pro สำหรับทีม 3-5 คน หลายโมเดล Thai fine-tune",
                     brand: { "@type": "Brand", name: "LocalAI Thailand" },
@@ -223,7 +223,7 @@ export default function RootLayout({
                       priceCurrency: "THB",
                       availability: "https://schema.org/InStock",
                       priceValidUntil: "2026-12-31",
-                      url: "https://localaithai.com/packages",
+                      url: "https://www.localaithai.com/packages",
                       shippingDetails: { "@type": "OfferShippingDetails", shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "THB" }, shippingDestination: { "@type": "DefinedRegion", addressCountry: "TH" }, deliveryTime: { "@type": "ShippingDeliveryTime", handlingTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 14, unitCode: "DAY" } } },
                       hasMerchantReturnPolicy: { "@type": "MerchantReturnPolicy", applicableCountry: "TH", returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted" },
                     },
@@ -246,7 +246,7 @@ export default function RootLayout({
                   item: {
                     "@type": "Product",
                     name: "Local AI Powerstation",
-                    image: "https://localaithai.com/icon-512.png",
+                    image: "https://www.localaithai.com/icon-512.png",
                     description:
                       "NVIDIA Blackwell mini PC 128GB สำหรับทีม 5-15 คน รันโมเดล 200B ได้",
                     brand: { "@type": "Brand", name: "LocalAI Thailand" },
@@ -256,7 +256,7 @@ export default function RootLayout({
                       priceCurrency: "THB",
                       availability: "https://schema.org/InStock",
                       priceValidUntil: "2026-12-31",
-                      url: "https://localaithai.com/packages",
+                      url: "https://www.localaithai.com/packages",
                       shippingDetails: { "@type": "OfferShippingDetails", shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "THB" }, shippingDestination: { "@type": "DefinedRegion", addressCountry: "TH" }, deliveryTime: { "@type": "ShippingDeliveryTime", handlingTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 14, unitCode: "DAY" } } },
                       hasMerchantReturnPolicy: { "@type": "MerchantReturnPolicy", applicableCountry: "TH", returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted" },
                     },
@@ -279,7 +279,7 @@ export default function RootLayout({
                   item: {
                     "@type": "Product",
                     name: "Local AI Infrastructure Entry",
-                    image: "https://localaithai.com/icon-512.png",
+                    image: "https://www.localaithai.com/icon-512.png",
                     description:
                       "GPU Server สำหรับองค์กร 20-50 คน NVIDIA L40S Production-grade",
                     brand: { "@type": "Brand", name: "LocalAI Thailand" },
@@ -289,7 +289,7 @@ export default function RootLayout({
                       priceCurrency: "THB",
                       availability: "https://schema.org/InStock",
                       priceValidUntil: "2026-12-31",
-                      url: "https://localaithai.com/packages",
+                      url: "https://www.localaithai.com/packages",
                       shippingDetails: { "@type": "OfferShippingDetails", shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "THB" }, shippingDestination: { "@type": "DefinedRegion", addressCountry: "TH" }, deliveryTime: { "@type": "ShippingDeliveryTime", handlingTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 14, unitCode: "DAY" } } },
                       hasMerchantReturnPolicy: { "@type": "MerchantReturnPolicy", applicableCountry: "TH", returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted" },
                     },

@@ -27,11 +27,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI ส่วนตัวที่บ้าน — เหมือนมี JARVIS | ฿59,900 ครั้งเดียว",
     description: "สรุปอีเมล ช่วยการบ้านลูก เขียนงาน แนะนำอาหาร แปลภาษา ข้อมูลไม่หลุดไปไหน",
-    url: "https://localaithai.com/personal",
+    url: "https://www.localaithai.com/personal",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title: "JARVIS ที่บ้าน | AI ส่วนตัว ฿59,900", description: "สรุปอีเมล ช่วยการบ้าน แนะนำอาหาร จ่ายครั้งเดียว" },
-  alternates: { canonical: "https://localaithai.com/personal" },
+  alternates: { canonical: "https://www.localaithai.com/personal" },
 };
 
 export default function PersonalPage() {

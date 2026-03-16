@@ -19,11 +19,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ติดต่อเรา | ปรึกษาฟรี | LocalAI Thailand",
     description: "ปรึกษาฟรี ขอใบเสนอราคา AI ส่วนตัว LINE @542mgysj ตอบกลับภายใน 1 วัน",
-    url: "https://localaithai.com/contact",
+    url: "https://www.localaithai.com/contact",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title: "ติดต่อ LocalAI Thailand | ปรึกษาฟรี", description: "LINE @542mgysj ตอบกลับภายใน 1 วัน" },
-  alternates: { canonical: "https://localaithai.com/contact" },
+  alternates: { canonical: "https://www.localaithai.com/contact" },
 };
 
 export default function ContactPage() {

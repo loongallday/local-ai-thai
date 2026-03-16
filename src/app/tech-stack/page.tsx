@@ -31,11 +31,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Tech Stack | 35+ Open Source AI Tools | LocalAI Thailand",
     description: "เทคโนโลยีทั้งหมดที่ใช้: Ollama, vLLM, Qwen, LlamaIndex, Open WebUI ทั้งหมด self-hosted",
-    url: "https://localaithai.com/tech-stack",
+    url: "https://www.localaithai.com/tech-stack",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title: "35+ Open Source AI Tools | LocalAI Thailand", description: "Ollama, vLLM, MLX, Qwen, LlamaIndex, Open WebUI — all self-hosted" },
-  alternates: { canonical: "https://localaithai.com/tech-stack" },
+  alternates: { canonical: "https://www.localaithai.com/tech-stack" },
 };
 
 export default function TechStackPage() {

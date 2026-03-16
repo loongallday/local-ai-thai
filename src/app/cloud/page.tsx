@@ -28,11 +28,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Cloud AI Setup | ระบบ AI อัตโนมัติบน Cloud | LocalAI Thailand",
     description: "ติดตั้ง AI Automation บน VPS เริ่มต้น ฿19,900 — n8n, OpenClaw, Flowise, Dify",
-    url: "https://localaithai.com/cloud",
+    url: "https://www.localaithai.com/cloud",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title: "Cloud AI Setup | LocalAI Thailand", description: "AI Automation บน Cloud/VPS เริ่ม ฿19,900" },
-  alternates: { canonical: "https://localaithai.com/cloud" },
+  alternates: { canonical: "https://www.localaithai.com/cloud" },
 };
 
 export default function CloudPage() {

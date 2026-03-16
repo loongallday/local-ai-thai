@@ -25,11 +25,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI ส่วนตัวทำงานยังไง | LocalAI Thailand",
     description: "ดูวิธีทำงานทีละขั้น ตั้งแต่นำเอกสารเข้า จนถึง AI ตอบคำถามภาษาไทย พร้อมอ้างอิง",
-    url: "https://localaithai.com/how-it-works",
+    url: "https://www.localaithai.com/how-it-works",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title: "AI ส่วนตัวทำงานยังไง | LocalAI Thailand", description: "RAG Pipeline ภาษาไทย ค้นเอกสาร สรุปข้อมูล ตอบคำถาม" },
-  alternates: { canonical: "https://localaithai.com/how-it-works" },
+  alternates: { canonical: "https://www.localaithai.com/how-it-works" },
 };
 
 export default function HowItWorksPage() {

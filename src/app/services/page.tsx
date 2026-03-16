@@ -26,11 +26,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "บริการติดตั้ง AI ส่วนตัวครบวงจร | LocalAI Thailand",
     description: "Setup, RAG, Fine-tune, LINE Bot, ERP, อบรม, ดูแลรายเดือน โดย Developer มืออาชีพ",
-    url: "https://localaithai.com/services",
+    url: "https://www.localaithai.com/services",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title: "บริการติดตั้ง AI ครบวงจร | LocalAI Thailand", description: "RAG, Fine-tune, LINE Bot, ดูแลรายเดือน" },
-  alternates: { canonical: "https://localaithai.com/services" },
+  alternates: { canonical: "https://www.localaithai.com/services" },
 };
 
 export default function ServicesPage() {

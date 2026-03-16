@@ -35,12 +35,12 @@ export const metadata: Metadata = {
     title: "AI สำหรับ Creator & Influencer | หยุดจ่าย Subscription ฿3,330/เดือน",
     description:
       "สร้างรูป เขียนสคริปต์ ทำ Thumbnail Caption Hashtag Subtitle ด้วย AI ส่วนตัว ใช้ไม่อั้น เริ่มต้น ฿59,900 ครั้งเดียว",
-    url: "https://localaithai.com/creator",
+    url: "https://www.localaithai.com/creator",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title: "AI สำหรับ Creator | หยุดจ่าย Midjourney + ChatGPT", description: "จ่ายครั้งเดียว ฿59,900 สร้าง Content ไม่จำกัด" },
   alternates: {
-    canonical: "https://localaithai.com/creator",
+    canonical: "https://www.localaithai.com/creator",
   },
 };
 

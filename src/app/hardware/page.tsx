@@ -27,11 +27,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Hardware สำหรับ AI ส่วนตัว | LocalAI Thailand",
     description: "Mac Mini ถึง GPU Server เปรียบเทียบสเปค Benchmark ราคา เลือกให้ถูกตัว",
-    url: "https://localaithai.com/hardware",
+    url: "https://www.localaithai.com/hardware",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title: "Hardware AI ส่วนตัว | Mac Mini, DGX Spark, GPU Server", description: "สเปค Benchmark ราคา เปรียบเทียบครบ" },
-  alternates: { canonical: "https://localaithai.com/hardware" },
+  alternates: { canonical: "https://www.localaithai.com/hardware" },
 };
 
 export default function HardwarePage() {
