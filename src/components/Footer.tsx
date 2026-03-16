@@ -31,7 +31,7 @@ export default function Footer() {
             <p className="text-[12px] font-semibold text-[#f0f4f8] uppercase tracking-wider mb-3">บริการ</p>
             <div className="space-y-1 text-[13px] text-[#94a3b8]">
               <a href="/services" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">บริการทั้งหมด</a>
-              <a href="/cloud" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">Cloud AI</a>
+              <a href="https://www.cloudaithai.com" target="_blank" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">Cloud AI →</a>
               <a href="/support" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">ดูแลระบบ</a>
               <a href="/how-it-works" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">วิธีทำงาน</a>
             </div>

@@ -60,7 +60,7 @@ export default function CloudCTA() {
                 </div>
 
                 <a
-                  href="/cloud"
+                  href="https://www.cloudaithai.com"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#00e5ff] to-[#8b5cf6] text-[#060a14] font-bold text-sm hover:opacity-90 transition-opacity"
                 >
                   ดู Cloud AI Setup <ArrowRight size={16} />

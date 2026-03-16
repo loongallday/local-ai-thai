@@ -44,7 +44,7 @@ const navItems: NavItem[] = [
     label: "บริการ",
     children: [
       { href: "/services", label: "บริการทั้งหมด", desc: "ดูบริการทุกรูปแบบ" },
-      { href: "/cloud", label: "Cloud AI Setup", desc: "AI Automation บน VPS" },
+      { href: "https://www.cloudaithai.com", label: "Cloud AI Setup", desc: "cloudaithai.com →" },
       { href: "/support", label: "ดูแลระบบ", desc: "Maintenance & Support" },
     ],
   },
