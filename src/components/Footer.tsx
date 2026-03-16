@@ -39,7 +39,7 @@ export default function Footer() {
         {/* SEO footer text */}
         <div className="mt-8 pt-6 border-t border-[#1e293b]/50 text-center">
           <p className="text-[10px] text-[#64748b]/60 max-w-4xl mx-auto leading-relaxed">
-            LocalAI Thailand — บริการติดตั้งระบบ AI ส่วนตัว (Private AI / Local AI) สำหรับธุรกิจในประเทศไทย
+            Local AI Thailand (LocalAI Thailand / โลคอล เอไอ ไทยแลนด์) — บริการติดตั้งระบบ AI ส่วนตัว (Private AI / Local AI Thai) สำหรับธุรกิจในประเทศไทย
             ทำงานบนเครื่องของคุณ 100% ไม่ส่งข้อมูลขึ้นคลาวด์ สอดคล้องกับ PDPA
             รองรับภาษาไทย จ่ายครั้งเดียวไม่มีค่ารายเดือน
             เหมาะสำหรับ SME, คลินิก, สำนักงานกฎหมาย, โรงพยาบาล, ธนาคาร, หน่วยงานรัฐ, Creator, Influencer

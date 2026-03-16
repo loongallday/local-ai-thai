@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const SITE_URL = "https://localaithai.com";
-const TITLE = "LocalAI Thailand | ติดตั้ง AI ส่วนตัว บนเครื่องของคุณ ไม่ส่งข้อมูลขึ้นคลาวด์ เริ่มต้น ฿59,900";
+const TITLE = "Local AI Thailand (LocalAI) | ติดตั้ง AI ส่วนตัว บนเครื่องของคุณ ไม่ส่งข้อมูลขึ้นคลาวด์ เริ่มต้น ฿59,900";
 const DESCRIPTION =
-  "ติดตั้งระบบ AI ส่วนตัวสำหรับธุรกิจ ทำงานบนเครื่องของคุณ 100% ไม่ส่งข้อมูลออก PDPA Compliant จ่ายครั้งเดียว ไม่มีค่ารายเดือน พร้อม UPS, Rack, NAS ครบวงจร เริ่มต้น ฿59,900";
+  "Local AI Thailand (LocalAI Thailand) — ติดตั้งระบบ AI ส่วนตัวสำหรับธุรกิจ ทำงานบนเครื่องของคุณ 100% ไม่ส่งข้อมูลออก PDPA Compliant จ่ายครั้งเดียว ไม่มีค่ารายเดือน พร้อม UPS, Rack, NAS ครบวงจร เริ่มต้น ฿59,900";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -28,6 +28,10 @@ export const metadata: Metadata = {
   keywords: [
     "AI ส่วนตัว",
     "Local AI Thailand",
+    "Local AI Thai",
+    "LocalAI Thai",
+    "โลคอล เอไอ",
+    "โลคอล เอไอ ไทยแลนด์",
     "ติดตั้ง AI บริษัท",
     "ChatGPT ส่วนตัว",
     "PDPA Compliant AI",
