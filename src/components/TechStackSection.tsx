@@ -11,8 +11,9 @@ function GlowCard({ children, color = "#00e5ff", className = "" }: { children: R
   );
 }
 
-// Real SVG icon from CDN with fallback
+// Real SVG icon — local /brands/ first, CDN fallback
 function TechIcon({ slug, color, size = 24, fallback }: { slug: string; color: string; size?: number; fallback?: string }) {
+  const [src, setSrc] = useState(`/brands/${slug}.svg`);
   const [failed, setFailed] = useState(false);
 
   if (failed && fallback) {
@@ -21,13 +22,19 @@ function TechIcon({ slug, color, size = 24, fallback }: { slug: string; color: s
 
   return (
     <img
-      src={`https://cdn.simpleicons.org/${slug}/${color.replace("#", "")}`}
+      src={src}
       alt={slug}
       width={size}
       height={size}
       className="shrink-0"
       style={{ filter: "drop-shadow(0 0 4px rgba(255,255,255,0.1))" }}
-      onError={() => setFailed(true)}
+      onError={() => {
+        if (src.startsWith("/brands/")) {
+          setSrc(`https://cdn.simpleicons.org/${slug}/${color.replace("#", "")}`);
+        } else {
+          setFailed(true);
+        }
+      }}
     />
   );
 }
