@@ -1,47 +1,64 @@
 "use client";
-import { Cpu } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#1e293b] py-10 bg-[#060a14]">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer className="py-12 border-t border-[#1e293b] bg-[#060a14]">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+          {/* Solutions */}
+          <div>
+            <p className="text-[12px] font-semibold text-[#f0f4f8] uppercase tracking-wider mb-3">Solutions</p>
+            <div className="space-y-1 text-[13px] text-[#94a3b8]">
+              <a href="/packages" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">แพ็คเกจ & ราคา</a>
+              <a href="/personal" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">AI ส่วนตัว</a>
+              <a href="/creator" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">สำหรับ Creator</a>
+            </div>
+          </div>
+
+          {/* Hardware */}
+          <div>
+            <p className="text-[12px] font-semibold text-[#f0f4f8] uppercase tracking-wider mb-3">Hardware</p>
+            <div className="space-y-1 text-[13px] text-[#94a3b8]">
+              <a href="/hardware" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">อุปกรณ์ AI</a>
+              <a href="/shop" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">ร้านค้า</a>
+              <a href="/tech-stack" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">Tech Stack</a>
+            </div>
+          </div>
+
+          {/* บริการ */}
+          <div>
+            <p className="text-[12px] font-semibold text-[#f0f4f8] uppercase tracking-wider mb-3">บริการ</p>
+            <div className="space-y-1 text-[13px] text-[#94a3b8]">
+              <a href="/services" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">บริการทั้งหมด</a>
+              <a href="/cloud" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">Cloud AI</a>
+              <a href="/support" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">ดูแลระบบ</a>
+              <a href="/how-it-works" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">วิธีทำงาน</a>
+            </div>
+          </div>
+
+          {/* ติดต่อ */}
+          <div>
+            <p className="text-[12px] font-semibold text-[#f0f4f8] uppercase tracking-wider mb-3">ติดต่อ</p>
+            <div className="space-y-1 text-[13px] text-[#94a3b8]">
+              <a href="tel:0827047606" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">082-704-7606</a>
+              <a href="mailto:chavin@pace-design.co.th" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">chavin@pace-design.co.th</a>
+              <a href="https://line.me/R/ti/p/@542mgysj" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">LINE @542mgysj</a>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-[#1e293b] gap-4">
           <div className="flex items-center gap-2">
-            <img src="/icon.svg" alt="LocalAI" width={28} height={28} className="rounded-lg" />
-            <span className="text-sm font-bold text-[#f0f4f8]">
-              LocalAI Thailand
-            </span>
+            <img src="/icon.svg" alt="LocalAI" width={24} height={24} className="rounded-md" />
+            <span className="text-[13px] font-semibold text-[#f0f4f8]">LocalAI Thailand</span>
           </div>
-
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-[#64748b]">
-            <a href="/how-it-works" className="hover:text-[#00e5ff] transition-colors">
-              วิธีทำงาน
-            </a>
-            <a href="/packages" className="hover:text-[#00e5ff] transition-colors">
-              แพ็คเกจ & ราคา
-            </a>
-            <a href="/creator" className="hover:text-[#ec4899] transition-colors">
-              สำหรับ Creator
-            </a>
-            <a href="/services" className="hover:text-[#00e5ff] transition-colors">
-              บริการ
-            </a>
-            <a href="/cloud" className="hover:text-[#00e5ff] transition-colors">
-              Cloud AI
-            </a>
-            <a href="/shop" className="hover:text-[#00e5ff] transition-colors">
-              ร้านค้า
-            </a>
-            <a href="/support" className="hover:text-[#00e5ff] transition-colors">
-              ดูแลระบบ
-            </a>
-            <a href="/contact" className="hover:text-[#00e5ff] transition-colors">
-              ติดต่อเรา
-            </a>
-          </div>
-
-          <p className="text-xs text-[#64748b]">
+          <p className="text-[11px] text-[#64748b]">
             &copy; 2026 LocalAI Thailand — บริการติดตั้ง AI ส่วนตัวสำหรับธุรกิจ
+            {" | "}
+            <a href="https://cloudaithai.com" target="_blank" className="hover:text-[#00e5ff] transition-colors">
+              CloudAI Thailand
+            </a>
           </p>
         </div>
 

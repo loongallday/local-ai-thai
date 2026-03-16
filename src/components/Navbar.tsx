@@ -24,16 +24,12 @@ function isGroup(item: NavItem): item is NavGroup {
 }
 
 const navItems: NavItem[] = [
-  { href: "/how-it-works", label: "วิธีทำงาน" },
   {
-    label: "บริการ",
+    label: "Solutions",
     children: [
-      { href: "/packages", label: "แพ็คเกจ & ราคา", desc: "ติดตั้ง AI ครบชุด" },
-      { href: "/personal", label: "ใช้ที่บ้าน", desc: "AI ส่วนตัว JARVIS" },
+      { href: "/packages", label: "แพ็คเกจ & ราคา", desc: "ติดตั้ง AI ครบชุดพร้อมใช้" },
+      { href: "/personal", label: "ใช้ที่บ้าน / JARVIS", desc: "AI ส่วนตัวทำงานแทนคุณ" },
       { href: "/creator", label: "Creator", highlight: true, desc: "สำหรับ Content Creator" },
-      { href: "/cloud", label: "Cloud AI Setup", desc: "AI Automation บน VPS" },
-      { href: "/services", label: "บริการทั้งหมด", desc: "ดูบริการทุกรูปแบบ" },
-      { href: "/support", label: "ดูแลระบบ", desc: "Maintenance & Support" },
     ],
   },
   {
@@ -44,28 +40,53 @@ const navItems: NavItem[] = [
       { href: "/tech-stack", label: "Tech Stack", desc: "ซอฟต์แวร์ 35+ ตัว" },
     ],
   },
+  {
+    label: "บริการ",
+    children: [
+      { href: "/services", label: "บริการทั้งหมด", desc: "ดูบริการทุกรูปแบบ" },
+      { href: "/cloud", label: "Cloud AI Setup", desc: "AI Automation บน VPS" },
+      { href: "/support", label: "ดูแลระบบ", desc: "Maintenance & Support" },
+    ],
+  },
+  { href: "/packages", label: "ราคา" },
   { href: "/contact", label: "ติดต่อเรา" },
 ];
 
 /* ─── Desktop Dropdown ─── */
-function DesktopDropdown({ group, pathname }: { group: NavGroup; pathname: string }) {
+function DesktopDropdown({
+  group,
+  pathname,
+}: {
+  group: NavGroup;
+  pathname: string;
+}) {
   const [open, setOpen] = useState(false);
   const timeout = useRef<ReturnType<typeof setTimeout>>(undefined);
   const isChildActive = group.children.some((c) => pathname === c.href);
 
-  const enter = () => { clearTimeout(timeout.current); setOpen(true); };
-  const leave = () => { timeout.current = setTimeout(() => setOpen(false), 150); };
+  const enter = () => {
+    clearTimeout(timeout.current);
+    setOpen(true);
+  };
+  const leave = () => {
+    timeout.current = setTimeout(() => setOpen(false), 150);
+  };
 
   return (
     <div className="relative" onMouseEnter={enter} onMouseLeave={leave}>
       <button
         onClick={() => setOpen(!open)}
         className={`flex items-center gap-1 text-sm font-medium transition-colors ${
-          isChildActive ? "text-[#00e5ff]" : "text-[#94a3b8] hover:text-[#00e5ff]"
+          isChildActive
+            ? "text-[#00e5ff]"
+            : "text-[#94a3b8] hover:text-[#00e5ff]"
         }`}
       >
         {group.label}
-        <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
           <ChevronDown size={14} />
         </motion.span>
       </button>
@@ -76,8 +97,15 @@ function DesktopDropdown({ group, pathname }: { group: NavGroup; pathname: strin
             initial={{ opacity: 0, y: 8, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.96 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
-            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 rounded-xl bg-[#0c1220]/95 backdrop-blur-xl border border-[#1e293b] shadow-2xl shadow-black/40 overflow-hidden"
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 rounded-2xl overflow-hidden p-1"
+            style={{
+              background: "rgba(12,18,32,0.95)",
+              backdropFilter: "blur(60px) saturate(180%)",
+              WebkitBackdropFilter: "blur(60px) saturate(180%)",
+              boxShadow:
+                "0 16px 48px rgba(0,0,0,0.5), 0 0 0 0.5px rgba(30,41,59,0.6), inset 0 0.5px 0 rgba(255,255,255,0.04)",
+            }}
           >
             {group.children.map((child) => {
               const isActive = pathname === child.href;
@@ -86,21 +114,31 @@ function DesktopDropdown({ group, pathname }: { group: NavGroup; pathname: strin
                   key={child.href}
                   href={child.href}
                   onClick={() => setOpen(false)}
-                  className={`block px-4 py-3 transition-all hover:bg-[#1e293b]/50 ${
-                    isActive ? "bg-[#00e5ff]/5" : ""
+                  className={`block px-4 py-3 rounded-xl transition-all ${
+                    isActive
+                      ? "bg-[#00e5ff]/8"
+                      : "hover:bg-[#1e293b]/50"
                   }`}
                 >
-                  <span className={`text-sm font-medium block ${
-                    isActive
-                      ? "text-[#00e5ff]"
-                      : child.highlight
-                        ? "text-[#ec4899]"
-                        : "text-[#f0f4f8]"
-                  }`}>
+                  <span
+                    className={`text-[13px] font-medium block ${
+                      isActive
+                        ? "text-[#00e5ff]"
+                        : child.highlight
+                          ? "text-[#ec4899]"
+                          : "text-[#f0f4f8]"
+                    }`}
+                  >
                     {child.label}
-                    {isActive && <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#00e5ff] ml-2 align-middle" />}
+                    {isActive && (
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#00e5ff] ml-2 align-middle" />
+                    )}
                   </span>
-                  {child.desc && <span className="text-[11px] text-[#64748b] block mt-0.5">{child.desc}</span>}
+                  {child.desc && (
+                    <span className="text-[11px] text-[#64748b] block mt-0.5">
+                      {child.desc}
+                    </span>
+                  )}
                 </a>
               );
             })}
@@ -111,31 +149,47 @@ function DesktopDropdown({ group, pathname }: { group: NavGroup; pathname: strin
   );
 }
 
-/* ─── Mobile Group ─── */
-function MobileGroup({ group, pathname, onNavigate }: { group: NavGroup; pathname: string; onNavigate: () => void }) {
+/* ─── Mobile Accordion Group ─── */
+function MobileGroup({
+  group,
+  pathname,
+  onNavigate,
+}: {
+  group: NavGroup;
+  pathname: string;
+  onNavigate: () => void;
+}) {
   const [open, setOpen] = useState(false);
+  const isChildActive = group.children.some((c) => pathname === c.href);
 
   return (
-    <div>
+    <div className="border-b border-[#1e293b]/50 last:border-b-0">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-between w-full py-3 font-medium text-[#94a3b8] hover:text-[#00e5ff] transition-colors"
+        className={`flex items-center justify-between w-full py-4 px-2 text-[15px] font-medium transition-colors ${
+          isChildActive
+            ? "text-[#00e5ff]"
+            : "text-[#94a3b8] active:text-[#00e5ff]"
+        }`}
       >
-        {group.label}
-        <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
+        <span>{group.label}</span>
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.25, ease: "easeInOut" }}
+        >
           <ChevronDown size={16} />
         </motion.span>
       </button>
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {open && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className="pl-4 pb-2 space-y-0.5">
+            <div className="pl-3 pr-1 pb-3 space-y-0.5">
               {group.children.map((child) => {
                 const isActive = pathname === child.href;
                 return (
@@ -143,16 +197,23 @@ function MobileGroup({ group, pathname, onNavigate }: { group: NavGroup; pathnam
                     key={child.href}
                     href={child.href}
                     onClick={onNavigate}
-                    className={`block py-2 px-3 rounded-lg transition-colors text-sm ${
+                    className={`block py-3 px-4 rounded-xl transition-colors min-h-[44px] ${
                       isActive
                         ? "text-[#00e5ff] bg-[#00e5ff]/5"
                         : child.highlight
-                          ? "text-[#ec4899]"
-                          : "text-[#94a3b8] hover:text-[#f0f4f8] hover:bg-[#1e293b]/30"
+                          ? "text-[#ec4899] active:bg-[#ec4899]/5"
+                          : "text-[#94a3b8] active:text-[#f0f4f8] active:bg-[#1e293b]/30"
                     }`}
                   >
-                    {isActive && "→ "}{child.label}
-                    {child.desc && <span className="text-[10px] text-[#64748b] block">{child.desc}</span>}
+                    <span className="text-sm font-medium block">
+                      {isActive && "→ "}
+                      {child.label}
+                    </span>
+                    {child.desc && (
+                      <span className="text-[11px] text-[#64748b] block mt-0.5">
+                        {child.desc}
+                      </span>
+                    )}
                   </a>
                 );
               })}
@@ -181,6 +242,18 @@ export default function Navbar() {
     setOpen(false);
   }, [pathname]);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <motion.nav
       initial={{ y: -80 }}
@@ -195,7 +268,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2 group">
-          <img src="/icon.svg" alt="LocalAI" width={32} height={32} className="rounded-lg" />
+          <img
+            src="/icon.svg"
+            alt="LocalAI"
+            width={32}
+            height={32}
+            className="rounded-lg"
+          />
           <span className="text-lg font-bold tracking-tight">
             <span className="gradient-text-cyan">Local</span>
             <span className="text-[#f0f4f8]">AI</span>
@@ -206,13 +285,17 @@ export default function Navbar() {
         </a>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-7">
           {navItems.map((item, i) =>
             isGroup(item) ? (
-              <DesktopDropdown key={item.label} group={item} pathname={pathname} />
+              <DesktopDropdown
+                key={item.label}
+                group={item}
+                pathname={pathname}
+              />
             ) : (
               <a
-                key={item.href}
+                key={item.href + item.label}
                 href={item.href}
                 className={`text-sm font-medium transition-colors relative ${
                   pathname === item.href
@@ -240,7 +323,8 @@ export default function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen(!open)}
-          className="lg:hidden text-[#94a3b8] p-1"
+          className="lg:hidden text-[#94a3b8] p-2 -mr-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
+          aria-label={open ? "Close menu" : "Open menu"}
         >
           <AnimatePresence mode="wait">
             <motion.span
@@ -264,34 +348,47 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className="lg:hidden overflow-hidden"
           >
-            <div className="bg-[#0c1220]/95 backdrop-blur-xl border-b border-[#1e293b] px-6 pb-6">
+            <div
+              className="border-b border-[#1e293b] px-6 pb-6 max-h-[calc(100dvh-4rem)] overflow-y-auto"
+              style={{
+                background: "rgba(12,18,32,0.97)",
+                backdropFilter: "blur(60px) saturate(180%)",
+                WebkitBackdropFilter: "blur(60px) saturate(180%)",
+              }}
+            >
               {navItems.map((item) =>
                 isGroup(item) ? (
-                  <MobileGroup key={item.label} group={item} pathname={pathname} onNavigate={() => setOpen(false)} />
+                  <MobileGroup
+                    key={item.label}
+                    group={item}
+                    pathname={pathname}
+                    onNavigate={() => setOpen(false)}
+                  />
                 ) : (
                   <a
-                    key={item.href}
+                    key={item.href + item.label}
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className={`block py-3 font-medium transition-colors ${
+                    className={`block py-4 px-2 min-h-[44px] text-[15px] font-medium transition-colors border-b border-[#1e293b]/50 ${
                       pathname === item.href
                         ? "text-[#00e5ff]"
                         : item.highlight
                           ? "text-[#ec4899]"
-                          : "text-[#94a3b8] hover:text-[#00e5ff]"
+                          : "text-[#94a3b8] active:text-[#00e5ff]"
                     }`}
                   >
-                    {pathname === item.href && "→ "}{item.label}
+                    {pathname === item.href && "→ "}
+                    {item.label}
                   </a>
                 )
               )}
               <a
                 href="/contact"
                 onClick={() => setOpen(false)}
-                className="block mt-4 text-center text-sm font-semibold px-5 py-3 rounded-lg bg-gradient-to-r from-[#00e5ff] to-[#00ff88] text-[#060a14]"
+                className="block mt-5 text-center text-[15px] font-semibold px-5 py-3.5 rounded-lg bg-gradient-to-r from-[#00e5ff] to-[#00ff88] text-[#060a14] min-h-[44px] active:opacity-90"
               >
                 ขอใบเสนอราคา
               </a>

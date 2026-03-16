@@ -308,11 +308,11 @@ export default function SupportSection() {
           <p className="text-sm text-[#94a3b8]">เลือกตามขนาดทีมและความสำคัญของระบบ</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {plans.map((plan, i) => (
             <motion.div key={plan.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
               <div className="relative rounded-2xl p-[1.5px] h-full" style={{ background: `linear-gradient(135deg, ${plan.color}50, transparent 40%, ${plan.color}30)` }}>
-                <div className="rounded-2xl bg-[#0c1220] p-6 h-full flex flex-col">
+                <div className="rounded-2xl bg-[#0c1220] p-4 sm:p-6 h-full flex flex-col">
                   {plan.badge && (
                     <div className={`absolute -top-3 right-4 px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${plan.gradient}`}>
                       {plan.badge}
@@ -358,8 +358,8 @@ export default function SupportSection() {
           <h2 className="text-2xl md:text-3xl font-black text-[#f0f4f8] mb-3">เปรียบเทียบ SLA</h2>
         </div>
         <GlowCard color="#00e5ff">
-          <div className="p-4 overflow-x-auto">
-            <table className="w-full text-xs">
+          <div className="p-4 overflow-x-auto -mx-0">
+            <table className="w-full text-xs min-w-[480px]">
               <thead>
                 <tr className="border-b border-[#1e293b]">
                   <th className="text-left py-3 px-3 text-[#64748b]"></th>

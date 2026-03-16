@@ -165,3 +165,12 @@ html {
   background: linear-gradient(90deg, var(--cyan), var(--green));
   border-radius: 1px;
 }
+
+/* Hide scrollbar for horizontal scroll containers */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

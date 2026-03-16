@@ -86,7 +86,7 @@ export default function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="relative rounded-2xl bg-[#111827] border border-[#1e293b] p-6"
+              className="relative rounded-2xl bg-[#111827] border border-[#1e293b] p-4 sm:p-6"
             >
               {/* Step number */}
               <span
@@ -139,7 +139,7 @@ export default function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="rounded-xl bg-[#111827] border border-[#1e293b] p-5 hover:border-[#00e5ff]/30 transition-all"
+              className="rounded-xl bg-[#111827] border border-[#1e293b] p-4 sm:p-5 hover:border-[#00e5ff]/30 transition-all"
             >
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-lg bg-[#00e5ff]/10 flex items-center justify-center shrink-0 mt-0.5">
@@ -230,7 +230,7 @@ export default function HowItWorks() {
           <div className="space-y-4">
             {/* 1. Censorship */}
             <div className="rounded-xl bg-[#111827] border border-[#1e293b] overflow-hidden">
-              <div className="p-5 md:p-6">
+              <div className="p-4 sm:p-5 md:p-6">
                 <div className="flex items-start gap-3 mb-4">
                   <span className="text-2xl shrink-0">🚫</span>
                   <div>
@@ -266,7 +266,7 @@ export default function HowItWorks() {
 
             {/* 2. Data leak */}
             <div className="rounded-xl bg-[#111827] border border-[#1e293b] overflow-hidden">
-              <div className="p-5 md:p-6">
+              <div className="p-4 sm:p-5 md:p-6">
                 <div className="flex items-start gap-3 mb-4">
                   <span className="text-2xl shrink-0">📤</span>
                   <div>
@@ -302,7 +302,7 @@ export default function HowItWorks() {
 
             {/* 3. Cost */}
             <div className="rounded-xl bg-[#111827] border border-[#1e293b] overflow-hidden">
-              <div className="p-5 md:p-6">
+              <div className="p-4 sm:p-5 md:p-6">
                 <div className="flex items-start gap-3 mb-4">
                   <span className="text-2xl shrink-0">💸</span>
                   <div>
@@ -310,8 +310,8 @@ export default function HowItWorks() {
                     <p className="text-sm text-[#94a3b8]">คิดเป็นทีม คิดเป็นปี แพงกว่าที่คิดมาก</p>
                   </div>
                 </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
+                <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+                  <table className="w-full text-xs min-w-[500px]">
                     <thead>
                       <tr className="border-b border-[#1e293b]">
                         <th className="text-left py-2 px-3 text-[#64748b]">สถานการณ์</th>
@@ -363,7 +363,7 @@ export default function HowItWorks() {
 
             {/* 4. Rate limit */}
             <div className="rounded-xl bg-[#111827] border border-[#1e293b] overflow-hidden">
-              <div className="p-5 md:p-6">
+              <div className="p-4 sm:p-5 md:p-6">
                 <div className="flex items-start gap-3 mb-4">
                   <span className="text-2xl shrink-0">⏳</span>
                   <div>

@@ -16,7 +16,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-3xl sm:text-6xl lg:text-8xl font-bold leading-tight mb-6 mt-16 sm:mt-0">
+          <h1 className="text-2xl sm:text-6xl lg:text-8xl font-bold leading-tight mb-6 mt-16 sm:mt-0">
             <span className="text-[#f0f4f8]">ติดตั้ง AI ส่วนตัว</span>
             <br />
             <span className="gradient-text-cyan">สำหรับธุรกิจในประเทศไทย</span>
@@ -32,7 +32,7 @@ export default function Hero() {
           </p>
 
           {/* Value props as simple cards */}
-          <div className="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto mb-12">
             {[
               {
                 icon: Lock,
@@ -77,13 +77,13 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#how-it-works"
-              className="px-8 py-3.5 rounded-lg bg-gradient-to-r from-[#00e5ff] to-[#00ff88] text-[#060a14] font-bold text-base hover:opacity-90 transition-opacity"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-gradient-to-r from-[#00e5ff] to-[#00ff88] text-[#060a14] font-bold text-base hover:opacity-90 transition-opacity text-center"
             >
               ดูว่า AI ส่วนตัวทำอะไรได้บ้าง
             </a>
             <a
               href="#contact"
-              className="px-8 py-3.5 rounded-lg border border-[#1e293b] text-[#f0f4f8] font-semibold text-base hover:border-[#00e5ff] hover:text-[#00e5ff] transition-all"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-lg border border-[#1e293b] text-[#f0f4f8] font-semibold text-base hover:border-[#00e5ff] hover:text-[#00e5ff] transition-all text-center"
             >
               ปรึกษาฟรี ไม่มีค่าใช้จ่าย
             </a>

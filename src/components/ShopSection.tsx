@@ -330,7 +330,7 @@ function ProductCard({ product, catColor }: { product: Product; catColor: string
 
   return (
     <GlowCard color={product.badgeColor || catColor}>
-      <div className="p-5">
+      <div className="p-4 sm:p-5">
         <button onClick={() => setOpen(!open)} className="w-full text-left">
           <div className="flex items-start justify-between gap-3">
             <div className="flex-1 min-w-0">
@@ -419,12 +419,12 @@ export default function ShopSection() {
         </div>
 
         {/* Category nav */}
-        <div className="flex justify-center gap-2 flex-wrap">
+        <div className="flex gap-2 overflow-x-auto pb-2 -mx-6 px-6 sm:mx-0 sm:px-0 sm:justify-center sm:flex-wrap sm:overflow-x-visible sm:pb-0 scrollbar-hide">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shrink-0 ${
                 activeCategory === cat.id ? "text-[#060a14] shadow-lg" : "text-[#94a3b8] bg-[#111827] border border-[#1e293b]"
               }`}
               style={activeCategory === cat.id ? { background: cat.color, boxShadow: `0 4px 20px ${cat.color}30` } : {}}
@@ -446,7 +446,7 @@ export default function ShopSection() {
             <p className="text-xs text-[#94a3b8] mt-1">{current.subtitle}</p>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 sm:space-y-3">
             {current.products.map((product, i) => (
               <motion.div key={product.name} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.03 }}>
                 <ProductCard product={product} catColor={current.color} />
@@ -465,7 +465,7 @@ export default function ShopSection() {
             <p className="text-sm text-[#94a3b8]">ประกอบชุดเอง ราคา hardware รวม — เพิ่มบริการติดตั้ง AI ดู<a href="/packages" className="text-[#00e5ff] hover:underline ml-1">แพ็คเกจ</a></p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {bundles.map((bundle) => (
               <GlowCard key={bundle.name} color={bundle.color}>
                 <div className="p-5">

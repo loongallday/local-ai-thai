@@ -410,12 +410,12 @@ function MobileHardwareComparison() {
   return (
     <div className="md:hidden">
       {/* Picker */}
-      <div className="flex gap-2 overflow-x-auto pb-3 mb-4 -mx-2 px-2">
+      <div className="flex gap-2 overflow-x-auto pb-3 mb-4 -mx-2 px-2 snap-x snap-mandatory scroll-smooth scrollbar-hide">
         {mobileHardwareCards.map((card) => (
           <button
             key={card.key}
             onClick={() => setActive(card.key)}
-            className="shrink-0 flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all"
+            className="shrink-0 flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all snap-start"
             style={{
               borderWidth: 2,
               borderStyle: "solid",
@@ -482,12 +482,12 @@ export default function HardwareSection() {
         </div>
 
         {/* Category nav */}
-        <div className="flex justify-center gap-2 flex-wrap mb-8">
+        <div className="flex gap-2 overflow-x-auto pb-2 mb-8 -mx-6 px-6 sm:mx-0 sm:px-0 sm:justify-center sm:flex-wrap sm:overflow-x-visible sm:pb-0 scrollbar-hide">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => { setActiveCategory(cat.id); setExpandedItem(null); }}
-              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shrink-0 ${
                 activeCategory === cat.id ? "text-[#060a14] shadow-lg" : "text-[#94a3b8] bg-[#111827] border border-[#1e293b]"
               }`}
               style={activeCategory === cat.id ? { background: cat.color, boxShadow: `0 4px 20px ${cat.color}30` } : {}}
