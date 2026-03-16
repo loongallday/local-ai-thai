@@ -392,6 +392,78 @@ const comparisonData = [
   { label: "ราคาเครื่อง", mini: "฿20-30K", pro: "฿70-85K", studio: "฿100-140K", gx10: "~฿105K", spark: "~฿160K", l40s: "~฿300K", h100: "~฿900K" },
 ];
 
+// ─── Mobile comparison cards ───
+const mobileHardwareCards = [
+  { key: "mini", name: "Mac Mini M4", emoji: "🖥️", color: "#00e5ff", data: comparisonData.map(r => ({ label: r.label, value: r.mini })) },
+  { key: "pro", name: "Mac Mini M4 Pro", emoji: "⚡", color: "#00ff88", data: comparisonData.map(r => ({ label: r.label, value: r.pro })) },
+  { key: "studio", name: "Mac Studio M4 Max", emoji: "🏎️", color: "#8b5cf6", data: comparisonData.map(r => ({ label: r.label, value: r.studio })) },
+  { key: "gx10", name: "ASUS GX10", emoji: "🟢", color: "#76B900", data: comparisonData.map(r => ({ label: r.label, value: r.gx10 })) },
+  { key: "spark", name: "DGX Spark", emoji: "⚡", color: "#76B900", data: comparisonData.map(r => ({ label: r.label, value: r.spark })) },
+  { key: "l40s", name: "NVIDIA L40S", emoji: "🔷", color: "#3b82f6", data: comparisonData.map(r => ({ label: r.label, value: r.l40s })) },
+  { key: "h100", name: "NVIDIA H100", emoji: "🟠", color: "#f59e0b", data: comparisonData.map(r => ({ label: r.label, value: r.h100 })) },
+];
+
+function MobileHardwareComparison() {
+  const [active, setActive] = useState("pro");
+  const current = mobileHardwareCards.find(c => c.key === active)!;
+
+  return (
+    <div className="md:hidden">
+      {/* Picker */}
+      <div className="flex gap-2 overflow-x-auto pb-3 mb-4 -mx-2 px-2">
+        {mobileHardwareCards.map((card) => (
+          <button
+            key={card.key}
+            onClick={() => setActive(card.key)}
+            className="shrink-0 flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all"
+            style={{
+              borderWidth: 2,
+              borderStyle: "solid",
+              borderColor: active === card.key ? card.color : "#1e293b",
+              background: active === card.key ? card.color + "10" : "#111827",
+            }}
+          >
+            <span className="text-lg">{card.emoji}</span>
+            <span className="text-[9px] font-bold whitespace-nowrap" style={{ color: active === card.key ? "#f0f4f8" : "#64748b" }}>
+              {card.name.split(" ").slice(-2).join(" ")}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {/* Card */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={current.key}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.2 }}
+        >
+          <GlowCard color={current.color}>
+            <div className="overflow-hidden rounded-2xl">
+              <div className="flex items-center gap-3 px-4 py-3 border-b border-[#1e293b]" style={{ background: current.color + "08" }}>
+                <span className="text-xl">{current.emoji}</span>
+                <div>
+                  <p className="text-sm font-bold text-[#f0f4f8]">{current.name}</p>
+                </div>
+              </div>
+              <div className="divide-y divide-[#1e293b]">
+                {current.data.map((row, i) => (
+                  <div key={row.label} className={`flex justify-between items-center px-4 py-2.5 ${i % 2 === 0 ? "bg-[#0c1220]/30" : ""}`}>
+                    <span className="text-xs text-[#94a3b8]">{row.label}</span>
+                    <span className="text-sm font-mono font-medium text-[#f0f4f8]">{row.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </GlowCard>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function HardwareSection() {
   const [activeCategory, setActiveCategory] = useState("compact");
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
@@ -576,47 +648,47 @@ export default function HardwareSection() {
             <p className="text-sm text-[#94a3b8]">Bandwidth (GB/s) คือตัวเลขที่สำคัญที่สุดสำหรับความเร็ว AI</p>
           </div>
 
-          <p className="text-xs text-[#64748b] text-center mb-2 sm:hidden">เลื่อนซ้าย-ขวาเพื่อดูตาราง →</p>
-          <div className="overflow-x-auto -mx-6 sm:mx-0 pb-2">
-            <div className="min-w-[700px]">
-              <GlowCard color="#00e5ff">
-                <div className="p-4 overflow-hidden rounded-2xl">
-                  <table className="w-full text-xs">
-                    <thead>
-                      <tr className="border-b border-[#1e293b]">
-                        <th className="text-left py-3 px-3 text-[#64748b]"></th>
-                        <th className="text-center py-3 px-2 text-[#94a3b8]">M4</th>
-                        <th className="text-center py-3 px-2 text-[#00ff88] font-bold">M4 Pro</th>
-                        <th className="text-center py-3 px-2 text-[#8b5cf6]">M4 Max</th>
-                        <th className="text-center py-3 px-2 text-[#76B900]">GX10</th>
-                        <th className="text-center py-3 px-2 text-[#76B900]">DGX Spark</th>
-                        <th className="text-center py-3 px-2 text-[#3b82f6]">L40S</th>
-                        <th className="text-center py-3 px-2 text-[#f59e0b]">H100</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {comparisonData.map((row, i) => (
-                        <tr key={row.label} className={i % 2 === 0 ? "bg-[#0c1220]/50" : ""}>
-                          <td className="py-2.5 px-3 text-[#94a3b8] font-medium">{row.label}</td>
-                          <td className="py-2.5 px-2 text-center text-[#f0f4f8] font-mono">{row.mini}</td>
-                          <td className="py-2.5 px-2 text-center text-[#f0f4f8] font-mono bg-[#00ff88]/5">{row.pro}</td>
-                          <td className="py-2.5 px-2 text-center text-[#f0f4f8] font-mono">{row.studio}</td>
-                          <td className="py-2.5 px-2 text-center text-[#f0f4f8] font-mono">{row.gx10}</td>
-                          <td className="py-2.5 px-2 text-center text-[#f0f4f8] font-mono">{row.spark}</td>
-                          <td className="py-2.5 px-2 text-center text-[#f0f4f8] font-mono">{row.l40s}</td>
-                          <td className="py-2.5 px-2 text-center text-[#f0f4f8] font-mono">{row.h100}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </GlowCard>
-            </div>
-          </div>
+          {/* Mobile: Card picker */}
+          <MobileHardwareComparison />
 
-          <p className="text-[10px] text-[#64748b] text-center mt-4">
-            * tok/s = tokens per second สำหรับ Qwen 2.5 7B Q4 | Bandwidth หน่วย GB/s | ราคาเครื่องเปล่า ไม่รวมบริการติดตั้ง
-          </p>
+          {/* Desktop: Full table */}
+          <div className="hidden md:block">
+            <GlowCard color="#00e5ff">
+              <div className="p-4 overflow-hidden rounded-2xl">
+                <table className="w-full text-xs">
+                  <thead>
+                    <tr className="border-b border-[#1e293b]">
+                      <th className="text-left py-3 px-3 text-[#64748b]"></th>
+                      <th className="text-center py-3 px-2 text-[#94a3b8]">M4</th>
+                      <th className="text-center py-3 px-2 text-[#00ff88] font-bold">M4 Pro</th>
+                      <th className="text-center py-3 px-2 text-[#8b5cf6]">M4 Max</th>
+                      <th className="text-center py-3 px-2 text-[#76B900]">GX10</th>
+                      <th className="text-center py-3 px-2 text-[#76B900]">DGX Spark</th>
+                      <th className="text-center py-3 px-2 text-[#3b82f6]">L40S</th>
+                      <th className="text-center py-3 px-2 text-[#f59e0b]">H100</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {comparisonData.map((row, i) => (
+                      <tr key={row.label} className={i % 2 === 0 ? "bg-[#0c1220]/50" : ""}>
+                        <td className="py-2.5 px-3 text-[#94a3b8] font-medium">{row.label}</td>
+                        <td className="py-2.5 px-2 text-center text-[#f0f4f8] font-mono">{row.mini}</td>
+                        <td className="py-2.5 px-2 text-center text-[#f0f4f8] font-mono bg-[#00ff88]/5">{row.pro}</td>
+                        <td className="py-2.5 px-2 text-center text-[#f0f4f8] font-mono">{row.studio}</td>
+                        <td className="py-2.5 px-2 text-center text-[#f0f4f8] font-mono">{row.gx10}</td>
+                        <td className="py-2.5 px-2 text-center text-[#f0f4f8] font-mono">{row.spark}</td>
+                        <td className="py-2.5 px-2 text-center text-[#f0f4f8] font-mono">{row.l40s}</td>
+                        <td className="py-2.5 px-2 text-center text-[#f0f4f8] font-mono">{row.h100}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </GlowCard>
+            <p className="text-[10px] text-[#64748b] text-center mt-4">
+              * tok/s = tokens per second สำหรับ Qwen 2.5 7B Q4 | Bandwidth หน่วย GB/s | ราคาเครื่องเปล่า ไม่รวมบริการติดตั้ง
+            </p>
+          </div>
         </div>
       </div>
 
