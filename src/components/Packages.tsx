@@ -345,6 +345,9 @@ export default function Packages() {
             </a>{" "}
             — บอกว่าใช้กี่คน ทำอะไร เราแนะนำให้
           </p>
+          <p className="text-[#64748b] max-w-2xl mx-auto text-sm mt-3">
+            แพ็คเกจคือ tier ราคา ไม่ใช่ของสำเร็จรูป — ทุกระบบออกแบบและสร้างเฉพาะสำหรับธุรกิจคุณ
+          </p>
         </div>
 
         {/* Tabs */}

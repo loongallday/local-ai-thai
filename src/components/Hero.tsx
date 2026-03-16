@@ -27,8 +27,11 @@ export default function Hero() {
             <br className="hidden sm:block" />
             ข้อมูลไม่หลุดไปไหน ไม่มีค่ารายเดือน PDPA Compliant
           </p>
-          <p className="text-base lg:text-lg text-[#64748b] max-w-xl mx-auto mb-12">
+          <p className="text-base lg:text-lg text-[#64748b] max-w-xl mx-auto mb-4">
             บริการติดตั้ง AI ครบวงจร ตั้งแต่เลือกเครื่อง ติดตั้งระบบ จนพร้อมใช้งาน เริ่มต้น ฿59,900
+          </p>
+          <p className="text-sm text-[#475569] max-w-md mx-auto mb-12 tracking-wide">
+            ทุกระบบออกแบบเฉพาะสำหรับธุรกิจคุณ ไม่มี solution สำเร็จรูป
           </p>
 
           {/* Value props as simple cards */}
