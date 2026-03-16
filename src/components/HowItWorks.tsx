@@ -211,6 +211,98 @@ export default function HowItWorks() {
             </div>
           </div>
         </motion.div>
+        {/* Why not just pay ฿700/month for ChatGPT? */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-16"
+        >
+          <div className="text-center mb-8">
+            <h3 className="text-xl md:text-3xl lg:text-4xl font-bold text-[#f0f4f8] mb-3">
+              แล้วทำไมไม่จ่าย ฿700/เดือน ใช้ ChatGPT ก็พอ?
+            </h3>
+            <p className="text-sm text-[#94a3b8] max-w-lg mx-auto">
+              คำถามที่ทุกคนถาม — นี่คือคำตอบตรงๆ
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              {
+                emoji: "🚫",
+                title: "ChatGPT ปฏิเสธตอบเรื่องสำคัญ",
+                desc: "ถามเรื่องกฎหมาย การแพทย์ สัญญา ข้อมูลละเอียดอ่อน → \"ขอโทษ ผมไม่สามารถให้คำปรึกษาได้\" แต่ธุรกิจคุณต้องการคำตอบเหล่านั้น",
+                local: "AI ส่วนตัวตอบได้ทุกอย่าง ไม่มี censorship",
+                color: "#f87171",
+              },
+              {
+                emoji: "📤",
+                title: "ข้อมูลถูกส่งไปต่างประเทศ",
+                desc: "ทุกครั้งที่ถาม ChatGPT ข้อมูลบริษัท สัญญา ข้อมูลลูกค้า ถูกส่งไป server สหรัฐฯ Samsung เคยโดน source code หลุดจาก ChatGPT",
+                local: "ข้อมูลไม่ออกจากเครื่อง เลย แม้แต่ byte เดียว",
+                color: "#f87171",
+              },
+              {
+                emoji: "⏳",
+                title: "โควต้าหมด กลางวันทำงาน",
+                desc: "\"You've reached your limit\" ตอนกำลัง flow ดีๆ ต้องรอ 3 ชม. หรือจ่ายเพิ่ม ยิ่งทีมใหญ่ ยิ่งหมดเร็ว",
+                local: "ไม่มี limit ไม่มี cap ถามได้ทั้งวันทั้งคืน",
+                color: "#f59e0b",
+              },
+              {
+                emoji: "💸",
+                title: "ทีม 10 คน = ฿7,000/เดือน ตลอดไป",
+                desc: "ChatGPT Plus ฿700/คน × 10 = ฿7,000/เดือน = ฿168,000 ใน 2 ปี แล้วก็ต้องจ่ายต่อไปเรื่อยๆ ไม่มีวันจบ",
+                local: "฿109,900 ครั้งเดียว ทั้งทีมใช้ได้ ไม่จ่ายอีก",
+                color: "#f59e0b",
+              },
+              {
+                emoji: "🔄",
+                title: "Model เปลี่ยน ไม่บอก",
+                desc: "OpenAI update model ตลอด — prompt ที่เคยใช้ได้ดี วันดีคืนดีตอบแย่ลง คุณ control อะไรไม่ได้เลย",
+                local: "Model ของคุณไม่เปลี่ยน จนกว่าคุณจะเปลี่ยนเอง",
+                color: "#8b5cf6",
+              },
+              {
+                emoji: "📡",
+                title: "เน็ตล่ม = ทำงานไม่ได้",
+                desc: "Server OpenAI ล่มเฉลี่ย 2-3 ครั้ง/เดือน เน็ตบริษัทมีปัญหา ไปถ่ายนอกสถานที่ ทุกอย่างหยุด",
+                local: "ทำงานได้ 100% แม้ไม่มี internet",
+                color: "#8b5cf6",
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+                className="rounded-xl bg-[#111827] border border-[#1e293b] p-5"
+              >
+                <span className="text-2xl block mb-3">{item.emoji}</span>
+                <h4 className="text-sm font-bold text-[#f0f4f8] mb-2">{item.title}</h4>
+                <p className="text-xs text-[#94a3b8] leading-relaxed mb-3">{item.desc}</p>
+                <div className="flex items-start gap-2 px-3 py-2 rounded-lg bg-[#00ff88]/5 border border-[#00ff88]/15">
+                  <span className="text-[#00ff88] text-xs shrink-0">✓</span>
+                  <span className="text-xs text-[#00ff88]">{item.local}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <p className="text-sm text-[#64748b] mb-4">
+              ChatGPT ดีสำหรับใช้ส่วนตัว — แต่สำหรับธุรกิจที่มีข้อมูลสำคัญ AI ส่วนตัวคือคำตอบ
+            </p>
+            <a
+              href="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-[#00e5ff] to-[#00ff88] text-[#060a14] font-bold text-sm hover:opacity-90 transition-opacity"
+            >
+              ปรึกษาฟรี ว่าเหมาะกับธุรกิจคุณไหม
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
