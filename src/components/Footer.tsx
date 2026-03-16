@@ -26,6 +26,15 @@ export default function Footer() {
             <a href="/services" className="hover:text-[#00e5ff] transition-colors">
               บริการ
             </a>
+            <a href="/cloud" className="hover:text-[#00e5ff] transition-colors">
+              Cloud AI
+            </a>
+            <a href="/shop" className="hover:text-[#00e5ff] transition-colors">
+              ร้านค้า
+            </a>
+            <a href="/support" className="hover:text-[#00e5ff] transition-colors">
+              ดูแลระบบ
+            </a>
             <a href="/contact" className="hover:text-[#00e5ff] transition-colors">
               ติดต่อเรา
             </a>
