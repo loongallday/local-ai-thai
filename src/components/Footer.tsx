@@ -1,4 +1,5 @@
 "use client";
+import CrossSiteLink from "./CrossSiteLink";
 
 export default function Footer() {
   return (
@@ -56,9 +57,9 @@ export default function Footer() {
           <p className="text-[11px] text-[#64748b]">
             &copy; 2026 LocalAI Thailand — บริการติดตั้ง AI ส่วนตัวสำหรับธุรกิจ
             {" | "}
-            <a href="https://www.cloudaithai.com" target="_blank" className="hover:text-[#00e5ff] transition-colors">
+            <CrossSiteLink href="https://www.cloudaithai.com" className="hover:text-[#00e5ff] transition-colors">
               CloudAI Thailand
-            </a>
+            </CrossSiteLink>
           </p>
         </div>
 

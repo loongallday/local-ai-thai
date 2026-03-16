@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import PageTransition from "@/components/PageTransition";
 
 const SITE_URL = "https://www.localaithai.com";
 const TITLE = "Local AI Thailand (LocalAI) | ติดตั้ง AI ส่วนตัว บนเครื่องของคุณ ไม่ส่งข้อมูลขึ้นคลาวด์ เริ่มต้น ฿59,900";
@@ -363,7 +364,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <PageTransition>{children}</PageTransition>
+      </body>
     </html>
   );
 }
