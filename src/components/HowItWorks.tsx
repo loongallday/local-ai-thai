@@ -227,80 +227,225 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              {
-                emoji: "🚫",
-                title: "ChatGPT ปฏิเสธตอบเรื่องสำคัญ",
-                desc: "ถามเรื่องกฎหมาย การแพทย์ สัญญา ข้อมูลละเอียดอ่อน → \"ขอโทษ ผมไม่สามารถให้คำปรึกษาได้\" แต่ธุรกิจคุณต้องการคำตอบเหล่านั้น",
-                local: "AI ส่วนตัวตอบได้ทุกอย่าง ไม่มี censorship",
-                color: "#f87171",
-              },
-              {
-                emoji: "📤",
-                title: "ข้อมูลถูกส่งไปต่างประเทศ",
-                desc: "ทุกครั้งที่ถาม ChatGPT ข้อมูลบริษัท สัญญา ข้อมูลลูกค้า ถูกส่งไป server สหรัฐฯ Samsung เคยโดน source code หลุดจาก ChatGPT",
-                local: "ข้อมูลไม่ออกจากเครื่อง เลย แม้แต่ byte เดียว",
-                color: "#f87171",
-              },
-              {
-                emoji: "⏳",
-                title: "โควต้าหมด กลางวันทำงาน",
-                desc: "\"You've reached your limit\" ตอนกำลัง flow ดีๆ ต้องรอ 3 ชม. หรือจ่ายเพิ่ม ยิ่งทีมใหญ่ ยิ่งหมดเร็ว",
-                local: "ไม่มี limit ไม่มี cap ถามได้ทั้งวันทั้งคืน",
-                color: "#f59e0b",
-              },
-              {
-                emoji: "💸",
-                title: "ทีม 10 คน = ฿7,000/เดือน ตลอดไป",
-                desc: "ChatGPT Plus ฿700/คน × 10 = ฿7,000/เดือน = ฿168,000 ใน 2 ปี แล้วก็ต้องจ่ายต่อไปเรื่อยๆ ไม่มีวันจบ",
-                local: "฿109,900 ครั้งเดียว ทั้งทีมใช้ได้ ไม่จ่ายอีก",
-                color: "#f59e0b",
-              },
-              {
-                emoji: "🔄",
-                title: "Model เปลี่ยน ไม่บอก",
-                desc: "OpenAI update model ตลอด — prompt ที่เคยใช้ได้ดี วันดีคืนดีตอบแย่ลง คุณ control อะไรไม่ได้เลย",
-                local: "Model ของคุณไม่เปลี่ยน จนกว่าคุณจะเปลี่ยนเอง",
-                color: "#8b5cf6",
-              },
-              {
-                emoji: "📡",
-                title: "เน็ตล่ม = ทำงานไม่ได้",
-                desc: "Server OpenAI ล่มเฉลี่ย 2-3 ครั้ง/เดือน เน็ตบริษัทมีปัญหา ไปถ่ายนอกสถานที่ ทุกอย่างหยุด",
-                local: "ทำงานได้ 100% แม้ไม่มี internet",
-                color: "#8b5cf6",
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
-                className="rounded-xl bg-[#111827] border border-[#1e293b] p-5"
-              >
-                <span className="text-2xl block mb-3">{item.emoji}</span>
-                <h4 className="text-sm font-bold text-[#f0f4f8] mb-2">{item.title}</h4>
-                <p className="text-xs text-[#94a3b8] leading-relaxed mb-3">{item.desc}</p>
+          <div className="space-y-4">
+            {/* 1. Censorship */}
+            <div className="rounded-xl bg-[#111827] border border-[#1e293b] overflow-hidden">
+              <div className="p-5 md:p-6">
+                <div className="flex items-start gap-3 mb-4">
+                  <span className="text-2xl shrink-0">🚫</span>
+                  <div>
+                    <h4 className="text-base font-bold text-[#f0f4f8] mb-1">ChatGPT ปฏิเสธตอบเรื่องที่ธุรกิจคุณต้องการ</h4>
+                    <p className="text-sm text-[#94a3b8]">AI คลาวด์มี safety filter ที่บล็อคหลายเรื่อง แม้จะเป็นคำถามที่สมเหตุสมผล</p>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-3">
+                  <div className="rounded-lg bg-[#f87171]/5 border border-[#f87171]/15 p-4">
+                    <p className="text-xs font-bold text-[#f87171] mb-2">❌ ChatGPT ตอบแบบนี้:</p>
+                    <div className="space-y-2 text-xs text-[#94a3b8]">
+                      <p className="italic">{'"สัญญาฉบับนี้มีช่องโหว่อะไรบ้าง?"'}</p>
+                      <p className="text-[#f87171]">→ "ขออภัย ผมไม่สามารถให้คำปรึกษาทางกฎหมายได้ กรุณาปรึกษาทนายความ"</p>
+                      <p className="italic mt-3">{'"ยานี้ใช้ร่วมกับยาตัวนี้ได้ไหม?"'}</p>
+                      <p className="text-[#f87171]">→ "ผมไม่ใช่ผู้เชี่ยวชาญทางการแพทย์ กรุณาปรึกษาแพทย์หรือเภสัชกร"</p>
+                      <p className="italic mt-3">{'"เขียน ad copy สำหรับสินค้าเสริมอาหาร"'}</p>
+                      <p className="text-[#f87171]">→ "ผมไม่สามารถเขียน claim สุขภาพที่อาจทำให้เข้าใจผิดได้"</p>
+                    </div>
+                  </div>
+                  <div className="rounded-lg bg-[#00ff88]/5 border border-[#00ff88]/15 p-4">
+                    <p className="text-xs font-bold text-[#00ff88] mb-2">✓ AI ส่วนตัวตอบได้ทุกอย่าง:</p>
+                    <div className="space-y-2 text-xs text-[#94a3b8]">
+                      <p>✓ วิเคราะห์สัญญาได้ หาช่องโหว่ได้ ร่างสัญญาให้ได้</p>
+                      <p>✓ ตอบคำถามทางการแพทย์จาก guideline ได้</p>
+                      <p>✓ เขียน ad copy, marketing content ไม่ถูกบล็อค</p>
+                      <p>✓ วิเคราะห์คู่แข่ง, ข้อมูล sensitive ได้</p>
+                      <p className="text-[#00ff88] font-semibold mt-2">→ คุณเป็นเจ้าของ AI คุณกำหนดกฎเอง ไม่มี OpenAI มาบอกว่าอะไรตอบได้หรือไม่ได้</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Data leak */}
+            <div className="rounded-xl bg-[#111827] border border-[#1e293b] overflow-hidden">
+              <div className="p-5 md:p-6">
+                <div className="flex items-start gap-3 mb-4">
+                  <span className="text-2xl shrink-0">📤</span>
+                  <div>
+                    <h4 className="text-base font-bold text-[#f0f4f8] mb-1">ทุกครั้งที่ถาม ChatGPT ข้อมูลบริษัทคุณถูกส่งไปต่างประเทศ</h4>
+                    <p className="text-sm text-[#94a3b8]">คิดดูว่าคุณเอาอะไรไปใส่ใน ChatGPT บ้าง</p>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-3">
+                  <div className="rounded-lg bg-[#f87171]/5 border border-[#f87171]/15 p-4">
+                    <p className="text-xs font-bold text-[#f87171] mb-2">❌ ข้อมูลที่คนเอาไปใส่ ChatGPT:</p>
+                    <div className="space-y-2 text-xs text-[#94a3b8]">
+                      <p>• สัญญาลูกค้า ข้อมูลราคา เงื่อนไขพิเศษ</p>
+                      <p>• ข้อมูลการเงิน ยอดขาย กำไร</p>
+                      <p>• ข้อมูลพนักงาน เงินเดือน ผลประเมิน</p>
+                      <p>• ข้อมูลผู้ป่วย ประวัติการรักษา (โรงพยาบาล)</p>
+                      <p>• Source code, trade secret, สูตรลับ</p>
+                      <p className="text-[#f87171] font-semibold mt-2">⚠️ เรื่องจริง: Samsung วิศวกรเอา source code ไปใส่ ChatGPT → หลุดไปอยู่ใน training data → Samsung แบนการใช้ ChatGPT ทั้งบริษัท</p>
+                    </div>
+                  </div>
+                  <div className="rounded-lg bg-[#00ff88]/5 border border-[#00ff88]/15 p-4">
+                    <p className="text-xs font-bold text-[#00ff88] mb-2">✓ AI ส่วนตัว — ข้อมูลไม่ออกจากเครื่อง:</p>
+                    <div className="space-y-2 text-xs text-[#94a3b8]">
+                      <p>✓ ทุกอย่างประมวลผลในเครื่องที่อยู่ในออฟฟิศคุณ</p>
+                      <p>✓ ไม่เชื่อมอินเทอร์เน็ต ไม่ส่ง packet ออก</p>
+                      <p>✓ ไม่มี telemetry, ไม่มี logging ไปที่ไหน</p>
+                      <p>✓ ไม่ถูกเอาไป train ให้คนอื่น</p>
+                      <p className="text-[#00ff88] font-semibold mt-2">→ PDPA compliant by design ถ้า สคส. มาตรวจ อธิบายได้ทันที</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Cost */}
+            <div className="rounded-xl bg-[#111827] border border-[#1e293b] overflow-hidden">
+              <div className="p-5 md:p-6">
+                <div className="flex items-start gap-3 mb-4">
+                  <span className="text-2xl shrink-0">💸</span>
+                  <div>
+                    <h4 className="text-base font-bold text-[#f0f4f8] mb-1">฿700/เดือน ฟังดูถูก แต่ลองคิดดูดีๆ</h4>
+                    <p className="text-sm text-[#94a3b8]">คิดเป็นทีม คิดเป็นปี แพงกว่าที่คิดมาก</p>
+                  </div>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-xs">
+                    <thead>
+                      <tr className="border-b border-[#1e293b]">
+                        <th className="text-left py-2 px-3 text-[#64748b]">สถานการณ์</th>
+                        <th className="text-center py-2 px-3 text-[#f87171]">ChatGPT Plus</th>
+                        <th className="text-center py-2 px-3 text-[#00ff88]">AI ส่วนตัว</th>
+                        <th className="text-center py-2 px-3 text-[#f0f4f8]">ประหยัด</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="bg-[#0c1220]/50">
+                        <td className="py-2 px-3 text-[#94a3b8]">1 คน / 2 ปี</td>
+                        <td className="py-2 px-3 text-center text-[#f87171] font-mono">฿16,800</td>
+                        <td className="py-2 px-3 text-center text-[#00ff88] font-mono">฿59,900</td>
+                        <td className="py-2 px-3 text-center text-[#f87171]">แพงกว่า ฿43K*</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 px-3 text-[#94a3b8]">3 คน / 2 ปี</td>
+                        <td className="py-2 px-3 text-center text-[#f87171] font-mono">฿50,400</td>
+                        <td className="py-2 px-3 text-center text-[#00ff88] font-mono">฿59,900</td>
+                        <td className="py-2 px-3 text-center text-[#f0f4f8]">ใกล้เคียง</td>
+                      </tr>
+                      <tr className="bg-[#0c1220]/50">
+                        <td className="py-2 px-3 text-[#94a3b8] font-semibold">5 คน / 2 ปี</td>
+                        <td className="py-2 px-3 text-center text-[#f87171] font-mono font-semibold">฿84,000</td>
+                        <td className="py-2 px-3 text-center text-[#00ff88] font-mono font-semibold">฿59,900</td>
+                        <td className="py-2 px-3 text-center text-[#00ff88] font-semibold">ประหยัด ฿24K</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 px-3 text-[#94a3b8] font-semibold">10 คน / 2 ปี</td>
+                        <td className="py-2 px-3 text-center text-[#f87171] font-mono font-semibold">฿168,000</td>
+                        <td className="py-2 px-3 text-center text-[#00ff88] font-mono font-semibold">฿109,900</td>
+                        <td className="py-2 px-3 text-center text-[#00ff88] font-semibold">ประหยัด ฿58K</td>
+                      </tr>
+                      <tr className="bg-[#0c1220]/50">
+                        <td className="py-2 px-3 text-[#94a3b8]">10 คน / 5 ปี</td>
+                        <td className="py-2 px-3 text-center text-[#f87171] font-mono">฿420,000</td>
+                        <td className="py-2 px-3 text-center text-[#00ff88] font-mono">฿109,900</td>
+                        <td className="py-2 px-3 text-center text-[#00ff88] font-bold">ประหยัด ฿310K!</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-[10px] text-[#64748b] mt-3">
+                  * ถ้าใช้คนเดียว ChatGPT ถูกกว่า — แต่ AI ส่วนตัวได้ข้อดีอื่นทั้งหมด (ไม่มี censorship, ไม่ส่งข้อมูลออก, ไม่มี limit)
+                  <br />ยิ่งใช้หลายคน ยิ่งนาน AI ส่วนตัวยิ่งคุ้ม เพราะจ่ายครั้งเดียว ไม่ว่าจะใช้กี่คน
+                </p>
+              </div>
+            </div>
+
+            {/* 4. Rate limit */}
+            <div className="rounded-xl bg-[#111827] border border-[#1e293b] overflow-hidden">
+              <div className="p-5 md:p-6">
+                <div className="flex items-start gap-3 mb-4">
+                  <span className="text-2xl shrink-0">⏳</span>
+                  <div>
+                    <h4 className="text-base font-bold text-[#f0f4f8] mb-1">"You've reached your limit" ตอน 2 ทุ่ม วันส่งงาน</h4>
+                    <p className="text-sm text-[#94a3b8]">จ่ายเงินแล้ว แต่ AI เลือกว่าจะให้ใช้เมื่อไหร่</p>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-3">
+                  <div className="rounded-lg bg-[#f87171]/5 border border-[#f87171]/15 p-4">
+                    <p className="text-xs font-bold text-[#f87171] mb-2">❌ สถานการณ์จริงที่เกิดประจำ:</p>
+                    <div className="space-y-2 text-xs text-[#94a3b8]">
+                      <p>• กำลังเขียน proposal ด่วน → โควต้าหมด ต้องรอ 3 ชม.</p>
+                      <p>• ทีม 5 คนใช้ ChatGPT ตอนเช้า → คนที่ 3 โดน limit แล้ว</p>
+                      <p>• ส่งไฟล์ใหญ่ให้ AI อ่าน → ถูกจำกัดขนาด</p>
+                      <p>• ใช้ GPT-4o → ถูกสลับไป GPT-4o-mini (ฉลาดน้อยกว่า) ตอน peak</p>
+                      <p>• ตอนเช้าเวลาไทย = peak hour สหรัฐ → ช้ามาก</p>
+                    </div>
+                  </div>
+                  <div className="rounded-lg bg-[#00ff88]/5 border border-[#00ff88]/15 p-4">
+                    <p className="text-xs font-bold text-[#00ff88] mb-2">✓ AI ส่วนตัว — ไม่มี limit:</p>
+                    <div className="space-y-2 text-xs text-[#94a3b8]">
+                      <p>✓ ถามกี่ครั้งก็ได้ ไม่มีโควต้า ไม่มี cap</p>
+                      <p>✓ ส่งไฟล์ใหญ่แค่ไหนก็ได้ (ตาม storage)</p>
+                      <p>✓ ไม่มี peak hour — เครื่องคุณ ใช้คนเดียว</p>
+                      <p>✓ ไม่ถูกสลับ model — ได้ model ที่เลือกเสมอ</p>
+                      <p className="text-[#00ff88] font-semibold mt-2">→ เหมือนจ้างพนักงานที่ทำงาน 24 ชม. ไม่ลาพัก ไม่ขึ้นเงินเดือน</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 5. Stability + Offline */}
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="rounded-xl bg-[#111827] border border-[#1e293b] p-5">
+                <span className="text-2xl block mb-3">🔄</span>
+                <h4 className="text-sm font-bold text-[#f0f4f8] mb-2">Model เปลี่ยนทุกเดือน ไม่มีใครบอก</h4>
+                <p className="text-xs text-[#94a3b8] leading-relaxed mb-3">
+                  OpenAI เปลี่ยน model เงียบๆ GPT-4 → GPT-4 Turbo → GPT-4o → GPT-4.1
+                  prompt ที่เคยใช้ดีมาก วันดีคืนดีตอบแย่ลง ตอบสั้นลง ตอบผิด
+                  คุณไม่รู้เลยว่าเปลี่ยนเมื่อไหร่ ไม่สามารถ pin version ได้
+                </p>
                 <div className="flex items-start gap-2 px-3 py-2 rounded-lg bg-[#00ff88]/5 border border-[#00ff88]/15">
                   <span className="text-[#00ff88] text-xs shrink-0">✓</span>
-                  <span className="text-xs text-[#00ff88]">{item.local}</span>
+                  <span className="text-xs text-[#00ff88]">AI ส่วนตัว: Qwen 32B วันนี้ = Qwen 32B อีก 5 ปี prompt เดิมทำงานเหมือนเดิมตลอด update เมื่อคุณพร้อม</span>
                 </div>
-              </motion.div>
-            ))}
+              </div>
+
+              <div className="rounded-xl bg-[#111827] border border-[#1e293b] p-5">
+                <span className="text-2xl block mb-3">📡</span>
+                <h4 className="text-sm font-bold text-[#f0f4f8] mb-2">เน็ตล่ม / Server ล่ม = หยุดงาน</h4>
+                <p className="text-xs text-[#94a3b8] leading-relaxed mb-3">
+                  OpenAI server ล่มเฉลี่ย 2-3 ครั้ง/เดือน แต่ละครั้ง 1-4 ชม.
+                  เน็ตบริษัทมีปัญหา ก็ใช้ไม่ได้
+                  ไปถ่ายนอกสถานที่ไม่มี WiFi ก็ใช้ไม่ได้
+                  โรงงาน/คลังสินค้าที่เน็ตไม่ถึง ก็ใช้ไม่ได้
+                </p>
+                <div className="flex items-start gap-2 px-3 py-2 rounded-lg bg-[#00ff88]/5 border border-[#00ff88]/15">
+                  <span className="text-[#00ff88] text-xs shrink-0">✓</span>
+                  <span className="text-xs text-[#00ff88]">AI ส่วนตัว: ทำงาน 100% แม้ไม่มี internet เลย เพราะทุกอย่างอยู่ในเครื่องของคุณ</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="mt-8 text-center">
-            <p className="text-sm text-[#64748b] mb-4">
-              ChatGPT ดีสำหรับใช้ส่วนตัว — แต่สำหรับธุรกิจที่มีข้อมูลสำคัญ AI ส่วนตัวคือคำตอบ
-            </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-[#00e5ff] to-[#00ff88] text-[#060a14] font-bold text-sm hover:opacity-90 transition-opacity"
-            >
-              ปรึกษาฟรี ว่าเหมาะกับธุรกิจคุณไหม
-            </a>
+          <div className="mt-10 text-center">
+            <div className="inline-block rounded-xl bg-[#111827] border border-[#1e293b] p-6 max-w-2xl">
+              <p className="text-base text-[#f0f4f8] font-semibold mb-2">
+                สรุป: ChatGPT ดีสำหรับใช้ส่วนตัว
+              </p>
+              <p className="text-sm text-[#94a3b8] mb-4">
+                แต่ถ้าธุรกิจคุณมี ข้อมูลลูกค้า สัญญา ข้อมูลการเงิน หรือใช้ AI ทั้งทีม
+                <br />
+                AI ส่วนตัวปลอดภัยกว่า ถูกกว่าในระยะยาว และไม่มี restriction
+              </p>
+              <a
+                href="/contact"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-[#00e5ff] to-[#00ff88] text-[#060a14] font-bold text-sm hover:opacity-90 transition-opacity"
+              >
+                ปรึกษาฟรี ว่าเหมาะกับธุรกิจคุณไหม
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>
