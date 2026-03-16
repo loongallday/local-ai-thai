@@ -169,16 +169,16 @@ const plans: Plan[] = [
     name: "Starter",
     price: "฿19,900",
     setupFee: "฿19,900 (ครั้งเดียว)",
-    monthly: "฿990 - ฿2,500/เดือน (ค่า VPS + API)",
+    monthly: "฿700 - ฿2,500/เดือน (ค่า hosting + API)",
     color: "#00e5ff",
     tools: ["n8n", "Flowise"],
     includes: [
-      "ติดตั้ง n8n + Flowise บน VPS",
+      "ติดตั้ง n8n + Flowise (VPS หรือ Managed)",
       "ตั้งค่า 3 workflow อัตโนมัติ",
       "เชื่อม Frontier Model 1 ตัว (GPT-5 / Claude Sonnet 4.6)",
       "RAG pipeline 1 ชุด (upload เอกสาร)",
       "Chatbot embed 1 ตัว",
-      "VPS setup + domain + SSL",
+      "Hosting setup + domain + SSL",
       "คู่มือการใช้งาน",
       "Support 30 วัน",
     ],
@@ -193,18 +193,18 @@ const plans: Plan[] = [
     name: "Professional",
     price: "฿39,900",
     setupFee: "฿39,900 (ครั้งเดียว)",
-    monthly: "฿1,500 - ฿5,000/เดือน (ค่า VPS + API)",
+    monthly: "฿1,200 - ฿5,000/เดือน (ค่า hosting + API)",
     color: "#00ff88",
     badge: "แนะนำ",
     tools: ["n8n", "OpenClaw", "Flowise", "Dify"],
     includes: [
-      "ติดตั้ง n8n + OpenClaw + Flowise + Dify",
+      "ติดตั้ง n8n + OpenClaw + Flowise + Dify (VPS/Managed)",
       "ตั้งค่า 10 workflow อัตโนมัติ",
       "เชื่อม Frontier Model ไม่จำกัด",
       "RAG pipeline ไม่จำกัดชุด",
       "Chatbot embed ไม่จำกัด",
       "OpenClaw ผ่าน LINE / WhatsApp / Telegram",
-      "VPS setup + domain + SSL + backup",
+      "Hosting setup + domain + SSL + backup",
       "Training ทีมงาน 2 ชม.",
       "Support 60 วัน",
     ],
@@ -218,7 +218,7 @@ const plans: Plan[] = [
     name: "Enterprise",
     price: "฿89,900",
     setupFee: "฿89,900 (ครั้งเดียว)",
-    monthly: "฿3,000 - ฿15,000/เดือน (ค่า VPS + API)",
+    monthly: "฿2,500 - ฿15,000/เดือน (ค่า hosting + API)",
     color: "#8b5cf6",
     tools: ["n8n", "OpenClaw", "Flowise", "Dify", "ActivePieces"],
     includes: [
@@ -294,24 +294,211 @@ function ToolCard({ tool }: { tool: Tool }) {
   );
 }
 
+/* ─── Animated Cloud Hero ─── */
+const orbitModels = [
+  { name: "GPT-5", color: "#10a37f", delay: 0 },
+  { name: "Claude 4.6", color: "#d4a574", delay: 1.5 },
+  { name: "Gemini 3.1", color: "#4285f4", delay: 3 },
+  { name: "DeepSeek", color: "#5b6abf", delay: 4.5 },
+  { name: "Grok 3", color: "#f59e0b", delay: 6 },
+  { name: "o3", color: "#10a37f", delay: 7.5 },
+];
+
+const orbitTools = [
+  { name: "n8n", emoji: "⚡", delay: 0.5 },
+  { name: "OpenClaw", emoji: "🦞", delay: 2 },
+  { name: "Flowise", emoji: "🌊", delay: 3.5 },
+  { name: "Dify", emoji: "🔮", delay: 5 },
+];
+
+function CloudHeroAnimation() {
+  return (
+    <div className="relative w-full max-w-md mx-auto aspect-square mb-8">
+      {/* Outer glow */}
+      <div className="absolute inset-0 rounded-full bg-[#00e5ff]/5 blur-3xl animate-pulse" />
+
+      {/* Orbit rings */}
+      {[0.85, 0.62, 0.4].map((scale, i) => (
+        <motion.div
+          key={i}
+          className="absolute inset-0 m-auto rounded-full border"
+          style={{
+            width: `${scale * 100}%`,
+            height: `${scale * 100}%`,
+            borderColor: i === 0 ? "#1e293b" : i === 1 ? "#00e5ff15" : "#8b5cf615",
+          }}
+          animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
+          transition={{ duration: 30 + i * 15, repeat: Infinity, ease: "linear" }}
+        />
+      ))}
+
+      {/* Center core */}
+      <div className="absolute inset-0 m-auto w-24 h-24 md:w-28 md:h-28">
+        <motion.div
+          className="w-full h-full rounded-2xl bg-gradient-to-br from-[#00e5ff]/20 to-[#8b5cf6]/20 backdrop-blur-sm border border-[#00e5ff]/30 flex items-center justify-center"
+          animate={{
+            boxShadow: [
+              "0 0 30px rgba(0,229,255,0.15)",
+              "0 0 60px rgba(0,229,255,0.25)",
+              "0 0 30px rgba(139,92,246,0.15)",
+            ],
+          }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <div className="text-center">
+            <span className="text-3xl block">☁️</span>
+            <span className="text-[8px] font-bold text-[#00e5ff] mt-1 block">CLOUD AI</span>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Orbiting model nodes */}
+      {orbitModels.map((model, i) => {
+        const angle = (i / orbitModels.length) * Math.PI * 2;
+        const radius = 42;
+        const x = 50 + radius * Math.cos(angle);
+        const y = 50 + radius * Math.sin(angle);
+        return (
+          <motion.div
+            key={model.name}
+            className="absolute"
+            style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: model.delay * 0.15, duration: 0.5, ease: "backOut" }}
+          >
+            <motion.div
+              className="px-2.5 py-1 rounded-lg text-[10px] font-bold whitespace-nowrap border backdrop-blur-sm"
+              style={{
+                color: model.color,
+                borderColor: model.color + "40",
+                background: model.color + "10",
+              }}
+              animate={{ y: [0, -4, 0] }}
+              transition={{ duration: 2 + i * 0.3, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
+            >
+              {model.name}
+            </motion.div>
+            {/* Connection line to center */}
+            <motion.div
+              className="absolute top-1/2 left-1/2 h-[1px] origin-left"
+              style={{
+                width: `${radius * 2.5}px`,
+                background: `linear-gradient(90deg, ${model.color}30, transparent)`,
+                transform: `rotate(${180 + (angle * 180) / Math.PI}deg)`,
+              }}
+              animate={{ opacity: [0.2, 0.6, 0.2] }}
+              transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+            />
+          </motion.div>
+        );
+      })}
+
+      {/* Orbiting tool nodes (inner ring) */}
+      {orbitTools.map((tool, i) => {
+        const angle = (i / orbitTools.length) * Math.PI * 2 + Math.PI / 4;
+        const radius = 26;
+        const x = 50 + radius * Math.cos(angle);
+        const y = 50 + radius * Math.sin(angle);
+        return (
+          <motion.div
+            key={tool.name}
+            className="absolute"
+            style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: tool.delay * 0.15 + 0.3, duration: 0.5, ease: "backOut" }}
+          >
+            <motion.div
+              className="w-10 h-10 rounded-xl bg-[#111827] border border-[#1e293b] flex items-center justify-center"
+              animate={{ y: [0, -3, 0], rotate: [0, 5, -5, 0] }}
+              transition={{ duration: 3 + i * 0.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 }}
+            >
+              <span className="text-lg">{tool.emoji}</span>
+            </motion.div>
+            <p className="text-[8px] text-[#64748b] text-center mt-1 font-bold">{tool.name}</p>
+          </motion.div>
+        );
+      })}
+
+      {/* Floating particles */}
+      {Array.from({ length: 12 }).map((_, i) => (
+        <motion.div
+          key={`p${i}`}
+          className="absolute w-1 h-1 rounded-full"
+          style={{
+            left: `${15 + Math.random() * 70}%`,
+            top: `${15 + Math.random() * 70}%`,
+            background: ["#00e5ff", "#8b5cf6", "#00ff88", "#f59e0b"][i % 4],
+          }}
+          animate={{
+            opacity: [0, 0.8, 0],
+            y: [0, -20 - Math.random() * 30],
+            x: [0, (Math.random() - 0.5) * 20],
+          }}
+          transition={{
+            duration: 2 + Math.random() * 2,
+            repeat: Infinity,
+            delay: Math.random() * 3,
+            ease: "easeOut",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ─── Animated data stream for section dividers ─── */
+function DataStream({ color = "#00e5ff" }: { color?: string }) {
+  return (
+    <div className="flex justify-center gap-1 py-8 overflow-hidden">
+      {Array.from({ length: 20 }).map((_, i) => (
+        <motion.div
+          key={i}
+          className="w-1 rounded-full"
+          style={{ background: color }}
+          animate={{
+            height: [4, 12 + Math.random() * 20, 4],
+            opacity: [0.2, 0.8, 0.2],
+          }}
+          transition={{
+            duration: 0.8 + Math.random() * 0.6,
+            repeat: Infinity,
+            delay: i * 0.08,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 /* ─── Main Component ─── */
 export default function CloudSection() {
   return (
     <section className="relative">
       {/* Hero */}
       <div className="max-w-5xl mx-auto px-6 mb-16">
-        <div className="text-center mb-12">
-          <span className="text-4xl mb-4 block">☁️</span>
-          <h1 className="text-3xl md:text-5xl font-black text-[#f0f4f8] mb-4">
-            Cloud AI Setup
-          </h1>
-          <p className="text-lg text-[#94a3b8] max-w-2xl mx-auto mb-3">
-            ไม่ต้องซื้อ Hardware — ติดตั้ง AI Automation บน VPS ใช้ Frontier Model ฉลาดที่สุดในโลก
-          </p>
-          <p className="text-sm text-[#64748b]">
-            Setup fee ครั้งเดียว + ค่า VPS & API รายเดือนเล็กน้อย
-          </p>
+        <div className="text-center mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#f0f4f8] mb-4">
+              <span className="gradient-text-cyan">Cloud</span> AI Setup
+            </h1>
+            <p className="text-lg text-[#94a3b8] max-w-2xl mx-auto mb-3">
+              ไม่ต้องซื้อ Hardware — ติดตั้ง AI Automation บน Cloud ใช้ Frontier Model ฉลาดที่สุดในโลก
+            </p>
+            <p className="text-sm text-[#64748b]">
+              Setup fee ครั้งเดียว + ค่า hosting & API รายเดือนเล็กน้อย — มี VPS หรือไม่มีก็ได้
+            </p>
+          </motion.div>
         </div>
+
+        {/* Animated visualization */}
+        <CloudHeroAnimation />
 
         {/* Why Cloud */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
@@ -362,6 +549,104 @@ export default function CloudSection() {
         </GlowCard>
       </div>
 
+      <DataStream color="#00e5ff" />
+
+      {/* Hosting Options: VPS vs No VPS */}
+      <div className="py-16">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <span className="text-3xl mb-3 block">🏗️</span>
+            <h2 className="text-2xl md:text-4xl font-black text-[#f0f4f8] mb-3">เลือกรูปแบบ Hosting</h2>
+            <p className="text-sm text-[#94a3b8]">มี VPS หรือไม่มีก็ใช้ได้ — VPS ให้ control มากกว่า</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* With VPS */}
+            <GlowCard color="#00ff88">
+              <div className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#00ff88]/10 flex items-center justify-center text-2xl">🖥️</div>
+                  <div>
+                    <h3 className="text-lg font-bold text-[#f0f4f8]">มี VPS (แนะนำ)</h3>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#00ff88]/15 text-[#00ff88]">Fine-grained Control</span>
+                  </div>
+                </div>
+                <p className="text-xs text-[#94a3b8] mb-4">Self-host ทุก tool บน VPS ของคุณเอง — ควบคุมได้ทุกอย่าง ตั้งแต่ server location, firewall, backup, scaling</p>
+                <div className="space-y-2 mb-4">
+                  {[
+                    "ควบคุม server 100% (root access)",
+                    "เลือก data center region (SG, JP, US, EU)",
+                    "Custom domain + SSL certificate",
+                    "Scale CPU/RAM ได้ทันที",
+                    "Full backup + snapshot",
+                    "ติดตั้ง tools เพิ่มได้ไม่จำกัด",
+                    "Firewall + security rules ตามต้องการ",
+                    "ไม่ถูกจำกัดด้วย platform ใด",
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-2 text-xs text-[#94a3b8]">
+                      <Check size={12} className="mt-0.5 shrink-0 text-[#00ff88]" />{item}
+                    </div>
+                  ))}
+                </div>
+                <div className="rounded-lg p-3 bg-[#111827] border border-[#1e293b]">
+                  <p className="text-[10px] text-[#64748b] mb-1">VPS Providers แนะนำ:</p>
+                  <p className="text-xs text-[#f0f4f8]">DigitalOcean • Vultr • Hetzner • Linode • AWS Lightsail</p>
+                  <p className="text-[10px] text-[#94a3b8] mt-1">เริ่มต้น ~฿500/เดือน (2 vCPU, 4GB RAM)</p>
+                </div>
+              </div>
+            </GlowCard>
+
+            {/* Without VPS */}
+            <GlowCard color="#00e5ff">
+              <div className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#00e5ff]/10 flex items-center justify-center text-2xl">☁️</div>
+                  <div>
+                    <h3 className="text-lg font-bold text-[#f0f4f8]">ไม่มี VPS (Managed)</h3>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#00e5ff]/15 text-[#00e5ff]">Zero Maintenance</span>
+                  </div>
+                </div>
+                <p className="text-xs text-[#94a3b8] mb-4">ใช้ Cloud platform ที่มี hosting ในตัว — ไม่ต้องดูแล server เอง เหมาะกับคนที่ไม่อยากยุ่งกับ infrastructure</p>
+                <div className="space-y-2 mb-4">
+                  {[
+                    "ไม่ต้องดูแล server เอง",
+                    "เริ่มใช้ได้เร็วกว่า (setup ง่าย)",
+                    "Auto-update + auto-scaling",
+                    "ไม่ต้องกังวลเรื่อง security patches",
+                    "เหมาะสำหรับทีมเล็ก 1-5 คน",
+                    "ย้ายไป VPS ทีหลังได้",
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-2 text-xs text-[#94a3b8]">
+                      <Check size={12} className="mt-0.5 shrink-0 text-[#00e5ff]" />{item}
+                    </div>
+                  ))}
+                  {[
+                    "Customization จำกัดกว่า VPS",
+                    "อาจมีค่า platform fee เพิ่ม",
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-2 text-xs text-[#475569]">
+                      <X size={12} className="mt-0.5 shrink-0" />{item}
+                    </div>
+                  ))}
+                </div>
+                <div className="rounded-lg p-3 bg-[#111827] border border-[#1e293b]">
+                  <p className="text-[10px] text-[#64748b] mb-1">Managed Platforms:</p>
+                  <p className="text-xs text-[#f0f4f8]">n8n Cloud • Flowise Cloud • Dify Cloud • Railway • Render</p>
+                  <p className="text-[10px] text-[#94a3b8] mt-1">เริ่มต้น ~฿700/เดือน (ขึ้นกับ platform)</p>
+                </div>
+              </div>
+            </GlowCard>
+          </div>
+
+          {/* Recommendation */}
+          <div className="mt-6 rounded-xl p-4 bg-[#111827] border border-[#1e293b] text-center">
+            <p className="text-xs text-[#94a3b8]">
+              <span className="text-[#00ff88] font-bold">💡 คำแนะนำ:</span> ถ้าต้องการ <span className="text-[#f0f4f8] font-medium">control เต็มที่ + ราคาถูกกว่าระยะยาว</span> เลือก VPS — ถ้าต้องการ <span className="text-[#f0f4f8] font-medium">ความสะดวกสูงสุด + ไม่อยากดูแล server</span> เลือก Managed
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Tools */}
       <div className="py-16">
         <div className="max-w-5xl mx-auto px-6">
@@ -380,6 +665,8 @@ export default function CloudSection() {
           </div>
         </div>
       </div>
+
+      <DataStream color="#8b5cf6" />
 
       {/* Automation Examples */}
       <div className="py-16">
@@ -406,13 +693,15 @@ export default function CloudSection() {
         </div>
       </div>
 
+      <DataStream color="#00ff88" />
+
       {/* Pricing Plans */}
       <div className="py-16">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-10">
             <span className="text-3xl mb-3 block">💰</span>
             <h2 className="text-2xl md:text-4xl font-black text-[#f0f4f8] mb-3">แพ็คเกจ Cloud AI Setup</h2>
-            <p className="text-sm text-[#94a3b8]">Setup fee ครั้งเดียว — ค่า VPS & API จ่ายรายเดือนตามใช้จริง</p>
+            <p className="text-sm text-[#94a3b8]">Setup fee ครั้งเดียว — ค่า hosting & API จ่ายรายเดือนตามใช้จริง</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
