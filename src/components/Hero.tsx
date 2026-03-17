@@ -16,7 +16,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-2xl sm:text-6xl lg:text-8xl font-bold leading-tight mb-6 mt-16 sm:mt-0">
+          <h1 className="text-3xl sm:text-6xl lg:text-8xl font-bold leading-tight mb-6 mt-16 sm:mt-0">
             <span className="text-[#f0f4f8]">ติดตั้ง AI ส่วนตัว</span>
             <br />
             <span className="gradient-text-cyan">สำหรับธุรกิจในประเทศไทย</span>
@@ -30,13 +30,13 @@ export default function Hero() {
           <p className="text-base lg:text-lg text-[#64748b] max-w-xl mx-auto mb-4">
             บริการติดตั้ง AI ครบวงจร ตั้งแต่เลือกเครื่อง ติดตั้งระบบ จนพร้อมใช้งาน เริ่มต้น ฿59,900
           </p>
-          <div className="max-w-lg mx-auto mb-12 py-4 border-t border-b border-[#1e293b]/50">
-            <p className="text-sm sm:text-base text-[#94a3b8] font-medium italic text-center leading-relaxed">
+          <div className="max-w-lg mx-auto mb-12 py-4 border-t border-b border-[#1e293b]/60">
+            <p className="text-sm sm:text-base text-[#c8d5e3] font-medium italic text-center leading-relaxed">
               "ไม่มี solution สำเร็จรูปที่เหมาะกับทุกคน
               <br className="hidden sm:block" />
               มีแต่ระบบที่สร้างขึ้นให้พอดีกับธุรกิจคุณ"
             </p>
-            <p className="text-[10px] text-[#64748b] text-center mt-2 tracking-[0.2em] uppercase">Our Philosophy</p>
+            <p className="text-[10px] text-[#7a8ba0] text-center mt-2 tracking-[0.2em] uppercase">Our Philosophy</p>
           </div>
 
           {/* Value props as simple cards */}
@@ -97,7 +97,7 @@ export default function Hero() {
             </a>
             <a
               href="#contact"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-lg border border-[#00e5ff]/30 text-[#00e5ff] font-semibold text-base hover:bg-[#00e5ff]/10 transition-all text-center"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-lg border-2 border-[#00e5ff]/50 text-[#00e5ff] font-bold text-base hover:bg-[#00e5ff]/10 transition-all text-center shadow-[0_0_20px_rgba(0,229,255,0.15)]"
             >
               Request a Demo
             </a>

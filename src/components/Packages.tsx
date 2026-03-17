@@ -244,14 +244,20 @@ function TierCard({ tier, index }: { tier: Tier; index: number }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="relative rounded-2xl bg-[#111827] border border-[#1e293b] p-4 sm:p-6 hover:border-opacity-60 transition-all duration-300 hover:-translate-y-1 flex flex-col"
+      className={`relative rounded-2xl bg-[#111827] p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1 flex flex-col ${tier.badge ? "border-2" : "border border-[#1e293b]"}`}
+      style={tier.badge ? { borderColor: tier.accent + "50", boxShadow: `0 0 30px ${tier.accent}18` } : {}}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.borderColor = tier.accent + "60";
-        (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 40px ${tier.accent}15`;
+        (e.currentTarget as HTMLElement).style.borderColor = tier.accent + "70";
+        (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 40px ${tier.accent}20`;
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLElement).style.borderColor = "#1e293b";
-        (e.currentTarget as HTMLElement).style.boxShadow = "none";
+        if (tier.badge) {
+          (e.currentTarget as HTMLElement).style.borderColor = tier.accent + "50";
+          (e.currentTarget as HTMLElement).style.boxShadow = `0 0 30px ${tier.accent}18`;
+        } else {
+          (e.currentTarget as HTMLElement).style.borderColor = "#1e293b";
+          (e.currentTarget as HTMLElement).style.boxShadow = "none";
+        }
       }}
     >
       {tier.badge && (
@@ -285,7 +291,7 @@ function TierCard({ tier, index }: { tier: Tier; index: number }) {
       {/* Price */}
       <div className="border-t border-[#1e293b] pt-4 mb-5">
         <p className="text-xs text-[#64748b] mb-1">ราคารวมติดตั้ง</p>
-        <div className="text-xl sm:text-lg font-bold" style={{ color: tier.accent }}>
+        <div className="text-2xl sm:text-xl font-bold" style={{ color: tier.accent }}>
           {tier.price}
         </div>
       </div>
@@ -400,7 +406,7 @@ export default function Packages() {
 
             {/* Tier cards */}
             <div
-              className={`grid grid-cols-1 gap-4 sm:gap-6 ${
+              className={`grid grid-cols-1 gap-5 sm:gap-6 ${
                 current.tiers.length === 3
                   ? "sm:grid-cols-2 md:grid-cols-3"
                   : "sm:grid-cols-2 lg:grid-cols-4"

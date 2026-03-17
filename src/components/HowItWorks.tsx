@@ -78,7 +78,7 @@ export default function HowItWorks() {
         </div>
 
         {/* 3-step diagram */}
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8">
           {steps.map((step, i) => (
             <motion.div
               key={step.num}
@@ -310,6 +310,7 @@ export default function HowItWorks() {
                     <p className="text-sm text-[#94a3b8]">คิดเป็นทีม คิดเป็นปี แพงกว่าที่คิดมาก</p>
                   </div>
                 </div>
+                <div className="relative">
                 <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
                   <table className="w-full text-xs min-w-[500px]">
                     <thead>
@@ -353,6 +354,9 @@ export default function HowItWorks() {
                       </tr>
                     </tbody>
                   </table>
+                </div>
+                  <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#111827] to-transparent pointer-events-none sm:hidden" />
+                  <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#111827] to-transparent pointer-events-none sm:hidden" />
                 </div>
                 <p className="text-[10px] text-[#64748b] mt-3">
                   * ถ้าใช้คนเดียว ChatGPT ถูกกว่า — แต่ AI ส่วนตัวได้ข้อดีอื่นทั้งหมด (ไม่มี censorship, ไม่ส่งข้อมูลออก, ไม่มี limit)

@@ -104,7 +104,7 @@ function DesktopDropdown({
               backdropFilter: "blur(60px) saturate(180%)",
               WebkitBackdropFilter: "blur(60px) saturate(180%)",
               boxShadow:
-                "0 16px 48px rgba(0,0,0,0.5), 0 0 0 0.5px rgba(30,41,59,0.6), inset 0 0.5px 0 rgba(255,255,255,0.04)",
+                "0 16px 48px rgba(0,0,0,0.6), 0 0 0 0.5px rgba(30,41,59,0.8), 0 0 30px rgba(0,229,255,0.08), inset 0 0.5px 0 rgba(255,255,255,0.06)",
             }}
           >
             {group.children.map((child) => {
@@ -349,10 +349,10 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="lg:hidden overflow-hidden"
+            className="lg:hidden overflow-hidden overscroll-contain"
           >
             <div
-              className="border-b border-[#1e293b] px-6 pb-6 max-h-[calc(100dvh-4rem)] overflow-y-auto"
+              className="border-b border-[#1e293b] px-6 pb-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain"
               style={{
                 background: "rgba(12,18,32,0.97)",
                 backdropFilter: "blur(60px) saturate(180%)",

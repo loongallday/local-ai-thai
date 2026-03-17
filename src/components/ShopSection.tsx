@@ -330,7 +330,7 @@ function ProductCard({ product, catColor }: { product: Product; catColor: string
 
   return (
     <GlowCard color={product.badgeColor || catColor}>
-      <div className="p-4 sm:p-5">
+      <div className="p-4 sm:p-5 md:p-6">
         <button onClick={() => setOpen(!open)} className="w-full text-left">
           <div className="flex items-start justify-between gap-3">
             <div className="flex-1 min-w-0">
@@ -419,20 +419,23 @@ export default function ShopSection() {
         </div>
 
         {/* Category nav */}
-        <div className="flex gap-2 overflow-x-auto pb-2 -mx-6 px-6 sm:mx-0 sm:px-0 sm:justify-center sm:flex-wrap sm:overflow-x-visible sm:pb-0 scrollbar-hide">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shrink-0 ${
-                activeCategory === cat.id ? "text-[#060a14] shadow-lg" : "text-[#94a3b8] bg-[#111827] border border-[#1e293b]"
-              }`}
-              style={activeCategory === cat.id ? { background: cat.color, boxShadow: `0 4px 20px ${cat.color}30` } : {}}
-            >
-              <span>{cat.emoji}</span>
-              <span className="hidden sm:inline">{cat.title.split("(")[0].trim()}</span>
-            </button>
-          ))}
+        <div className="relative">
+          <div className="flex gap-2 overflow-x-auto pb-3 -mx-6 px-6 pr-12 sm:mx-0 sm:px-0 sm:pr-0 sm:justify-center sm:flex-wrap sm:overflow-x-visible sm:pb-0 scrollbar-hide snap-x snap-mandatory">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shrink-0 snap-start ${
+                  activeCategory === cat.id ? "text-[#060a14] shadow-lg" : "text-[#94a3b8] bg-[#111827] border border-[#1e293b]"
+                }`}
+                style={activeCategory === cat.id ? { background: cat.color, boxShadow: `0 4px 20px ${cat.color}30` } : {}}
+              >
+                <span>{cat.emoji}</span>
+                <span className="hidden sm:inline">{cat.title.split("(")[0].trim()}</span>
+              </button>
+            ))}
+          </div>
+          <div className="absolute right-0 top-0 bottom-3 w-10 bg-gradient-to-l from-[#060a14] to-transparent pointer-events-none sm:hidden" />
         </div>
       </div>
 
@@ -446,7 +449,7 @@ export default function ShopSection() {
             <p className="text-xs text-[#94a3b8] mt-1">{current.subtitle}</p>
           </div>
 
-          <div className="space-y-3 sm:space-y-3">
+          <div className="space-y-3 sm:space-y-4">
             {current.products.map((product, i) => (
               <motion.div key={product.name} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.03 }}>
                 <ProductCard product={product} catColor={current.color} />

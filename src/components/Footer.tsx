@@ -5,45 +5,45 @@ export default function Footer() {
   return (
     <footer className="py-12 border-t border-[#1e293b] bg-[#060a14]">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-10">
           {/* Solutions */}
           <div>
             <p className="text-[12px] font-semibold text-[#f0f4f8] uppercase tracking-wider mb-3">Solutions</p>
-            <div className="space-y-1 text-[13px] text-[#94a3b8]">
-              <a href="/packages" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">แพ็คเกจ & ราคา</a>
-              <a href="/personal" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">AI ส่วนตัว</a>
-              <a href="/creator" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">สำหรับ Creator</a>
+            <div className="space-y-0.5 text-[13px] text-[#94a3b8]">
+              <a href="/packages" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">แพ็คเกจ & ราคา</a>
+              <a href="/personal" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">AI ส่วนตัว</a>
+              <a href="/creator" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">สำหรับ Creator</a>
             </div>
           </div>
 
           {/* Hardware */}
           <div>
             <p className="text-[12px] font-semibold text-[#f0f4f8] uppercase tracking-wider mb-3">Hardware</p>
-            <div className="space-y-1 text-[13px] text-[#94a3b8]">
-              <a href="/hardware" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">อุปกรณ์ AI</a>
-              <a href="/shop" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">ร้านค้า</a>
-              <a href="/tech-stack" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">Tech Stack</a>
+            <div className="space-y-0.5 text-[13px] text-[#94a3b8]">
+              <a href="/hardware" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">อุปกรณ์ AI</a>
+              <a href="/shop" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">ร้านค้า</a>
+              <a href="/tech-stack" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">Tech Stack</a>
             </div>
           </div>
 
           {/* บริการ */}
           <div>
             <p className="text-[12px] font-semibold text-[#f0f4f8] uppercase tracking-wider mb-3">บริการ</p>
-            <div className="space-y-1 text-[13px] text-[#94a3b8]">
-              <a href="/services" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">บริการทั้งหมด</a>
-              <a href="https://www.cloudaithai.com" target="_blank" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">Cloud AI →</a>
-              <a href="/support" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">ดูแลระบบ</a>
-              <a href="/how-it-works" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">วิธีทำงาน</a>
+            <div className="space-y-0.5 text-[13px] text-[#94a3b8]">
+              <a href="/services" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">บริการทั้งหมด</a>
+              <a href="https://www.cloudaithai.com" target="_blank" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">Cloud AI →</a>
+              <a href="/support" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">ดูแลระบบ</a>
+              <a href="/how-it-works" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">วิธีทำงาน</a>
             </div>
           </div>
 
           {/* ติดต่อ */}
           <div>
             <p className="text-[12px] font-semibold text-[#f0f4f8] uppercase tracking-wider mb-3">ติดต่อ</p>
-            <div className="space-y-1 text-[13px] text-[#94a3b8]">
-              <a href="tel:0827047606" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">082-704-7606</a>
-              <a href="mailto:chavin@pace-design.co.th" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">chavin@pace-design.co.th</a>
-              <a href="https://line.me/R/ti/p/@542mgysj" className="block hover:text-[#00e5ff] transition-colors py-1.5 sm:py-0.5">LINE @542mgysj</a>
+            <div className="space-y-0.5 text-[13px] text-[#94a3b8]">
+              <a href="tel:0827047606" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">082-704-7606</a>
+              <a href="mailto:chavin@pace-design.co.th" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">chavin@pace-design.co.th</a>
+              <a href="https://line.me/R/ti/p/@542mgysj" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">LINE @542mgysj</a>
             </div>
           </div>
         </div>

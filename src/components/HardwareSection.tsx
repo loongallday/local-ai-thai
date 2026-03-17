@@ -410,12 +410,12 @@ function MobileHardwareComparison() {
   return (
     <div className="md:hidden">
       {/* Picker */}
-      <div className="flex gap-2 overflow-x-auto pb-3 mb-4 -mx-2 px-2 snap-x snap-mandatory scroll-smooth scrollbar-hide">
+      <div className="flex gap-2 overflow-x-auto pb-3 mb-4 -mx-2 px-2 pr-8 snap-x snap-mandatory scroll-smooth scrollbar-hide relative">
         {mobileHardwareCards.map((card) => (
           <button
             key={card.key}
             onClick={() => setActive(card.key)}
-            className="shrink-0 flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all snap-start"
+            className="shrink-0 flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all snap-start min-w-[60px]"
             style={{
               borderWidth: 2,
               borderStyle: "solid",
@@ -482,20 +482,23 @@ export default function HardwareSection() {
         </div>
 
         {/* Category nav */}
-        <div className="flex gap-2 overflow-x-auto pb-2 mb-8 -mx-6 px-6 sm:mx-0 sm:px-0 sm:justify-center sm:flex-wrap sm:overflow-x-visible sm:pb-0 scrollbar-hide">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => { setActiveCategory(cat.id); setExpandedItem(null); }}
-              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shrink-0 ${
-                activeCategory === cat.id ? "text-[#060a14] shadow-lg" : "text-[#94a3b8] bg-[#111827] border border-[#1e293b]"
-              }`}
-              style={activeCategory === cat.id ? { background: cat.color, boxShadow: `0 4px 20px ${cat.color}30` } : {}}
-            >
-              <span>{cat.emoji}</span>
-              <span className="hidden sm:inline">{cat.title.split("/")[0].split("(")[0].trim()}</span>
-            </button>
-          ))}
+        <div className="relative">
+          <div className="flex gap-2 overflow-x-auto pb-3 mb-8 -mx-6 px-6 pr-12 sm:mx-0 sm:px-0 sm:pr-0 sm:justify-center sm:flex-wrap sm:overflow-x-visible sm:pb-0 scrollbar-hide snap-x snap-mandatory">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => { setActiveCategory(cat.id); setExpandedItem(null); }}
+                className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shrink-0 snap-start ${
+                  activeCategory === cat.id ? "text-[#060a14] shadow-lg" : "text-[#94a3b8] bg-[#111827] border border-[#1e293b]"
+                }`}
+                style={activeCategory === cat.id ? { background: cat.color, boxShadow: `0 4px 20px ${cat.color}30` } : {}}
+              >
+                <span>{cat.emoji}</span>
+                <span className="hidden sm:inline">{cat.title.split("/")[0].split("(")[0].trim()}</span>
+              </button>
+            ))}
+          </div>
+          <div className="absolute right-0 top-0 bottom-3 w-10 bg-gradient-to-l from-[#060a14] to-transparent pointer-events-none sm:hidden" />
         </div>
       </div>
 
@@ -559,8 +562,8 @@ export default function HardwareSection() {
                             {item.models && (
                               <div>
                                 <h4 className="text-xs font-bold text-[#f0f4f8] mb-2">รุ่นย่อย & AI Performance</h4>
-                                <div className="overflow-x-auto">
-                                  <table className="w-full text-xs">
+                                <div className="overflow-x-auto -mx-2 px-2">
+                                  <table className="w-full text-xs min-w-[500px]">
                                     <thead>
                                       <tr className="border-b border-[#1e293b]">
                                         <th className="text-left py-2 px-3 text-[#64748b]">รุ่น</th>

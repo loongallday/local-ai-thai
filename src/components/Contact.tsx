@@ -152,7 +152,7 @@ export default function Contact() {
                   name="name"
                   required
                   placeholder="เช่น สมชาย / บริษัท ABC จำกัด"
-                  className="w-full px-4 py-2.5 rounded-lg bg-[#0c1220] border border-[#1e293b] text-[#f0f4f8] text-sm placeholder:text-[#64748b] focus:outline-none focus:border-[#00e5ff] transition-colors"
+                  className="w-full px-4 py-2.5 rounded-lg bg-[#0c1220] border border-[#2a3a4e] text-[#f0f4f8] text-sm placeholder:text-[#64748b] focus:outline-none focus:border-[#00e5ff] focus:ring-1 focus:ring-[#00e5ff]/30 transition-colors"
                 />
               </div>
               <div>
@@ -164,14 +164,14 @@ export default function Contact() {
                   name="phone"
                   required
                   placeholder="082-704-7606 หรือ LINE ID"
-                  className="w-full px-4 py-2.5 rounded-lg bg-[#0c1220] border border-[#1e293b] text-[#f0f4f8] text-sm placeholder:text-[#64748b] focus:outline-none focus:border-[#00e5ff] transition-colors"
+                  className="w-full px-4 py-2.5 rounded-lg bg-[#0c1220] border border-[#2a3a4e] text-[#f0f4f8] text-sm placeholder:text-[#64748b] focus:outline-none focus:border-[#00e5ff] focus:ring-1 focus:ring-[#00e5ff]/30 transition-colors"
                 />
               </div>
               <div>
                 <label className="text-xs text-[#94a3b8] mb-1 block">
                   สนใจเรื่องอะไร
                 </label>
-                <select name="interest" required className="w-full px-4 py-2.5 rounded-lg bg-[#0c1220] border border-[#1e293b] text-[#f0f4f8] text-sm focus:outline-none focus:border-[#00e5ff] transition-colors">
+                <select name="interest" required className="w-full px-4 py-2.5 rounded-lg bg-[#0c1220] border border-[#2a3a4e] text-[#f0f4f8] text-sm focus:outline-none focus:border-[#00e5ff] focus:ring-1 focus:ring-[#00e5ff]/30 transition-colors">
                   <option value="">เลือกหัวข้อ</option>
                   <option>AI สำหรับออฟฟิศ / ทีมเล็ก</option>
                   <option>AI สำหรับ Startup / Developer</option>

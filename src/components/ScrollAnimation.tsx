@@ -117,7 +117,7 @@ export default function ScrollAnimation() {
   }, [drawFrame]);
 
   return (
-    <section ref={sectionRef} className="relative" style={{ height: isMobile ? "300vh" : "400vh" }}>
+    <section ref={sectionRef} className="relative" style={{ height: isMobile ? "250vh" : "400vh" }}>
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden bg-[#030810]">
         {/* Progress bar */}
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#1e293b] z-20">
@@ -142,8 +142,8 @@ export default function ScrollAnimation() {
         {!loaded && (
           <div className="absolute inset-0 flex items-center justify-center bg-[#060a14] z-30">
             <div className="text-center">
-              <div className="w-8 h-8 border-2 border-[#00e5ff] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-              <p className="text-sm text-[#64748b]">กำลังโหลด...</p>
+              <div className="w-10 h-10 border-2 border-[#00e5ff] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+              <p className="text-sm text-[#94a3b8]">กำลังโหลด...</p>
             </div>
           </div>
         )}
