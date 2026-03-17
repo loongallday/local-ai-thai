@@ -95,6 +95,12 @@ export default function Hero() {
             >
               ปรึกษาฟรี ไม่มีค่าใช้จ่าย
             </a>
+            <a
+              href="#contact"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-lg border border-[#00e5ff]/30 text-[#00e5ff] font-semibold text-base hover:bg-[#00e5ff]/10 transition-all text-center"
+            >
+              Request a Demo
+            </a>
           </div>
         </motion.div>
       </div>
