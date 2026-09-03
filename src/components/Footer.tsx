@@ -10,9 +10,7 @@ export default function Footer() {
           <div>
             <p className="text-[12px] font-semibold text-[#f0f4f8] uppercase tracking-wider mb-3">Solutions</p>
             <div className="space-y-0.5 text-[13px] text-[#94a3b8]">
-              <a href="/packages" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">แพ็คเกจ & ราคา</a>
-              <a href="/personal" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">AI ส่วนตัว</a>
-              <a href="/creator" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">สำหรับ Creator</a>
+              <a href="/packages" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">ขนาดระบบและราคา</a>
             </div>
           </div>
 
@@ -55,7 +53,7 @@ export default function Footer() {
             <span className="text-[13px] font-semibold text-[#f0f4f8]">LocalAI Thailand</span>
           </div>
           <p className="text-[11px] text-[#64748b]">
-            &copy; 2026 LocalAI Thailand — บริการติดตั้ง AI ส่วนตัวสำหรับธุรกิจ
+            &copy; 2026 LocalAI Thailand, บริการติดตั้ง AI ส่วนตัวสำหรับธุรกิจ
             {" | "}
             <CrossSiteLink href="https://www.cloudaithai.com" className="hover:text-[#00e5ff] transition-colors">
               CloudAI Thailand
@@ -66,10 +64,10 @@ export default function Footer() {
         {/* SEO footer text */}
         <div className="mt-8 pt-6 border-t border-[#1e293b]/50 text-center">
           <p className="text-[10px] text-[#64748b]/60 max-w-4xl mx-auto leading-relaxed">
-            Local AI Thailand (LocalAI Thailand / โลคอล เอไอ ไทยแลนด์) — บริการติดตั้งระบบ AI ส่วนตัว (Private AI / Local AI Thai) สำหรับธุรกิจในประเทศไทย
+            Local AI Thailand (LocalAI Thailand / โลคอล เอไอ ไทยแลนด์), บริการติดตั้งระบบ AI ส่วนตัว (Private AI / Local AI Thai) สำหรับธุรกิจในประเทศไทย
             ทำงานบนเครื่องของคุณ 100% ไม่ส่งข้อมูลขึ้นคลาวด์ สอดคล้องกับ PDPA
-            รองรับภาษาไทย จ่ายครั้งเดียวไม่มีค่ารายเดือน
-            เหมาะสำหรับ SME, คลินิก, สำนักงานกฎหมาย, โรงพยาบาล, ธนาคาร, หน่วยงานรัฐ, Creator, Influencer
+            รองรับภาษาไทย ไม่มีค่า token หรือค่าใช้งานรายเดือนสำหรับ AI
+            เหมาะสำหรับ SME, คลินิก, สำนักงานกฎหมาย, โรงพยาบาล, ธนาคาร และหน่วยงานรัฐ
             พร้อมบริการ UPS สำรองไฟ, ตู้ Rack, NAS เก็บข้อมูล ครบวงจร
             ตัวแทนจำหน่าย Ingram Micro, TD Synnex, SIS, Eaton, Schneider Electric
           </p>

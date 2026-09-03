@@ -14,7 +14,7 @@ const steps = [
   {
     num: "01",
     title: "นำเอกสาร & ข้อมูลของคุณเข้าระบบ",
-    desc: "ไม่ว่าจะเป็นไฟล์ Word, PDF, Excel, อีเมล หรือข้อมูลลูกค้า — เราใส่เข้าระบบ AI ให้คุณ เหมือนสอนพนักงานใหม่ให้รู้จักบริษัท",
+    desc: "ไม่ว่าจะเป็นไฟล์ Word, PDF, Excel, อีเมล หรือข้อมูลลูกค้า, เราใส่เข้าระบบ AI ให้คุณ เหมือนสอนพนักงานใหม่ให้รู้จักบริษัท",
     icon: FileText,
     color: "#00e5ff",
   },
@@ -27,8 +27,8 @@ const steps = [
   },
   {
     num: "03",
-    title: "ถาม พิมพ์ สั่ง — ได้คำตอบทันที",
-    desc: "ถาม AI เป็นภาษาไทยได้เลย เช่น \"สรุปยอดขายเดือนนี้\" หรือ \"ร่างอีเมลตอบลูกค้า\" — ได้คำตอบใน 2-3 วินาที",
+    title: "ถาม พิมพ์ สั่ง, ได้คำตอบทันที",
+    desc: "ถาม AI เป็นภาษาไทยได้เลย เช่น \"สรุปยอดขายเดือนนี้\" หรือ \"ร่างอีเมลตอบลูกค้า\", ได้คำตอบใน 2-3 วินาที",
     icon: MessageSquareText,
     color: "#8b5cf6",
   },
@@ -56,7 +56,7 @@ const useCases = [
   {
     icon: Image,
     title: "สร้างรูปภาพ & คอนเทนต์",
-    desc: "สำหรับ Creator — สร้างภาพ Thumbnail, แก้ไขรูป, เขียนสคริปต์ โดยไม่ต้องจ่าย Subscription",
+    desc: "สร้างภาพและทำงานกับเอกสารผ่านแอป Mimir ตามสิทธิ์ใช้งาน",
     example: "\"สร้าง Thumbnail สำหรับวิดีโอรีวิวมือถือ\"",
   },
 ];
@@ -71,7 +71,7 @@ export default function HowItWorks() {
             ระบบ AI ส่วนตัวทำงานยังไง?
           </h2>
           <p className="text-[#94a3b8] max-w-2xl mx-auto text-base lg:text-lg leading-relaxed">
-            ง่ายมาก — เหมือนมีพนักงานที่รู้ข้อมูลทุกอย่างในบริษัท
+            ง่ายมาก, เหมือนมีพนักงานที่รู้ข้อมูลทุกอย่างในบริษัท
             <br />
             แต่ทำงานเร็วกว่า และพร้อมตอบ 24 ชั่วโมง
           </p>
@@ -200,13 +200,13 @@ export default function HowItWorks() {
                 ✓ AI ส่วนตัว (LocalAI Thailand)
               </div>
               <ul className="space-y-3 text-sm text-[#94a3b8]">
-                <li>• จ่ายครั้งเดียว ฿59,900 ขึ้นไป ใช้ได้ตลอด</li>
+                <li>• hardware ซื้อครั้งเดียวตามสเปกที่เลือก</li>
                 <li>• ข้อมูลอยู่ในออฟฟิศของคุณ 100%</li>
                 <li>• ไม่ต้องพึ่งอินเทอร์เน็ต ทำงานได้ตลอด</li>
-                <li>• ใช้กี่คนก็ได้ ไม่มีค่าใช้จ่ายเพิ่ม</li>
+                <li>• ติดตั้ง Mimir Suites ตามจำนวนสิทธิ์ใช้งานของทีม</li>
               </ul>
               <div className="mt-4 text-xs text-[#00ff88] font-mono">
-                ค่าใช้จ่าย 2 ปี: ฿59,900 - 219,900 (จ่ายครั้งเดียว)
+                ราคา hardware เริ่มต้นตามสเปกที่เลือก
               </div>
             </div>
           </div>
@@ -223,7 +223,7 @@ export default function HowItWorks() {
               แล้วทำไมไม่จ่าย ฿700/เดือน ใช้ ChatGPT ก็พอ?
             </h3>
             <p className="text-sm text-[#94a3b8] max-w-lg mx-auto">
-              คำถามที่ทุกคนถาม — นี่คือคำตอบตรงๆ
+              คำถามที่ทุกคนถาม, นี่คือคำตอบตรงๆ
             </p>
           </div>
 
@@ -287,7 +287,7 @@ export default function HowItWorks() {
                     </div>
                   </div>
                   <div className="rounded-lg bg-[#00ff88]/5 border border-[#00ff88]/15 p-4">
-                    <p className="text-xs font-bold text-[#00ff88] mb-2">✓ AI ส่วนตัว — ข้อมูลไม่ออกจากเครื่อง:</p>
+                    <p className="text-xs font-bold text-[#00ff88] mb-2">✓ AI ส่วนตัว, ข้อมูลไม่ออกจากเครื่อง:</p>
                     <div className="space-y-2 text-xs text-[#94a3b8]">
                       <p>✓ ทุกอย่างประมวลผลในเครื่องที่อยู่ในออฟฟิศคุณ</p>
                       <p>✓ ไม่เชื่อมอินเทอร์เน็ต ไม่ส่ง packet ออก</p>
@@ -359,8 +359,8 @@ export default function HowItWorks() {
                   <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#111827] to-transparent pointer-events-none sm:hidden" />
                 </div>
                 <p className="text-[10px] text-[#64748b] mt-3">
-                  * ถ้าใช้คนเดียว ChatGPT ถูกกว่า — แต่ AI ส่วนตัวได้ข้อดีอื่นทั้งหมด (ไม่มี censorship, ไม่ส่งข้อมูลออก, ไม่มี limit)
-                  <br />ยิ่งใช้หลายคน ยิ่งนาน AI ส่วนตัวยิ่งคุ้ม เพราะจ่ายครั้งเดียว ไม่ว่าจะใช้กี่คน
+                  * ถ้าใช้คนเดียว บริการคลาวด์อาจมีต้นทุนเริ่มต้นต่ำกว่า, แต่ Local AI เก็บข้อมูลและการประมวลผลไว้ในองค์กร
+                  <br />AI machine ติดตั้งในองค์กร และพนักงานใช้ Mimir Suites ตามสิทธิ์ใช้งาน
                 </p>
               </div>
             </div>
@@ -387,12 +387,12 @@ export default function HowItWorks() {
                     </div>
                   </div>
                   <div className="rounded-lg bg-[#00ff88]/5 border border-[#00ff88]/15 p-4">
-                    <p className="text-xs font-bold text-[#00ff88] mb-2">✓ AI ส่วนตัว — ไม่มี limit:</p>
+                    <p className="text-xs font-bold text-[#00ff88] mb-2">✓ AI ส่วนตัว, ไม่มีค่า token:</p>
                     <div className="space-y-2 text-xs text-[#94a3b8]">
-                      <p>✓ ถามกี่ครั้งก็ได้ ไม่มีโควต้า ไม่มี cap</p>
+                      <p>✓ ใช้งานตามกำลังของ AI machine โดยไม่มีค่า token</p>
                       <p>✓ ส่งไฟล์ใหญ่แค่ไหนก็ได้ (ตาม storage)</p>
-                      <p>✓ ไม่มี peak hour — เครื่องคุณ ใช้คนเดียว</p>
-                      <p>✓ ไม่ถูกสลับ model — ได้ model ที่เลือกเสมอ</p>
+                      <p>✓ ทรัพยากรอยู่ในองค์กร ไม่ต้องแย่งกับบริการสาธารณะ</p>
+                      <p>✓ ไม่ถูกสลับ model, ได้ model ที่เลือกเสมอ</p>
                       <p className="text-[#00ff88] font-semibold mt-2">→ เหมือนจ้างพนักงานที่ทำงาน 24 ชม. ไม่ลาพัก ไม่ขึ้นเงินเดือน</p>
                     </div>
                   </div>

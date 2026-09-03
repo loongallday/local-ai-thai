@@ -108,7 +108,7 @@ const categories: Category[] = [
     id: "mac-studio",
     emoji: "🏎️",
     title: "Apple Mac Studio",
-    subtitle: "พลังสูงสุด Apple Silicon — 546 GB/s bandwidth",
+    subtitle: "พลังสูงสุด Apple Silicon, 546 GB/s bandwidth",
     color: "#8b5cf6",
     products: [
       {
@@ -125,7 +125,7 @@ const categories: Category[] = [
         name: "Mac Studio M4 Max 64GB / 1TB",
         brand: "Apple",
         specs: "M4 Max 16C CPU / 40C GPU • 64GB • 1TB SSD",
-        detail: "Best seller Mac Studio สำหรับ AI — 546 GB/s + 64GB",
+        detail: "Best seller Mac Studio สำหรับ AI, 546 GB/s + 64GB",
         price: 99900,
         aiUse: "รัน 70B model Q4 ได้เร็ว (~20 tok/s)",
         badge: "Best Seller",
@@ -135,7 +135,7 @@ const categories: Category[] = [
         name: "Mac Studio M4 Max 128GB / 1TB",
         brand: "Apple",
         specs: "M4 Max 16C CPU / 40C GPU • 128GB • 1TB SSD",
-        detail: "RAM สูงสุด 128GB — รัน 70B Q8 (คุณภาพสูงสุด) หรือ 100B+",
+        detail: "RAM สูงสุด 128GB, รัน 70B Q8 (คุณภาพสูงสุด) หรือ 100B+",
         price: 129400,
         aiUse: "รัน 70B Q8 หรือ 100B+ model ได้",
         badge: "Max RAM",
@@ -147,7 +147,7 @@ const categories: Category[] = [
     id: "gpu",
     emoji: "🎮",
     title: "NVIDIA GPU (การ์ดจอ)",
-    subtitle: "สำหรับประกอบเครื่อง PC หรือ Server — VRAM คือหัวใจ",
+    subtitle: "สำหรับประกอบเครื่อง PC หรือ Server, VRAM คือหัวใจ",
     color: "#76B900",
     products: [
       {
@@ -164,7 +164,7 @@ const categories: Category[] = [
         name: "INNO3D RTX 5090 X3 32GB",
         brand: "INNO3D",
         specs: "32GB GDDR7 • 1,792 GB/s • 21,760 CUDA cores • 575W",
-        detail: "RTX 5090 ราคาถูกที่สุดในไทย — VRAM 32GB รัน 22-27B ได้",
+        detail: "RTX 5090 ราคาถูกที่สุดในไทย, VRAM 32GB รัน 22-27B ได้",
         price: 119900,
         aiUse: "รัน 7B-27B model ได้เร็วมาก",
         badge: "ถูกสุด",
@@ -202,7 +202,7 @@ const categories: Category[] = [
     id: "nas",
     emoji: "💾",
     title: "NAS & HDD Storage",
-    subtitle: "เก็บไฟล์ สำรองข้อมูล RAG pipeline — ไม่ต้องจ่ายค่า Cloud",
+    subtitle: "เก็บไฟล์ สำรองข้อมูล RAG pipeline, ไม่ต้องจ่ายค่า Cloud",
     color: "#3b82f6",
     products: [
       {
@@ -252,7 +252,7 @@ const categories: Category[] = [
         specs: "3.5\" SATA3 • 7,200 RPM • 256MB Cache • CMR • 24/7",
         detail: "ความจุเยอะขึ้นเท่าตัว สำหรับ media-heavy workload",
         price: 6990,
-        aiUse: "Dataset ใหญ่ หรือ Creator ที่มี video เยอะ",
+        aiUse: "Dataset ใหญ่ หรือทีมที่มีไฟล์วิดีโอจำนวนมาก",
       },
     ],
   },
@@ -372,28 +372,6 @@ function ProductCard({ product, catColor }: { product: Product; catColor: string
   );
 }
 
-/* ─── Bundles ─── */
-const bundles = [
-  {
-    name: "ชุด AI Starter",
-    items: "Mac Mini M4 24GB + NAS DS224+ + 2x IronWolf 4TB + UPS Eaton 1200VA",
-    total: 59580,
-    color: "#00e5ff",
-  },
-  {
-    name: "ชุด AI Pro",
-    items: "Mac Mini M4 Pro 64GB + NAS DS423+ + 4x IronWolf 4TB + UPS Eaton 2200VA",
-    total: 116310,
-    color: "#00ff88",
-  },
-  {
-    name: "ชุด AI Ultra",
-    items: "Mac Studio M4 Max 128GB + NAS DS423+ + 4x IronWolf 8TB + UPS 2200VA",
-    total: 180410,
-    color: "#8b5cf6",
-  },
-];
-
 /* ─── Main Component ─── */
 export default function ShopSection() {
   const [activeCategory, setActiveCategory] = useState("mac-mini");
@@ -407,14 +385,14 @@ export default function ShopSection() {
           <span className="text-4xl mb-4 block">🛒</span>
           <h1 className="text-3xl md:text-5xl font-black text-[#f0f4f8] mb-4">ร้านค้า Hardware</h1>
           <p className="text-[#94a3b8] max-w-2xl mx-auto text-base">
-            จำหน่าย Hardware สำหรับ AI ส่วนตัว ราคาปลีกมาตรฐาน — ซื้อเครื่องเปล่า หรือเพิ่มบริการติดตั้ง AI ได้
+            จำหน่าย Hardware สำหรับ AI ส่วนตัว ราคาปลีกมาตรฐาน, ซื้อเครื่องเปล่า หรือเพิ่มบริการติดตั้ง AI ได้
           </p>
         </div>
 
         {/* Notice */}
         <div className="rounded-xl p-4 bg-[#111827] border border-[#1e293b] mb-8 text-center">
           <p className="text-xs text-[#94a3b8]">
-            <span className="text-[#f59e0b] font-bold">💡 หมายเหตุ:</span> ราคาเป็นราคาปลีกมาตรฐาน (รวม VAT) อ้างอิง Apple Store TH และร้านค้าชั้นนำในไทย — สั่งซื้อผ่านเราพร้อมบริการจัดส่ง + ติดตั้ง AI ได้
+            <span className="text-[#f59e0b] font-bold">💡 หมายเหตุ:</span> ราคาเป็นราคาปลีกมาตรฐาน (รวม VAT) อ้างอิง Apple Store TH และร้านค้าชั้นนำในไทย, สั่งซื้อผ่านเราพร้อมบริการจัดส่ง + ติดตั้ง AI ได้
           </p>
         </div>
 
@@ -459,34 +437,16 @@ export default function ShopSection() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Bundle suggestions */}
+      {/* Workload sizing */}
       <div className="py-16">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-10">
             <span className="text-3xl mb-3 block">📦</span>
-            <h2 className="text-2xl md:text-3xl font-black text-[#f0f4f8] mb-3">ชุดแนะนำ (Hardware Only)</h2>
-            <p className="text-sm text-[#94a3b8]">ประกอบชุดเอง ราคา hardware รวม — เพิ่มบริการติดตั้ง AI ดู<a href="/packages" className="text-[#00e5ff] hover:underline ml-1">แพ็คเกจ</a></p>
+            <h2 className="text-2xl md:text-3xl font-black text-[#f0f4f8] mb-3">ให้เราช่วยจัดสเปกตาม workload</h2>
+            <p className="text-sm text-[#94a3b8]">เลือก hardware ได้ตามต้องการ, ทีมช่วยประเมินเครื่อง อุปกรณ์เสริม และ Mimir Suites ที่เหมาะกับงาน</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {bundles.map((bundle) => (
-              <GlowCard key={bundle.name} color={bundle.color}>
-                <div className="p-5">
-                  <h3 className="text-base font-bold text-[#f0f4f8] mb-2">{bundle.name}</h3>
-                  <p className="text-xs text-[#94a3b8] mb-4 leading-relaxed">{bundle.items}</p>
-                  <div className="flex items-end justify-between">
-                    <div>
-                      <p className="text-[10px] text-[#64748b]">รวม hardware</p>
-                      <p className="text-xl font-black" style={{ color: bundle.color }}>{formatPrice(bundle.total)}</p>
-                    </div>
-                    <a href="/contact" className="text-xs font-bold px-3 py-2 rounded-lg" style={{ background: bundle.color + "15", color: bundle.color }}>
-                      สั่งซื้อ
-                    </a>
-                  </div>
-                </div>
-              </GlowCard>
-            ))}
-          </div>
+          <div className="max-w-2xl mx-auto rounded-2xl border border-[#1e293b] bg-[#111827] p-6 text-center"><p className="text-sm text-[#94a3b8] mb-4">บอกจำนวนผู้ใช้ ประเภทเอกสาร และงานที่ต้องการให้ AI ช่วย เพื่อรับข้อเสนอที่พอดีกับหน้างาน</p><a href="/contact" className="inline-flex px-5 py-3 rounded-xl bg-[#00e5ff] text-[#060a14] font-bold">ขอประเมินสเปก</a></div>
         </div>
       </div>
 
@@ -498,11 +458,11 @@ export default function ShopSection() {
               <span className="text-3xl mb-3 block">🤖</span>
               <h2 className="text-xl md:text-2xl font-black text-[#f0f4f8] mb-3">ต้องการติดตั้ง AI ด้วย?</h2>
               <p className="text-sm text-[#94a3b8] mb-6 max-w-lg mx-auto">
-                ซื้อ hardware แล้ว เราติดตั้ง AI ให้ครบ — Ollama, Open WebUI, RAG, NAS integration, อบรมทีมงาน พร้อมใช้งานทันที
+                ซื้อ hardware แล้ว เราติดตั้ง Mimir Suites ให้ทีมใช้ Scan, Bridge, Echo, Ledger, Well, Chat และ Still ตามงานที่เลือก
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a href="/packages" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#00e5ff] to-[#00ff88] text-[#060a14] font-bold hover:opacity-90 transition-opacity">
-                  ดูแพ็คเกจติดตั้ง AI <ArrowRight size={16} />
+                  ดูขนาดระบบ Local AI <ArrowRight size={16} />
                 </a>
                 <a href="/support" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-[#1e293b] text-[#94a3b8] font-bold hover:text-[#00e5ff] transition-colors">
                   บริการดูแลระบบ

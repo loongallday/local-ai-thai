@@ -41,7 +41,7 @@ const problems = [
   {
     emoji: "💥",
     title: "ระบบล่ม ใช้งานไม่ได้",
-    desc: "Docker crash, Ollama ค้าง, Open WebUI error วันที่ต้องใช้งานด่วน",
+    desc: "ระบบ AI ขัดข้องในวันที่ต้องใช้งานด่วน",
     color: "#f87171",
   },
   {
@@ -53,7 +53,7 @@ const problems = [
   {
     emoji: "💾",
     title: "HDD ใน NAS ใกล้พัง",
-    desc: "HDD มี SMART warning แต่ไม่มีใครดู — พังวันไหน ข้อมูลหาย",
+    desc: "HDD มี SMART warning แต่ไม่มีใครดู, พังวันไหน ข้อมูลหาย",
     color: "#f87171",
   },
   {
@@ -72,13 +72,13 @@ const services = [
     color: "#00e5ff",
     desc: "ตรวจสุขภาพระบบทุกเดือน แก้ปัญหาก่อนที่จะเกิด",
     items: [
-      "ตรวจ CPU, RAM, GPU utilization — ใช้มากไปไหม",
-      "ตรวจ HDD/SSD health (SMART) — ใกล้พังหรือยัง",
-      "ตรวจ UPS battery — ยังสำรองไฟได้ไหม",
-      "Clear cache & temp files — คืนพื้นที่",
-      "ตรวจ Docker containers — healthy ทุกตัว",
-      "ตรวจ log files — มี error ซ่อนอยู่ไหม",
-      "ตรวจ backup — Restic ทำงานปกติไหม",
+      "ตรวจ CPU, RAM, GPU utilization, ใช้มากไปไหม",
+      "ตรวจ HDD/SSD health (SMART), ใกล้พังหรือยัง",
+      "ตรวจ UPS battery, ยังสำรองไฟได้ไหม",
+      "Clear cache & temp files, คืนพื้นที่",
+      "ตรวจ Docker containers, healthy ทุกตัว",
+      "ตรวจ log files, มี error ซ่อนอยู่ไหม",
+      "ตรวจ backup, Restic ทำงานปกติไหม",
       "Report สรุปสถานะระบบทุกเดือน",
     ],
   },
@@ -95,7 +95,7 @@ const services = [
       "อัพเดท embedding model สำหรับ RAG",
       "ปรับ system prompt ให้ตอบดีขึ้น",
       "เพิ่ม model ใหม่ตามความต้องการ",
-      "อัพเดท Open WebUI, ComfyUI, Ollama",
+      "อัพเดท Mimir Suite และการตั้งค่า AI machine",
       "ทดสอบทุกอย่างก่อน deploy จริง",
     ],
   },
@@ -123,11 +123,11 @@ const services = [
     color: "#8b5cf6",
     desc: "สอนใช้ AI ให้คุ้มค่า ทั้งทีมเก่าและคนใหม่",
     items: [
-      "Workshop ใช้งาน Open WebUI (ครึ่งวัน)",
-      "สอน prompt engineering — ถามยังไงให้ได้คำตอบดี",
-      "สอน RAG — upload เอกสาร ค้นหา ถามคำถาม",
-      "สอนสร้างรูป — ComfyUI / image generation",
-      "สอน admin — จัดการ user, model, settings",
+      "Workshop ใช้งาน Mimir Suite (ครึ่งวัน)",
+      "สอน prompt engineering, ถามยังไงให้ได้คำตอบดี",
+      "สอน RAG, upload เอกสาร ค้นหา ถามคำถาม",
+      "สอนสร้างรูปด้วย Mimir Still",
+      "สอน admin, จัดการ user, model, settings",
       "Onboarding พนักงานใหม่ (1-2 ชม.)",
       "เอกสาร user guide ภาษาไทย",
       "Video tutorial สำหรับดูย้อนหลัง",
@@ -144,8 +144,8 @@ const services = [
       "เพิ่ม NAS storage → เก็บข้อมูลมากขึ้น",
       "อัพเกรด Mac Mini → Mac Studio",
       "เพิ่ม user accounts → รองรับทีมใหญ่ขึ้น",
-      "เพิ่ม feature: LINE Bot, ERP, voice",
-      "เพิ่ม automation workflow (n8n)",
+      "เพิ่มแอป Mimir ตามสิทธิ์ใช้งาน",
+      "ปรับการใช้งานตาม workflow ของทีม",
       "ย้ายจาก Compact → Server tier",
       "วางแผน infrastructure สำหรับอนาคต",
     ],
@@ -232,7 +232,7 @@ export default function SupportSection() {
             ดูแลระบบ AI ของคุณ
           </h1>
           <p className="text-[#94a3b8] max-w-2xl mx-auto text-base lg:text-lg">
-            ติดตั้งแล้ว ไม่ทิ้ง — เราดูแลให้ทำงานได้ดีตลอดเวลา
+            ติดตั้งแล้ว ไม่ทิ้ง, เราดูแลให้ทำงานได้ดีตลอดเวลา
             <br />
             อัพเดท model, แก้ปัญหา, สอนใช้, อัพเกรด ครบจบ
           </p>
@@ -375,13 +375,13 @@ export default function SupportSection() {
                   { label: "Response time", basic: "24 ชม.", pro: "8 ชม.", enterprise: "4 ชม." },
                   { label: "ช่องทาง", basic: "LINE, Zoom", pro: "+ โทรศัพท์", enterprise: "+ Dedicated Slack" },
                   { label: "Remote support", basic: "2 ชม./เดือน", pro: "4 ชม./เดือน", enterprise: "ไม่จำกัด" },
-                  { label: "Onsite visit", basic: "—", pro: "1 ครั้ง/เดือน", enterprise: "2 ครั้ง/เดือน" },
+                  { label: "Onsite visit", basic: "ไม่รวม", pro: "1 ครั้ง/เดือน", enterprise: "2 ครั้ง/เดือน" },
                   { label: "Model update", basic: "1 ครั้ง/เดือน", pro: "2 ครั้ง/เดือน", enterprise: "ไม่จำกัด" },
                   { label: "Preventive check", basic: "Basic", pro: "Full", enterprise: "Full + report" },
-                  { label: "Feature development", basic: "—", pro: "2 ชม./เดือน", enterprise: "4 ชม./เดือน" },
-                  { label: "Training", basic: "—", pro: "—", enterprise: "ไม่จำกัด" },
-                  { label: "Uptime guarantee", basic: "—", pro: "95%", enterprise: "99%" },
-                  { label: "Dedicated engineer", basic: "—", pro: "—", enterprise: "✓" },
+                  { label: "Feature development", basic: "ไม่รวม", pro: "2 ชม./เดือน", enterprise: "4 ชม./เดือน" },
+                  { label: "Training", basic: "ไม่รวม", pro: "ไม่รวม", enterprise: "ไม่จำกัด" },
+                  { label: "Uptime guarantee", basic: "ไม่มี", pro: "95%", enterprise: "99%" },
+                  { label: "Dedicated engineer", basic: "ไม่มี", pro: "ไม่มี", enterprise: "✓" },
                 ].map((row, i) => (
                   <tr key={row.label} className={i % 2 === 0 ? "bg-[#0c1220]/50" : ""}>
                     <td className="py-2 px-3 text-[#94a3b8] font-medium">{row.label}</td>
@@ -405,8 +405,8 @@ export default function SupportSection() {
             <span className="text-3xl block mb-4">💡</span>
             <h3 className="text-xl font-black text-[#f0f4f8] mb-3">ทำไมต้องมีคนดูแล?</h3>
             <p className="text-sm text-[#94a3b8] leading-relaxed max-w-xl mx-auto mb-4">
-              AI ไม่ใช่เครื่องใช้ไฟฟ้าที่เสียบปลั๊กแล้วลืมได้ — model ต้องอัพเดท, HDD มีอายุ, battery เสื่อม, software มี bug
-              เหมือนรถยนต์ — ซื้อมาแล้วต้องเปลี่ยนน้ำมัน เช็คเบรค เปลี่ยนยาง
+              AI ไม่ใช่เครื่องใช้ไฟฟ้าที่เสียบปลั๊กแล้วลืมได้, model ต้องอัพเดท, HDD มีอายุ, battery เสื่อม, software มี bug
+              เหมือนรถยนต์, ซื้อมาแล้วต้องเปลี่ยนน้ำมัน เช็คเบรค เปลี่ยนยาง
             </p>
             <p className="text-sm text-[#00ff88] font-semibold">
               ฿9,900/เดือน = ฿330/วัน ถูกกว่าจ้าง IT staff มาดูแล AI โดยเฉพาะ

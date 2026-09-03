@@ -25,8 +25,8 @@ interface HardwareItem {
   pros: string[];
   cons: string[];
   bestFor: string;
-  ourPackage: string;
-  ourPrice: string;
+  sizingNote: string;
+  referencePrice: string;
 }
 
 interface HardwareCategory {
@@ -43,7 +43,7 @@ const categories: HardwareCategory[] = [
     id: "compact",
     emoji: "🍎",
     title: "Apple Mac Mini / Studio",
-    subtitle: "เงียบ เล็ก ประหยัดไฟ — AI ตัวจริงบนโต๊ะ",
+    subtitle: "เงียบ เล็ก ประหยัดไฟ, AI ตัวจริงบนโต๊ะ",
     color: "#94a3b8",
     items: [
       {
@@ -70,11 +70,11 @@ const categories: HardwareCategory[] = [
           { name: "M4 24GB", ram: "24GB", bandwidth: "120 GB/s", tokPerSec: "~35 tok/s (7B)", maxModel: "14B", price: "฿24,900" },
           { name: "M4 32GB", ram: "32GB", bandwidth: "120 GB/s", tokPerSec: "~35 tok/s (7B)", maxModel: "22-27B", price: "฿29,900" },
         ],
-        pros: ["เงียบสนิท 0 dB — วางห้องนอนได้", "เล็กที่สุด เบาที่สุด", "ใช้ไฟน้อยมาก 20W", "ราคาถูกที่สุด", "macOS ใช้ง่าย"],
+        pros: ["เงียบสนิท 0 dB, วางห้องนอนได้", "เล็กที่สุด เบาที่สุด", "ใช้ไฟน้อยมาก 20W", "ราคาถูกที่สุด", "macOS ใช้ง่าย"],
         cons: ["RAM สูงสุด 32GB", "Bandwidth 120 GB/s (ช้ากว่า Pro/Max)", "รัน model ใหญ่ (32B+) ไม่ไหว"],
         bestFor: "1-3 คน ใช้งานทั่วไป ถาม-ตอบ ค้นเอกสาร เขียนอีเมล",
-        ourPackage: "AI Compact Starter",
-        ourPrice: "฿59,900",
+        sizingNote: "ประเมินจาก workload, ไม่ใช่ reference tier ที่เสนอขาย",
+        referencePrice: "฿59,900",
       },
       {
         name: "Mac Mini M4 Pro",
@@ -98,11 +98,11 @@ const categories: HardwareCategory[] = [
           { name: "M4 Pro 48GB", ram: "48GB", bandwidth: "273 GB/s", tokPerSec: "~50 tok/s (7B) / ~18 tok/s (32B)", maxModel: "32B", price: "฿69,900" },
           { name: "M4 Pro 64GB", ram: "64GB", bandwidth: "273 GB/s", tokPerSec: "~50 tok/s (7B) / ~10 tok/s (72B)", maxModel: "70B (Q4)", price: "฿84,900" },
         ],
-        pros: ["Bandwidth 273 GB/s — เร็วกว่า M4 2x", "RAM ถึง 64GB — รัน 70B ได้", "ยังเงียบมาก", "ขนาดเท่า M4 ไม่ใหญ่ขึ้น", "Thunderbolt 5 เร็วสุด"],
+        pros: ["Bandwidth 273 GB/s, เร็วกว่า M4 2x", "RAM ถึง 64GB, รัน 70B ได้", "ยังเงียบมาก", "ขนาดเท่า M4 ไม่ใหญ่ขึ้น", "Thunderbolt 5 เร็วสุด"],
         cons: ["ราคาสูงกว่า M4 ~3x", "รัน 70B ได้แต่ค่อนข้างช้า (~10 tok/s)", "BTO ต้องรอ 1-2 สัปดาห์"],
         bestFor: "ทีม 3-8 คน ต้องการ AI ฉลาดขึ้น (32B model) หรือรัน 70B",
-        ourPackage: "AI Compact Pro / Max",
-        ourPrice: "฿109,900 / ฿139,900",
+        sizingNote: "ประเมินจาก workload, ไม่ใช่ reference tier ที่เสนอขาย",
+        referencePrice: "฿109,900 / ฿139,900",
       },
       {
         name: "Mac Studio M4 Max",
@@ -110,8 +110,8 @@ const categories: HardwareCategory[] = [
         tagline: "พลังสูงสุดของ Apple Silicon สำหรับ AI",
         tag: "Premium • ฿219,900",
         color: "#8b5cf6",
-        description: "Mac Studio M4 Max มี Memory Bandwidth 546 GB/s — เร็วกว่า M4 Pro 2 เท่า และ RAM ถึง 128GB ทำให้รัน model 70B ได้เร็ว หรือรัน 100B+ ได้",
-        whyForAI: "546 GB/s bandwidth คือ bottleneck หลักของ LLM inference — ยิ่ง bandwidth สูง token generation ยิ่งเร็ว 128GB RAM ทำให้โหลด 70B model ที่ full Q8 precision ได้ (คุณภาพสูงกว่า Q4)",
+        description: "Mac Studio M4 Max มี Memory Bandwidth 546 GB/s, เร็วกว่า M4 Pro 2 เท่า และ RAM ถึง 128GB ทำให้รัน model 70B ได้เร็ว หรือรัน 100B+ ได้",
+        whyForAI: "546 GB/s bandwidth คือ bottleneck หลักของ LLM inference, ยิ่ง bandwidth สูง token generation ยิ่งเร็ว 128GB RAM ทำให้โหลด 70B model ที่ full Q8 precision ได้ (คุณภาพสูงกว่า Q4)",
         keySpecs: [
           { label: "Chip", value: "Apple M4 Max (16-core CPU, 40-core GPU)" },
           { label: "RAM", value: "64GB / 128GB Unified Memory" },
@@ -126,11 +126,11 @@ const categories: HardwareCategory[] = [
           { name: "M4 Max 64GB", ram: "64GB", bandwidth: "546 GB/s", tokPerSec: "~70 tok/s (7B) / ~20 tok/s (70B Q4)", maxModel: "70B (Q4)", price: "฿99,900" },
           { name: "M4 Max 128GB", ram: "128GB", bandwidth: "546 GB/s", tokPerSec: "~70 tok/s (7B) / ~25 tok/s (70B Q8)", maxModel: "100B+", price: "฿139,900" },
         ],
-        pros: ["546 GB/s — เร็วสุดใน Apple Silicon", "128GB รัน 70B Q8 (คุณภาพสูงสุด)", "รัน 100B+ model ได้", "เร็วกว่า DGX Spark สำหรับ model ≤70B"],
+        pros: ["546 GB/s, เร็วสุดใน Apple Silicon", "128GB รัน 70B Q8 (คุณภาพสูงสุด)", "รัน 100B+ model ได้", "เร็วกว่า DGX Spark สำหรับ model ≤70B"],
         cons: ["ราคาสูง", "ใหญ่กว่า Mac Mini", "BTO ต้องรอ 1-2 สัปดาห์"],
         bestFor: "ทีม 5-10 คน ที่ต้องการ AI ฉลาดที่สุด + เร็วที่สุด บน desktop",
-        ourPackage: "AI Compact Ultra",
-        ourPrice: "฿219,900",
+        sizingNote: "ประเมินจาก workload, ไม่ใช่ reference tier ที่เสนอขาย",
+        referencePrice: "฿219,900",
       },
     ],
   },
@@ -138,7 +138,7 @@ const categories: HardwareCategory[] = [
     id: "powerstation",
     emoji: "💚",
     title: "NVIDIA Blackwell Mini PC",
-    subtitle: "128GB memory ในขนาดกล่องทิชชู่ — ซูเปอร์คอมพิวเตอร์ตั้งโต๊ะ",
+    subtitle: "128GB memory ในขนาดกล่องทิชชู่, ซูเปอร์คอมพิวเตอร์ตั้งโต๊ะ",
     color: "#76B900",
     items: [
       {
@@ -163,10 +163,10 @@ const categories: HardwareCategory[] = [
           { label: "OS", value: "DGX OS (Ubuntu-based Linux)" },
         ],
         pros: ["128GB unified memory", "ถูกกว่า DGX Spark $1,000", "รัน model ถึง 200B", "Fine-tune ได้ถึง 200B (Unsloth)", "ConnectX-7 เชื่อม 2 เครื่องได้", "1 petaFLOP FP4"],
-        cons: ["Storage แค่ 1TB (DGX Spark มี 4TB)", "Bandwidth 273 GB/s (เท่า M4 Pro, ช้ากว่า M4 Max)", "Linux — ไม่คุ้นเคยเท่า macOS", "รัน 70B inference ช้ากว่า Mac Studio M4 Max"],
+        cons: ["Storage แค่ 1TB (DGX Spark มี 4TB)", "Bandwidth 273 GB/s (เท่า M4 Pro, ช้ากว่า M4 Max)", "Linux, ไม่คุ้นเคยเท่า macOS", "รัน 70B inference ช้ากว่า Mac Studio M4 Max"],
         bestFor: "ทีม Developer, Startup ที่ต้องการ fine-tune model หรือรัน model > 100B",
-        ourPackage: "AI Powerstation Base",
-        ourPrice: "฿179,900",
+        sizingNote: "Spark-class desk box, ประเมินสเปกตาม workload",
+        referencePrice: "฿179,900",
       },
       {
         name: "NVIDIA DGX Spark",
@@ -185,11 +185,11 @@ const categories: HardwareCategory[] = [
           { label: "Power", value: "~150W" },
           { label: "Price (MSRP)", value: "$4,699" },
         ],
-        pros: ["4TB storage — เก็บ dataset + model ได้เยอะ", "NVIDIA Enterprise Support", "Official NVIDIA product"],
+        pros: ["4TB storage, เก็บ dataset + model ได้เยอะ", "NVIDIA Enterprise Support", "Official NVIDIA product"],
         cons: ["แพงกว่า GX10 ~฿70,000", "สเปค compute เหมือน GX10 ทุกอย่าง"],
         bestFor: "องค์กรที่ต้องการ official NVIDIA support + storage ใหญ่",
-        ourPackage: "AI Powerstation Pro",
-        ourPrice: "฿249,900",
+        sizingNote: "Spark-class desk box, ประเมินสเปกตาม workload",
+        referencePrice: "฿249,900",
       },
     ],
   },
@@ -217,11 +217,11 @@ const categories: HardwareCategory[] = [
           { label: "Form Factor", value: "PCIe dual-slot" },
           { label: "Price (approx)", value: "~฿300,000/GPU" },
         ],
-        pros: ["คุ้มค่าที่สุดสำหรับ inference (฿ต่อ tok/s)", "Air-cooled — ไม่ต้อง liquid cooling", "48GB VRAM — รัน 32B full หรือ 72B quantized", "350W — ไม่กินไฟเท่า H100"],
-        cons: ["GDDR6 ไม่ใช่ HBM — bandwidth ต่ำกว่า H100", "Training ช้ากว่า H100", "ไม่มี NVLink (ใช้ PCIe bus ระหว่าง GPU)"],
+        pros: ["คุ้มค่าที่สุดสำหรับ inference (฿ต่อ tok/s)", "Air-cooled, ไม่ต้อง liquid cooling", "48GB VRAM, รัน 32B full หรือ 72B quantized", "350W, ไม่กินไฟเท่า H100"],
+        cons: ["GDDR6 ไม่ใช่ HBM, bandwidth ต่ำกว่า H100", "Training ช้ากว่า H100", "ไม่มี NVLink (ใช้ PCIe bus ระหว่าง GPU)"],
         bestFor: "Inference workload 20-100+ concurrent users ในราคาที่เหมาะสม",
-        ourPackage: "AI Server Entry (1-2x) / Pro (4x)",
-        ourPrice: "฿1,190,000 / ฿2,890,000",
+        sizingNote: "GPU server, ประเมินสเปกตาม workload",
+        referencePrice: "฿1,190,000 / ฿2,890,000",
       },
       {
         name: "NVIDIA H100 SXM",
@@ -230,7 +230,7 @@ const categories: HardwareCategory[] = [
         tag: "Enterprise",
         color: "#f59e0b",
         description: "H100 เป็น GPU ที่ทุกบริษัท AI ใหญ่ใช้ (Google, Meta, OpenAI) 80GB HBM3 memory + 3,350 GB/s bandwidth ทั้ง training และ inference ได้หมด",
-        whyForAI: "HBM3 memory ให้ bandwidth 3,350 GB/s — เร็วกว่า L40S 4 เท่า ทำให้ inference เร็วมากแม้กับ model ใหญ่ และ NVLink เชื่อม 8 GPUs ด้วย bandwidth 900 GB/s",
+        whyForAI: "HBM3 memory ให้ bandwidth 3,350 GB/s, เร็วกว่า L40S 4 เท่า ทำให้ inference เร็วมากแม้กับ model ใหญ่ และ NVLink เชื่อม 8 GPUs ด้วย bandwidth 900 GB/s",
         keySpecs: [
           { label: "VRAM", value: "80GB HBM3" },
           { label: "Bandwidth", value: "3,350 GB/s" },
@@ -240,20 +240,20 @@ const categories: HardwareCategory[] = [
           { label: "Cooling", value: "Air possible, liquid preferred" },
           { label: "Price (approx)", value: "~฿900,000/GPU" },
         ],
-        pros: ["3,350 GB/s bandwidth — เร็วที่สุด (ก่อน H200)", "80GB HBM3 — รัน 70B full precision single GPU", "NVLink 900 GB/s ระหว่าง GPU", "Training + inference ได้ดีทั้งคู่"],
-        cons: ["ราคาสูงมาก ~฿900K/GPU", "700W ต่อ GPU — ต้องมีระบบไฟดี", "เสียงดัง ต้องอยู่ห้อง server"],
+        pros: ["3,350 GB/s bandwidth, เร็วที่สุด (ก่อน H200)", "80GB HBM3, รัน 70B full precision single GPU", "NVLink 900 GB/s ระหว่าง GPU", "Training + inference ได้ดีทั้งคู่"],
+        cons: ["ราคาสูงมาก ~฿900K/GPU", "700W ต่อ GPU, ต้องมีระบบไฟดี", "เสียงดัง ต้องอยู่ห้อง server"],
         bestFor: "องค์กรที่ต้อง training model ของตัวเอง + serve 100-500+ users",
-        ourPackage: "AI Server Enterprise (ติดต่อเรา)",
-        ourPrice: "ติดต่อเรา",
+        sizingNote: "GPU server, ประเมินสเปกตาม workload",
+        referencePrice: "ติดต่อเรา",
       },
       {
         name: "NVIDIA H200 SXM",
         emoji: "🔴",
-        tagline: "Next-gen HBM3e — bandwidth สูงสุดในโลก",
+        tagline: "Next-gen HBM3e, bandwidth สูงสุดในโลก",
         tag: "Flagship",
         color: "#ef4444",
-        description: "H200 ใช้ HBM3e memory 141GB — เกือบ 2 เท่าของ H100 ด้วย bandwidth 4,800 GB/s ทำให้รัน model ขนาดยักษ์อย่าง DeepSeek V3 (671B) ได้บน 8-GPU setup",
-        whyForAI: "141GB ต่อ GPU × 8 GPUs = 1.1TB — พอสำหรับ model 400B+ แบบ full precision หรือ 670B MoE model 4,800 GB/s bandwidth ทำให้ inference เร็วกว่า H100 ~40%",
+        description: "H200 ใช้ HBM3e memory 141GB, เกือบ 2 เท่าของ H100 ด้วย bandwidth 4,800 GB/s ทำให้รัน model ขนาดยักษ์อย่าง DeepSeek V3 (671B) ได้บน 8-GPU setup",
+        whyForAI: "141GB ต่อ GPU × 8 GPUs = 1.1TB, พอสำหรับ model 400B+ แบบ full precision หรือ 670B MoE model 4,800 GB/s bandwidth ทำให้ inference เร็วกว่า H100 ~40%",
         keySpecs: [
           { label: "VRAM", value: "141GB HBM3e" },
           { label: "Bandwidth", value: "4,800 GB/s" },
@@ -263,11 +263,11 @@ const categories: HardwareCategory[] = [
           { label: "8-GPU total VRAM", value: "1.1TB" },
           { label: "Price (approx)", value: "~฿1,200,000/GPU" },
         ],
-        pros: ["141GB — ใหญ่ที่สุด (ก่อน B200)", "4,800 GB/s — เร็วที่สุดที่มี", "รัน DeepSeek V3 671B ได้", "Drop-in replacement สำหรับ H100"],
+        pros: ["141GB, ใหญ่ที่สุด (ก่อน B200)", "4,800 GB/s, เร็วที่สุดที่มี", "รัน DeepSeek V3 671B ได้", "Drop-in replacement สำหรับ H100"],
         cons: ["ราคาสูงมาก ~฿1.2M/GPU", "Lead time ยาว", "ต้องมี infrastructure พร้อม"],
         bestFor: "องค์กรที่ต้อง run frontier model ระดับ ChatGPT",
-        ourPackage: "AI Server Flagship (ติดต่อเรา)",
-        ourPrice: "ติดต่อเรา",
+        sizingNote: "GPU server, ประเมินสเปกตาม workload",
+        referencePrice: "ติดต่อเรา",
       },
     ],
   },
@@ -285,7 +285,7 @@ const categories: HardwareCategory[] = [
         tag: "+฿19,900",
         color: "#8b5cf6",
         description: "NAS 2-Bay + 2x4TB HDD ในโหมด RAID 1 (mirror) ให้พื้นที่ใช้ 4TB แต่ถ้า HDD พังตัวนึง ข้อมูลยังอยู่ครบ เชื่อมเครือข่าย เข้าถึงจากทุกเครื่องในออฟฟิศ + มือถือ",
-        whyForAI: "เก็บเอกสารสำหรับ RAG pipeline, backup ข้อมูล AI, เก็บ model files, media library สำหรับ Creator ไม่ต้องจ่ายค่า cloud storage รายเดือน",
+        whyForAI: "เก็บเอกสารสำหรับ RAG pipeline, backup ข้อมูล AI และ model files โดยไม่มีค่า cloud-storage สำหรับข้อมูลที่เก็บไว้บน NAS",
         keySpecs: [
           { label: "Bays", value: "2" },
           { label: "HDD ที่ใส่", value: "2x Seagate IronWolf 4TB" },
@@ -294,11 +294,11 @@ const categories: HardwareCategory[] = [
           { label: "Access", value: "SMB, NFS, WebDAV, Synology Drive app" },
           { label: "Power", value: "~30W" },
         ],
-        pros: ["RAID 1 — HDD พัง 1 ตัว ข้อมูลยังอยู่", "เข้าถึงจากมือถือ", "Synology Drive = Google Drive ส่วนตัว", "ไม่มีค่ารายเดือน"],
+        pros: ["RAID 1, HDD พัง 1 ตัว ข้อมูลยังอยู่", "เข้าถึงจากมือถือ", "Synology Drive = Google Drive ส่วนตัว", "ไม่มีค่า cloud-storage สำหรับข้อมูลที่เก็บไว้บน NAS"],
         cons: ["1GbE อาจช้าสำหรับไฟล์ใหญ่ (ต้อง 10GbE switch ถ้าจะเร็ว)", "4TB อาจไม่พอสำหรับ video content"],
-        bestFor: "ออฟฟิศเล็ก, Creator เดี่ยว, ใช้ที่บ้าน",
-        ourPackage: "Add-on ทุก package",
-        ourPrice: "+฿19,900",
+        bestFor: "ออฟฟิศเล็กและทีมที่ต้องการสำรองข้อมูล",
+        sizingNote: "อุปกรณ์เสริม, ประเมินตาม workload",
+        referencePrice: "+฿19,900",
       },
       {
         name: "Synology 4-Bay NAS",
@@ -307,7 +307,7 @@ const categories: HardwareCategory[] = [
         tag: "+฿39,900",
         color: "#8b5cf6",
         description: "NAS 4-Bay + 4x4TB ใน RAID 5 ให้พื้นที่ 12TB usable HDD พังได้ 1 ตัวโดยข้อมูลไม่หาย เหมาะกับทีมที่มีไฟล์เยอะ",
-        whyForAI: "12TB เก็บ dataset ขนาดใหญ่สำหรับ fine-tuning, media library ทีม Creator, backup หลาย Mac Mini/Server พร้อมกัน",
+        whyForAI: "12TB เก็บ dataset ขนาดใหญ่สำหรับ fine-tuning และสำรองข้อมูลหลายเครื่องพร้อมกัน",
         keySpecs: [
           { label: "Bays", value: "4" },
           { label: "HDD ที่ใส่", value: "4x Seagate IronWolf 4TB" },
@@ -315,11 +315,11 @@ const categories: HardwareCategory[] = [
           { label: "Network", value: "1GbE (standard) / 10GbE (option)" },
           { label: "Power", value: "~50W" },
         ],
-        pros: ["12TB usable — เยอะกว่า 2-Bay 3 เท่า", "RAID 5 — HDD พัง 1 ตัว ข้อมูลยังอยู่", "ขยาย HDD ได้ในอนาคต"],
+        pros: ["12TB usable, เยอะกว่า 2-Bay 3 เท่า", "RAID 5, HDD พัง 1 ตัว ข้อมูลยังอยู่", "ขยาย HDD ได้ในอนาคต"],
         cons: ["ราคาสูงกว่า 2-Bay", "ใหญ่กว่า ต้องมีที่วาง"],
-        bestFor: "ทีม Creator, ออฟฟิศที่มีเอกสารเยอะ, Server tier backup",
-        ourPackage: "Creator Team bundle / Server add-on",
-        ourPrice: "+฿39,900",
+        bestFor: "ออฟฟิศที่มีเอกสารเยอะและต้องการสำรองข้อมูล server",
+        sizingNote: "อุปกรณ์เสริม, ประเมินตาม workload",
+        referencePrice: "+฿39,900",
       },
     ],
   },
@@ -350,17 +350,17 @@ const categories: HardwareCategory[] = [
         pros: ["สำรองได้นาน 30-90 นาที", "Auto shutdown ป้องกันข้อมูลเสีย", "ป้องกันไฟกระชากด้วย", "ราคาไม่แพง"],
         cons: ["Battery เสื่อมใน 2-3 ปี ต้องเปลี่ยน (฿1,500-3,000)"],
         bestFor: "ทุก Compact + Powerstation deployment",
-        ourPackage: "Add-on ทุก package",
-        ourPrice: "+฿15,900",
+        sizingNote: "อุปกรณ์เสริม, ประเมินตาม workload",
+        referencePrice: "+฿15,900",
       },
       {
         name: "Eaton 5-10 kVA Online",
         emoji: "⚡",
-        tagline: "สำหรับ GPU Server — Online Double Conversion",
+        tagline: "สำหรับ GPU Server, Online Double Conversion",
         tag: "+฿89,900",
         color: "#f59e0b",
         description: "Online Double Conversion UPS สำหรับ GPU Server ที่ใช้ไฟ 2-10 kW ป้องกันทั้งไฟดับ ไฟตก ไฟกระชาก ให้ clean power ตลอด พร้อม Rack-mount + Network Card",
-        whyForAI: "GPU Server ใช้ไฟ 2-14 kW — ไฟดับ 1 วินาทีก็ทำให้ inference ค้าง training เสียหาย เสีย model ที่กำลัง fine-tune Online UPS ให้ zero transfer time — ไม่มี gap เลย",
+        whyForAI: "GPU Server ใช้ไฟ 2-14 kW, ไฟดับ 1 วินาทีก็ทำให้ inference ค้าง training เสียหาย เสีย model ที่กำลัง fine-tune Online UPS ให้ zero transfer time, ไม่มี gap เลย",
         keySpecs: [
           { label: "Type", value: "Online Double Conversion" },
           { label: "Capacity", value: "5-10 kVA" },
@@ -370,11 +370,11 @@ const categories: HardwareCategory[] = [
           { label: "Network Card", value: "✅ monitor ผ่าน web" },
           { label: "Auto Shutdown", value: "✅ SNMP / SSH" },
         ],
-        pros: ["Zero transfer time — ไม่มี gap เลย", "Clean power ตลอด", "Rack-mount ใส่ตู้ Rack ได้", "Network Card monitor ผ่าน Grafana ได้"],
+        pros: ["Zero transfer time, ไม่มี gap เลย", "Clean power ตลอด", "Rack-mount ใส่ตู้ Rack ได้", "Network Card monitor ผ่าน Grafana ได้"],
         cons: ["ราคาสูง", "Battery ใหญ่ หนัก", "ต้องเปลี่ยน battery ทุก 3-5 ปี"],
         bestFor: "ทุก Server tier deployment",
-        ourPackage: "Server add-on",
-        ourPrice: "+฿89,900",
+        sizingNote: "อุปกรณ์เสริมสำหรับ GPU server, ประเมินตาม workload",
+        referencePrice: "+฿89,900",
       },
     ],
   },
@@ -477,7 +477,7 @@ export default function HardwareSection() {
           <span className="text-4xl mb-4 block">⚙️</span>
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#f0f4f8] mb-4">Hardware</h1>
           <p className="text-[#94a3b8] max-w-2xl mx-auto text-base lg:text-lg">
-            เลือกเครื่องที่เหมาะกับคุณ — ตั้งแต่ Mac Mini เท่าฝ่ามือ ถึง GPU Server ระดับ Data Center
+            เลือกเครื่องที่เหมาะกับคุณ, ตั้งแต่ Mac Mini เท่าฝ่ามือ ถึง GPU Server ระดับ Data Center
           </p>
         </div>
 
@@ -622,9 +622,9 @@ export default function HardwareSection() {
                                 <p className="text-xs text-[#f0f4f8]">{item.bestFor}</p>
                               </div>
                               <div className="shrink-0 rounded-xl p-3" style={{ background: item.color + "10", border: `1px solid ${item.color}20` }}>
-                                <p className="text-[10px]" style={{ color: item.color }}>แพ็คเกจของเรา</p>
-                                <p className="text-sm font-bold text-[#f0f4f8]">{item.ourPackage}</p>
-                                <p className="text-lg font-black" style={{ color: item.color }}>{item.ourPrice}</p>
+                                <p className="text-[10px]" style={{ color: item.color }}>จุดอ้างอิงสำหรับ sizing</p>
+                                <p className="text-sm font-bold text-[#f0f4f8]">{item.sizingNote}</p>
+                                <p className="text-lg font-black" style={{ color: item.color }}>{item.referencePrice}</p>
                                 <a href="/contact" className="inline-flex items-center gap-1 text-[10px] font-bold mt-1" style={{ color: item.color }}>
                                   สนใจ <ArrowRight size={10} />
                                 </a>
@@ -705,13 +705,13 @@ export default function HardwareSection() {
 
           <div className="space-y-3">
             {[
-              { q: "ใช้ 1-3 คน งบไม่เกิน ฿100K", a: "Mac Mini M4 24GB → Starter ฿59,900", color: "#00e5ff" },
-              { q: "ใช้ 3-5 คน ต้องการ AI ฉลาด (32B)", a: "Mac Mini M4 Pro 48GB → Pro ฿109,900", color: "#00ff88" },
-              { q: "ต้องการ AI ฉลาดที่สุด + เร็วสุด", a: "Mac Studio M4 Max 128GB → Ultra ฿219,900", color: "#8b5cf6" },
-              { q: "ต้อง fine-tune model หรือรัน 200B", a: "ASUS GX10 128GB → Powerstation ฿179,900", color: "#76B900" },
-              { q: "20-50 คนใช้พร้อมกัน", a: "Server 1-2x L40S → Entry ฿1,190,000", color: "#3b82f6" },
-              { q: "50-100+ คน + training", a: "Server 4x L40S / 8x H100 → Pro/Enterprise", color: "#f59e0b" },
-              { q: "ไม่แน่ใจ", a: "ปรึกษาฟรี — บอกว่าใช้กี่คน ทำอะไร เราแนะนำให้", color: "#ec4899" },
+              { q: "ใช้ 1-3 คน", a: "ประเมิน hardware จาก workload และแอปที่ต้องใช้", color: "#00e5ff" },
+              { q: "ใช้หลายคนและมีเอกสารจำนวนมาก", a: "ประเมิน hardware จาก workload และจำนวนผู้ใช้", color: "#00ff88" },
+              { q: "ต้องการ AI ที่เร็วขึ้น", a: "ประเมิน memory และ workload ก่อนเลือกสเปก", color: "#8b5cf6" },
+              { q: "ต้อง fine-tune model หรือรัน 200B", a: "Spark-class desk box เริ่มต้น ฿179,900", color: "#76B900" },
+              { q: "20-50 คนใช้พร้อมกัน", a: "GPU server เริ่มต้น ฿1,190,000", color: "#3b82f6" },
+              { q: "50-100+ คนและงานหนัก", a: "GPU server, ประเมินสเปกตาม workload", color: "#f59e0b" },
+              { q: "ไม่แน่ใจ", a: "ปรึกษาฟรี, บอกว่าใช้กี่คน ทำอะไร เราแนะนำให้", color: "#ec4899" },
             ].map((item) => (
               <div key={item.q} className="flex items-start gap-3 p-4 rounded-xl bg-[#111827] border border-[#1e293b]">
                 <span className="text-sm" style={{ color: item.color }}>→</span>

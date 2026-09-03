@@ -5,7 +5,6 @@ import ScrollAnimation from "@/components/ScrollAnimation";
 import HowItWorks from "@/components/HowItWorks";
 import Packages from "@/components/Packages";
 import Comparison from "@/components/Comparison";
-import CreatorCTA from "@/components/CreatorCTA";
 import CloudCTA from "@/components/CloudCTA";
 import WhyUs from "@/components/WhyUs";
 import Contact from "@/components/Contact";
@@ -22,7 +21,6 @@ export default function Home() {
         <HowItWorks />
         <Packages />
         <Comparison />
-        <CreatorCTA />
         <CloudCTA />
         <WhyUs />
         <Contact />

@@ -25,16 +25,16 @@ export default function Hero() {
           <p className="text-lg sm:text-xl lg:text-2xl text-[#94a3b8] max-w-3xl mx-auto mb-4 leading-relaxed">
             เหมือนมี ChatGPT ส่วนตัว ทำงานบนเครื่องในออฟฟิศของคุณ
             <br className="hidden sm:block" />
-            ข้อมูลไม่หลุดไปไหน ไม่มีค่ารายเดือน PDPA Compliant
+            ข้อมูลไม่หลุดไปไหน ไม่มีค่า token หรือค่าใช้งานรายเดือนสำหรับ AI, สอดคล้องกับ PDPA
           </p>
           <p className="text-base lg:text-lg text-[#64748b] max-w-xl mx-auto mb-4">
-            บริการติดตั้ง AI ครบวงจร ตั้งแต่เลือกเครื่อง ติดตั้งระบบ จนพร้อมใช้งาน เริ่มต้น ฿59,900
+            บริการติดตั้ง AI ครบวงจร ตั้งแต่เลือกเครื่อง ติดตั้งระบบ จนพร้อมใช้งาน เริ่มต้น ฿179,900
           </p>
           <div className="max-w-lg mx-auto mb-12 py-4 border-t border-b border-[#1e293b]/60">
             <p className="text-sm sm:text-base text-[#c8d5e3] font-medium italic text-center leading-relaxed">
-              "ไม่มี solution สำเร็จรูปที่เหมาะกับทุกคน
+              ไม่มี solution สำเร็จรูปที่เหมาะกับทุกคน
               <br className="hidden sm:block" />
-              มีแต่ระบบที่สร้างขึ้นให้พอดีกับธุรกิจคุณ"
+              มีแต่ระบบที่สร้างขึ้นให้พอดีกับธุรกิจคุณ
             </p>
             <p className="text-[10px] text-[#7a8ba0] text-center mt-2 tracking-[0.2em] uppercase">Our Philosophy</p>
           </div>
@@ -50,8 +50,8 @@ export default function Hero() {
               },
               {
                 icon: Banknote,
-                title: "จ่ายครั้งเดียวจบ",
-                desc: "ไม่มีค่า Subscription รายเดือน ประหยัดกว่าบริการคลาวด์ในระยะยาว",
+                title: "ลงทุนกับ hardware ครั้งเดียว",
+                desc: "ไม่มีค่า token หรือค่าใช้งานรายเดือนสำหรับ AI",
                 color: "#00e5ff",
               },
               {

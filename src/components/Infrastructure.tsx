@@ -55,7 +55,7 @@ const categories = [
       },
       {
         name: "ห้อง Server สำเร็จรูป",
-        desc: "สำหรับองค์กรที่ไม่มีห้อง Server — ตู้ปิดมิด พร้อมระบบทำความเย็นและ UPS ในตัว",
+        desc: "สำหรับองค์กรที่ไม่มีห้อง Server, ตู้ปิดมิด พร้อมระบบทำความเย็นและ UPS ในตัว",
         price: "฿150,000 - 500,000+",
       },
     ],
@@ -100,7 +100,7 @@ export default function Infrastructure() {
           <p className="text-[#94a3b8] max-w-2xl mx-auto text-base leading-relaxed">
             เหมือนซื้อบ้าน ต้องมีระบบไฟ ตู้เก็บของ และเซฟ
             <br />
-            AI ก็เหมือนกัน — ต้องมีไฟสำรอง ตู้ Rack และที่เก็บข้อมูล
+            AI ก็เหมือนกัน, ต้องมีไฟสำรอง ตู้ Rack และที่เก็บข้อมูล
           </p>
         </div>
 
@@ -183,11 +183,11 @@ export default function Infrastructure() {
         >
           <Shield size={24} className="text-[#00ff88] mx-auto mb-3" />
           <h3 className="text-xl font-bold text-[#f0f4f8] mb-2">
-            สั่งพร้อม AI Package รับส่วนลดพิเศษ
+            จัดโครงสร้างพื้นฐานพร้อม Local AI
           </h3>
           <p className="text-sm text-[#94a3b8] max-w-lg mx-auto mb-4">
-            ซื้อ UPS + Rack + NAS พร้อมแพ็คเกจ AI — ได้ราคาดีกว่าซื้อแยก
-            และเราดูแลติดตั้งให้ครบจบในทีมเดียว
+            เลือก UPS, Rack และ NAS ตามความต้องการของระบบ
+            และให้ทีมติดตั้งพร้อมกันได้
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
             {[

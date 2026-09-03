@@ -27,9 +27,7 @@ const navItems: NavItem[] = [
   {
     label: "Solutions",
     children: [
-      { href: "/packages", label: "แพ็คเกจ & ราคา", desc: "ติดตั้ง AI ครบชุดพร้อมใช้" },
-      { href: "/personal", label: "ใช้ที่บ้าน / JARVIS", desc: "AI ส่วนตัวทำงานแทนคุณ" },
-      { href: "/creator", label: "Creator", highlight: true, desc: "สำหรับ Content Creator" },
+      { href: "/packages", label: "ขนาดระบบและราคา", desc: "เริ่มต้นจาก workload ของคุณ" },
     ],
   },
   {
@@ -37,14 +35,14 @@ const navItems: NavItem[] = [
     children: [
       { href: "/hardware", label: "เปรียบเทียบ Hardware", desc: "สเปค Benchmark ทุกเครื่อง" },
       { href: "/shop", label: "ร้านค้า", desc: "ซื้อ Hardware ราคาปลีก" },
-      { href: "/tech-stack", label: "Tech Stack", desc: "ซอฟต์แวร์ 35+ ตัว" },
+      { href: "/tech-stack", label: "แอป Mimir", desc: "งานที่ทีมใช้ได้จริง" },
     ],
   },
   {
     label: "บริการ",
     children: [
       { href: "/services", label: "บริการทั้งหมด", desc: "ดูบริการทุกรูปแบบ" },
-      { href: "https://www.cloudaithai.com", label: "Cloud AI Setup", desc: "cloudaithai.com →" },
+      { href: "https://www.cloudaithai.com", label: "Mimir Suites Cloud", desc: "cloudaithai.com" },
       { href: "/support", label: "ดูแลระบบ", desc: "Maintenance & Support" },
     ],
   },

@@ -8,7 +8,7 @@ const phases = [
     range: [0, 0.22],
     label: "STEP 1",
     title: "รวบรวมเอกสารทั้งหมด",
-    subtitle: "PDF, Word, Excel, อีเมล — นำเข้าระบบ AI ได้หมด",
+    subtitle: "PDF, Word, Excel, อีเมล, นำเข้าระบบ AI ได้หมด",
   },
   {
     range: [0.25, 0.47],
@@ -148,7 +148,7 @@ export default function ScrollAnimation() {
           </div>
         )}
 
-        {/* Intro overlay — shows before scrolling */}
+        {/* Intro overlay, shows before scrolling */}
         {progress < 0.05 && loaded && (
           <div
             className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6"
