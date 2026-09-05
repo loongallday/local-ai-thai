@@ -253,16 +253,23 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <motion.nav
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#060a14]/90 backdrop-blur-xl border-b border-[#1e293b]"
-          : "bg-transparent"
-      }`}
-    >
+    <>
+      <a
+        href="#content"
+        className="fixed left-4 top-4 z-[60] -translate-y-24 rounded-lg bg-[#f0f4f8] px-4 py-3 text-sm font-semibold text-[#060a14] shadow-lg transition-transform focus:translate-y-0 focus:outline-none focus:ring-2 focus:ring-[#00e5ff] focus:ring-offset-2 focus:ring-offset-[#060a14]"
+      >
+        ข้ามไปเนื้อหา
+      </a>
+      <motion.nav
+        initial={{ y: -80 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-[#060a14]/90 backdrop-blur-xl border-b border-[#1e293b]"
+            : "bg-transparent"
+        }`}
+      >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2 group">
@@ -394,6 +401,7 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+      </motion.nav>
+    </>
   );
 }

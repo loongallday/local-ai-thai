@@ -38,6 +38,7 @@ export default function ScrollAnimation() {
   const loadedRef = useRef<boolean[]>(new Array(TOTAL_FRAMES).fill(false));
   const [loaded, setLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   // Detect mobile
   useEffect(() => {
@@ -47,12 +48,21 @@ export default function ScrollAnimation() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReducedMotion(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
+
   const FRAME_WIDTH = isMobile ? 780 : 1920;
   const FRAME_HEIGHT = isMobile ? 1400 : 1080;
   const frameDir = isMobile ? "/frames-mobile" : "/frames";
 
   // Preload all frames
   useEffect(() => {
+    if (reducedMotion) return;
     let loadedCount = 0;
     const images: HTMLImageElement[] = [];
     loadedRef.current = new Array(TOTAL_FRAMES).fill(false);
@@ -72,10 +82,11 @@ export default function ScrollAnimation() {
     }
 
     imagesRef.current = images;
-  }, [frameDir]);
+  }, [frameDir, reducedMotion]);
 
   // Scroll tracking
   useEffect(() => {
+    if (reducedMotion) return;
     const section = sectionRef.current;
     if (!section) return;
 
@@ -90,7 +101,7 @@ export default function ScrollAnimation() {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [reducedMotion]);
 
   // Draw current frame to canvas
   const drawFrame = useCallback(() => {
@@ -112,9 +123,34 @@ export default function ScrollAnimation() {
   }, [progress]);
 
   useEffect(() => {
+    if (reducedMotion) return;
     const raf = requestAnimationFrame(drawFrame);
     return () => cancelAnimationFrame(raf);
-  }, [drawFrame]);
+  }, [drawFrame, reducedMotion]);
+
+  if (reducedMotion) {
+    return (
+      <section className="bg-[#030810] py-20" aria-labelledby="how-it-works-motion-title">
+        <div className="mx-auto max-w-4xl px-6">
+          <h2 id="how-it-works-motion-title" className="text-center text-2xl font-bold text-[#f0f4f8] sm:text-3xl">
+            ดูวิธีทำงานของ AI ส่วนตัว
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-[#94a3b8]">
+            ตั้งแต่นำเอกสารเข้าระบบ จนถึงได้คำตอบที่อ้างอิงข้อมูลของคุณ
+          </p>
+          <ol className="mt-10 grid gap-4 sm:grid-cols-2">
+            {phases.map((phase) => (
+              <li key={phase.label} className="rounded-xl border border-[#1e293b] bg-[#0c1220] p-5">
+                <p className="text-xs font-semibold tracking-wider text-[#00e5ff]">{phase.label}</p>
+                <h3 className="mt-2 text-lg font-bold text-[#f0f4f8]">{phase.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#94a3b8]">{phase.subtitle}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section ref={sectionRef} className="relative" style={{ height: isMobile ? "250vh" : "400vh" }}>

@@ -84,22 +84,16 @@ export default function Hero() {
           {/* CTA */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="#how-it-works"
+              href="#contact"
               className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-gradient-to-r from-[#00e5ff] to-[#00ff88] text-[#060a14] font-bold text-base hover:opacity-90 transition-opacity text-center"
             >
-              ดูว่า AI ส่วนตัวทำอะไรได้บ้าง
+              Request a Demo
             </a>
             <a
-              href="#contact"
+              href="#how-it-works"
               className="w-full sm:w-auto px-8 py-3.5 rounded-lg border border-[#1e293b] text-[#f0f4f8] font-semibold text-base hover:border-[#00e5ff] hover:text-[#00e5ff] transition-all text-center"
             >
-              ปรึกษาฟรี ไม่มีค่าใช้จ่าย
-            </a>
-            <a
-              href="#contact"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-lg border-2 border-[#00e5ff]/50 text-[#00e5ff] font-bold text-base hover:bg-[#00e5ff]/10 transition-all text-center shadow-[0_0_20px_rgba(0,229,255,0.15)]"
-            >
-              Request a Demo
+              ดูว่า AI ส่วนตัวทำอะไรได้บ้าง
             </a>
           </div>
         </motion.div>

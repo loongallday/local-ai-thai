@@ -11,22 +11,33 @@ export default function Contact() {
   const pathname = usePathname();
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitting(true);
+    setSubmitError(false);
     const data = new FormData(event.currentTarget);
     data.set("source_page", pathname);
     const searchParams = new URLSearchParams(window.location.search);
     data.set("campaign", searchParams.get("campaign") ?? "");
     data.set("keyword", searchParams.get("keyword") ?? "");
-    const response = await fetch("https://formspree.io/f/mvzwbyrd", {
-      method: "POST",
-      body: data,
-      headers: { Accept: "application/json" },
-    });
-    setSubmitting(false);
-    if (response.ok) setSubmitted(true);
+    try {
+      const response = await fetch("https://formspree.io/f/mvzwbyrd", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        setSubmitError(true);
+      }
+    } catch {
+      setSubmitError(true);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -70,6 +81,7 @@ export default function Contact() {
               </div>
               <label className="block text-xs text-[#94a3b8]">ช่วงเวลาที่ต้องการ<input required name="timeline" className={fieldClass} placeholder="เช่น ภายในไตรมาสนี้" /></label>
               <button type="submit" disabled={submitting} className="w-full flex justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-[#00e5ff] to-[#00ff88] text-[#060a14] font-bold text-sm"><Send size={16} />{submitting ? "กำลังส่ง..." : "ส่งข้อมูล"}</button>
+              {submitError && <p role="alert" className="text-sm text-[#f0f4f8]">ส่งข้อมูลไม่สำเร็จ โปรดลองอีกครั้ง หรือติดต่อเราทางโทรศัพท์หรือ LINE</p>}
             </form>}
           </motion.div>
         </div>

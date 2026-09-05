@@ -12,20 +12,22 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="relative">
+    <div className="relative">
       <DataRoadBg />
       <div className="relative z-10">
         <Navbar />
-        <Hero />
-        <ScrollAnimation />
-        <HowItWorks />
-        <Packages />
-        <Comparison />
-        <CloudCTA />
-        <WhyUs />
-        <Contact />
+        <main id="content" tabIndex={-1}>
+          <Hero />
+          <ScrollAnimation />
+          <HowItWorks />
+          <Packages />
+          <Comparison />
+          <CloudCTA />
+          <WhyUs />
+          <Contact />
+        </main>
         <Footer />
       </div>
-    </main>
+    </div>
   );
 }
