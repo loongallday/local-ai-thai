@@ -50,7 +50,7 @@ All open source. All self-hosted. 100% local.
 - 🌐 [localaithai.com](https://localaithai.com)
 - 💚 [LINE Official](https://lin.ee/rYvSzrg)
 - 📞 082-704-7606
-- 📧 chavin@pace-design.co.th
+- 📧 sales@localaithai.com
 
 ---
 

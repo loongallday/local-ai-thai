@@ -40,7 +40,7 @@ export default function Footer() {
             <p className="text-[12px] font-semibold text-[#f0f4f8] uppercase tracking-wider mb-3">ติดต่อ</p>
             <div className="space-y-0.5 text-[13px] text-[#94a3b8]">
               <a href="tel:0827047606" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">082-704-7606</a>
-              <a href="mailto:chavin@pace-design.co.th" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">chavin@pace-design.co.th</a>
+              <a href="mailto:sales@localaithai.com" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">sales@localaithai.com</a>
               <a href="https://line.me/R/ti/p/@542mgysj" className="block hover:text-[#00e5ff] transition-colors py-2 sm:py-1">LINE @542mgysj</a>
             </div>
           </div>

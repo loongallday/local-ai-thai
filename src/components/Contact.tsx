@@ -41,7 +41,7 @@ export default function Contact() {
           <div className="space-y-5">
             <a href="https://lin.ee/rYvSzrg" className="flex items-center gap-4 p-5 rounded-xl bg-[#111827] border border-[#1e293b]"><MessageCircle size={22} className="text-[#00C300]" /><span className="text-[#f0f4f8] font-bold">แชทผ่าน LINE</span></a>
             <a href="tel:+66827047606" className="flex items-center gap-4 p-5 rounded-xl bg-[#111827] border border-[#1e293b]"><Phone size={22} className="text-[#00e5ff]" /><span className="text-[#f0f4f8] font-bold">082-704-7606</span></a>
-            <a href="mailto:chavin@pace-design.co.th" className="flex items-center gap-4 p-5 rounded-xl bg-[#111827] border border-[#1e293b]"><Mail size={22} className="text-[#8b5cf6]" /><span className="text-[#f0f4f8] font-bold">chavin@pace-design.co.th</span></a>
+            <a href="mailto:sales@localaithai.com" className="flex items-center gap-4 p-5 rounded-xl bg-[#111827] border border-[#1e293b]"><Mail size={22} className="text-[#8b5cf6]" /><span className="text-[#f0f4f8] font-bold">sales@localaithai.com</span></a>
           </div>
 
           <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="rounded-2xl bg-[#111827] border border-[#1e293b] p-6 md:p-8">

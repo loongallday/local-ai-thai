@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "ติดต่อเรา | ปรึกษาฟรี ขอใบเสนอราคา AI ส่วนตัว | LocalAI Thailand",
   description:
-    "ติดต่อ LocalAI Thailand ปรึกษาฟรีเรื่องติดตั้ง AI ส่วนตัว ขอใบเสนอราคา ผ่าน LINE @542mgysj โทร อีเมล chavin@pace-design.co.th หรือกรอกฟอร์ม ตอบกลับภายใน 1 วันทำการ สำนักงาน กรุงเทพมหานคร",
+    "ติดต่อ LocalAI Thailand ปรึกษาฟรีเรื่องติดตั้ง AI ส่วนตัว ขอใบเสนอราคา ผ่าน LINE @542mgysj โทร อีเมล sales@localaithai.com หรือกรอกฟอร์ม ตอบกลับภายใน 1 วันทำการ สำนักงาน กรุงเทพมหานคร",
   keywords: [
     "ติดต่อ LocalAI Thailand",
     "ขอใบเสนอราคา AI",
