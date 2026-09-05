@@ -1,12 +1,12 @@
 # localaithai.com
 
-Next.js 16 site for localaithai.com, the Local AI line's Thai selling door and the namesake of the `localaithai` GitHub org. It sells the Local edition: Mimir Suites on an AI machine at the customer's site. `CLAUDE.md` is a symlink to this file.
+Static Next.js 16 site for localaithai.com, the Local AI line's Thai selling door and the namesake of the `localaithai` GitHub org. It sells the Local edition: Mimir Suites on an AI machine at the customer's site. `CLAUDE.md` is a symlink to this file.
 
 ## Quick reference
 
 - Package manager: npm (`package-lock.json` is the committed lockfile)
 - Develop: `npm run dev`
-- Verification: `npm run lint && npm run build`
+- Verification: `npm run lint && npm run build` (static export writes `out/`)
 - No typecheck script and no test suite. `next build` is the type gate.
 - Source lives under `src/` (`src/app`, `src/components`); `@/*` maps to `./src/*`.
 - Hero frame sequences in `public/frames`, `public/frames-mobile` and `public/frames-jarvis` are rendered from the Remotion compositions in `remotion/`. Rerender with `remotion/render-frames.mts` (optional argument `main` or `jarvis`); never hand-edit frames.
@@ -26,7 +26,7 @@ Before writing copy, CTAs, footer disclosures, or cross-links, read:
 - Privacy wording (data never leaves the office, PDPA) belongs to this line. The `/cloud` page and `CloudSection` link to `cloudaithai.com` for the customer who does not need data on-site; that is the one cross-link with genuine user benefit. No "our other companies" blocks.
 - The site still lists named packages with prices, which the product decision "no named packages, sizing per deal" contradicts. Resolve before promotion and do not add more named tiers.
 - There is no `lib/site.ts` yet; brand values live inline in `src/app/layout.tsx`, `src/app/sitemap.ts` and components. Do not add another copy. When you touch them, centralise into `src/lib/site.ts` as the sibling sites do.
-- `next.config.ts` does not set `output: "export"` and the repo declares no deploy target. Keep the site static-compatible regardless: no API routes, middleware or request-time rendering.
+- Fully static export (`output: "export"` in `next.config.ts`) served as Cloudflare Workers assets from `out/` (`wrangler.jsonc`, worker `localaithai-com`). No API routes, middleware or request-time rendering.
 - Primary CTA is "Request a Demo" into the contact section. "Visit Mimir Suites" is never the primary CTA; "Powered by Mimir Suites" is fine.
 - The footer carries no operator line until the operating entity is named. Render nothing, never a placeholder.
 - Tool and vendor names on the tech-stack page identify genuine components inside our offer, never our identity.
