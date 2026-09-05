@@ -27,6 +27,7 @@ Before writing copy, CTAs, footer disclosures, or cross-links, read:
 - The site still lists named packages with prices, which the product decision "no named packages, sizing per deal" contradicts. Resolve before promotion and do not add more named tiers.
 - There is no `lib/site.ts` yet; brand values live inline in `src/app/layout.tsx`, `src/app/sitemap.ts` and components. Do not add another copy. When you touch them, centralise into `src/lib/site.ts` as the sibling sites do.
 - Fully static export (`output: "export"` in `next.config.ts`) served as Cloudflare Workers assets from `out/` (`wrangler.jsonc`, worker `localaithai-com`). No API routes, middleware or request-time rendering.
+- Contact channels (email, LINE, phone) and the lead form come from omni's `cta.js` through `data-cta` attributes; never hardcode them in components.
 - Primary CTA is "Request a Demo" into the contact section. "Visit Mimir Suites" is never the primary CTA; "Powered by Mimir Suites" is fine.
 - The footer carries no operator line until the operating entity is named. Render nothing, never a placeholder.
 - Tool and vendor names on the tech-stack page identify genuine components inside our offer, never our identity.
