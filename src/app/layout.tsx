@@ -21,5 +21,5 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const structuredData = { "@context": "https://schema.org", "@type": "Organization", name: "LocalAI Thailand", url: siteUrl, description, address: { "@type": "PostalAddress", addressLocality: "Bangkok", addressCountry: "TH" }, contactPoint: { "@type": "ContactPoint", contactType: "sales", availableLanguage: ["Thai", "English"] } };
-  return <html lang="th" className="scroll-smooth"><head><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} /></head><body className="antialiased"><PageTransition>{children}</PageTransition><OmniToaster /><Script src="https://localai-omni.vercel.app/cta.js" strategy="afterInteractive" /></body></html>;
+  return <html lang="th" className="scroll-smooth"><head><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} /></head><body className="antialiased"><PageTransition>{children}</PageTransition><OmniToaster /><Script src="https://localai-omni.vercel.app/cta.js" strategy="afterInteractive" /><Script src="https://localai-omni.vercel.app/analytics.js" strategy="afterInteractive" /></body></html>;
 }
