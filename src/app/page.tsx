@@ -7,6 +7,7 @@ import Packages from "@/components/Packages";
 import Comparison from "@/components/Comparison";
 import CloudCTA from "@/components/CloudCTA";
 import WhyUs from "@/components/WhyUs";
+import Partners from "@/components/Partners";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -24,6 +25,7 @@ export default function Home() {
           <Comparison />
           <CloudCTA />
           <WhyUs />
+          <Partners />
           <Contact />
         </main>
         <Footer />

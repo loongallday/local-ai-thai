@@ -13,7 +13,7 @@ const reasons = [
   {
     icon: Award,
     title: "สินค้าแท้ ประกันศูนย์",
-    desc: "เราเป็นตัวแทนจำหน่ายอย่างเป็นทางการจาก Ingram, Synnex, SIS, ทุกชิ้นของแท้ ประกันเต็ม ออกใบกำกับภาษีได้",
+    desc: "เราจัดหาผ่านเครือข่ายพาร์ทเนอร์ที่ตรวจสอบได้ ทุกชิ้นเป็นของแท้ มีประกัน และออกใบกำกับภาษีได้",
     color: "#00e5ff",
   },
   {
@@ -94,25 +94,6 @@ export default function WhyUs() {
               </p>
             </motion.div>
           ))}
-        </div>
-
-        {/* Partner logos */}
-        <div className="mt-16 text-center">
-          <p className="text-xs text-[#64748b] uppercase tracking-widest mb-6">
-            พาร์ทเนอร์ที่เราร่วมงานด้วย
-          </p>
-          <div className="flex justify-center items-center gap-12 flex-wrap opacity-50">
-            {["INGRAM MICRO", "TD SYNNEX", "SIS", "EATON", "SCHNEIDER"].map(
-              (name) => (
-                <span
-                  key={name}
-                  className="text-lg md:text-xl font-bold text-[#64748b] tracking-wider"
-                >
-                  {name}
-                </span>
-              )
-            )}
-          </div>
         </div>
       </div>
     </section>

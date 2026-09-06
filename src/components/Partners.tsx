@@ -1,0 +1,32 @@
+const partners = [
+  "INGRAM MICRO",
+  "TD SYNNEX",
+  "SIS",
+  "ASCENTI",
+  "EATON",
+  "SCHNEIDER",
+  "VST ECS",
+] as const;
+
+export default function Partners() {
+  return (
+    <section aria-labelledby="partners-heading" className="relative border-y border-[#1e293b] bg-[#0c1220]/80 py-16 lg:py-20">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,28rem)_1fr] lg:items-end lg:gap-16">
+          <div>
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.18em] text-[#00e5ff]">Delivery network</p>
+            <h2 id="partners-heading" className="text-3xl font-bold text-[#f0f4f8] md:text-5xl">พาร์ทเนอร์ที่ช่วยให้ระบบพร้อมใช้จริง</h2>
+          </div>
+          <p className="max-w-2xl text-base leading-8 text-[#94a3b8] lg:text-lg">ตั้งแต่เครื่อง AI, UPS, rack ไปจนถึงการรับประกัน เราประสานเครือข่ายพาร์ทเนอร์เพื่อส่งมอบอุปกรณ์แท้และออกแบบระบบให้เหมาะกับหน้างาน</p>
+        </div>
+        <ul className="mt-12 grid grid-cols-2 overflow-hidden rounded-2xl border border-[#1e293b] bg-[#111827] sm:grid-cols-3 lg:grid-cols-7">
+          {partners.map((partner) => (
+            <li key={partner} className="flex min-h-24 items-center justify-center border-b border-r border-[#1e293b] px-4 text-center text-sm font-bold tracking-wide text-[#94a3b8] transition-colors hover:text-[#00e5ff]">
+              {partner}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
