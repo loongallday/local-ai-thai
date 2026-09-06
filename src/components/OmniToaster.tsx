@@ -32,5 +32,5 @@ export default function OmniToaster() {
     };
   }, []);
 
-  return <Toaster position="top-center" theme="dark" richColors closeButton />;
+  return <Toaster position="bottom-right" theme="dark" richColors closeButton />;
 }
