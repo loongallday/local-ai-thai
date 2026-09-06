@@ -1,0 +1,51 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+  "files": {
+    "includes": [
+      "**",
+      "!.next",
+      "!out",
+      "!build",
+      "!public",
+      "!docs",
+      "!next-env.d.ts",
+      "!scripts/seo-audit.mjs",
+      "!**/*.glsl.ts"
+    ]
+  },
+  "formatter": { "enabled": true, "indentStyle": "space", "indentWidth": 2 },
+  "javascript": { "formatter": { "quoteStyle": "double" } },
+  "css": { "parser": { "tailwindDirectives": true } },
+  "linter": {
+    "enabled": true,
+    "domains": { "next": "recommended", "react": "recommended" },
+    "rules": {
+      "preset": "recommended",
+      "a11y": {
+        "noAriaHiddenOnFocusable": "off",
+        "noLabelWithoutControl": "off",
+        "noStaticElementInteractions": "off",
+        "noSvgWithoutTitle": "off",
+        "useAnchorContent": "off",
+        "useAriaPropsSupportedByRole": "off",
+        "useButtonType": "off",
+        "useSemanticElements": "off",
+        "useValidAnchor": "off"
+      },
+      "complexity": { "noImportantStyles": "off" },
+      "correctness": {
+        "useExhaustiveDependencies": "warn",
+        "useHookAtTopLevel": "warn"
+      },
+      "security": { "noBlankTarget": "warn", "noDangerouslySetInnerHtml": "off" },
+      "style": { "noDescendingSpecificity": "off" },
+      "suspicious": {
+        "noArrayIndexKey": "off",
+        "noAssignInExpressions": "off",
+        "useIterableCallbackReturn": "warn"
+      }
+    }
+  },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } }
+}
